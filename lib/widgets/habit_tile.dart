@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/circle_progress_indicator.dart';
+import 'package:provider/provider.dart';
 import 'models/habit_model.dart';
+import 'providers/habit_provider.dart';
 
 class HabitTile extends StatefulWidget {
   HabitTile({
@@ -38,9 +40,9 @@ class _HabitTileState extends State<HabitTile> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("habit.habitTitle", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    Text(widget.habit.habitTitle, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                     SizedBox(height: 4),
-                    Text("${widget.habit.elapsedTime} / ${widget.habit.timeGoal} = ${(widget.habit.elapsedTime*100/widget.habit.timeGoal).toStringAsFixed(0)}%", 
+                    Text("${widget.habit.elapsedTime} / ${widget.habit.timeGoal} = ${context.watch<HabitProvider>().calculatePercent(widget.index).toStringAsFixed(0)}%", 
                     style: TextStyle(color: Colors.grey.shade600)),
                   ],
                 ),

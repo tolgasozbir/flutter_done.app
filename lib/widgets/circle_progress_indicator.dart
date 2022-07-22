@@ -59,12 +59,22 @@ class _CircleProgressIndicatorState extends State<CircleProgressIndicator> with 
     );
   }
 
-  CircularProgressIndicator indicator() {
-    return CircularProgressIndicator(
-      backgroundColor: Colors.amber,
-      color: Colors.red,
-      value: 0.5,
-      strokeWidth: 5,
+  Widget indicator() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(seconds: 1),
+      tween: Tween(begin: context.watch<HabitProvider>().getElapsedTime(widget.index).toDouble(), end: context.watch<HabitProvider>().calculatePercent(widget.index)/100),
+      builder: (BuildContext context,double value, Widget? child) {
+        return CircularProgressIndicator(
+        backgroundColor: Colors.grey,
+        color: value >= 0.5 && value < 0.8
+          ? Colors.orange
+          : value > 0.8 
+            ? Colors.green
+            : Colors.red,
+        value: value,
+        strokeWidth: 5,
+        );
+      },
     );
   }
 

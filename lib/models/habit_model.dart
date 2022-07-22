@@ -8,7 +8,7 @@ class Habit {
     required this.habitTitle,
     required this.elapsedTime,
     required this.timeGoal,
-    required this.isStarted
+    this.isStarted = false,
   });
 
   Habit.fromJson(Map<String, dynamic> json) {
