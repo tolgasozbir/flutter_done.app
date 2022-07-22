@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/habit_tile.dart';
-import 'package:habit_tracker/models/habit_model.dart';
-import 'package:habit_tracker/providers/habit_provider.dart';
+import '../widgets/habit_tile.dart';
+import '../models/habit_model.dart';
+import '../providers/habit_provider.dart';
 import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {

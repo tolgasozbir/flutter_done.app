@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/providers/habit_provider.dart';
 import 'package:provider/provider.dart';
+import '../providers/habit_provider.dart';
 
 class CircleProgressIndicator extends StatefulWidget {
   CircleProgressIndicator({

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/home_view.dart';
+import 'screens/home_view.dart';
 import 'package:provider/provider.dart';
 import 'providers/habit_provider.dart';
 

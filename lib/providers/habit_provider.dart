@@ -1,7 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/models/habit_model.dart';
+import '../models/habit_model.dart';
 
 class HabitProvider extends ChangeNotifier {
   
