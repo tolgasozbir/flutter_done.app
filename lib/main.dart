@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/constants/app_colors.dart';
+import 'package:habit_tracker/constants/app_strings.dart';
 import 'screens/home_view.dart';
 import 'package:provider/provider.dart';
 import 'providers/habit_provider.dart';
@@ -18,13 +20,13 @@ class MyApp extends StatelessWidget {
       theme: Theme.of(context).copyWith(
         appBarTheme: AppBarTheme(
           centerTitle: true,
-          backgroundColor: Colors.grey.shade900
+          backgroundColor: AppColors.appBarBackground
         ),
-        scaffoldBackgroundColor: Colors.grey.shade300
+        scaffoldBackgroundColor: AppColors.scaffoldBackground
       ),
       debugShowCheckedModeBanner: false,
-      title: 'Habit Tracker',
-      home: SafeArea(child: HomeView())
+      title: AppStrings.appName,
+      home: HomeView()
     );
   }
 }

@@ -10,7 +10,7 @@ class HabitProvider extends ChangeNotifier {
   ];
 
   List<Habit> get getHabitList => _habitList;
-  bool getHabitStatus(int index) => _habitList[index].isStarted;
+  bool getStatus(int index) => _habitList[index].isStarted;
   int getElapsedTime(int index) => _habitList[index].elapsedTime;
 
   void addNewHabit(Habit habit){
@@ -18,7 +18,7 @@ class HabitProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void changeHabitStatus(int index) {
+  void changeStatus(int index) {
     bool isFinished = _habitList[index].elapsedTime >= _habitList[index].timeGoal;
     if (!isFinished) {
       _habitList[index].isStarted = !_habitList[index].isStarted;
@@ -30,7 +30,7 @@ class HabitProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void startTimer(int index){ //çalışıyor ama hepsi aynı zamanda ticklerse güzel olur
+  void startTimer(int index){
     Timer.periodic(Duration(milliseconds: 1000), (timer) {
       if ( _habitList[index].isStarted) {
         _incrementElsapsedTime(index);

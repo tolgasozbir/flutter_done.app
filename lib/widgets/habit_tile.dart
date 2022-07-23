@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/constants/app_colors.dart';
+import 'package:habit_tracker/screens/dialog_view.dart';
+import 'package:habit_tracker/widgets/settings_dialog.dart';
 import 'package:provider/provider.dart';
 import '../models/habit_model.dart';
 import '../providers/habit_provider.dart';
@@ -20,6 +23,8 @@ class HabitTile extends StatefulWidget {
 
 class _HabitTileState extends State<HabitTile> {
 
+  int hour = 0;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,7 +32,7 @@ class _HabitTileState extends State<HabitTile> {
       child: Container(
         padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: Colors.grey.shade100,
+          color: AppColors.tileBackground,
           borderRadius: BorderRadius.circular(12)
         ),
         child: Row(
@@ -43,15 +48,24 @@ class _HabitTileState extends State<HabitTile> {
                     Text(widget.habit.habitTitle, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                     SizedBox(height: 4),
                     Text("${widget.habit.elapsedTime} / ${widget.habit.timeGoal} = ${context.watch<HabitProvider>().calculatePercent(widget.index).toStringAsFixed(0)}%", 
-                    style: TextStyle(color: Colors.grey.shade600)),
+                    style: TextStyle(color: AppColors.subTextColor)),
                   ],
                 ),
               ],
             ),
-            Icon(Icons.settings)
+            IconButton(
+              onPressed: (){
+                SettingsDialog.showSettingsDialog(
+                  context: context, 
+                  dialogPageContent: DialogView(habit: widget.habit,)
+                );
+              }, 
+              icon: Icon(Icons.settings)
+            ),
           ],
         ),
       ),
     );
   }
 }
+
