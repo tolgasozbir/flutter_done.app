@@ -47,7 +47,8 @@ class _HabitTileState extends State<HabitTile> {
                   children: [
                     Text(widget.habit.habitTitle, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                     SizedBox(height: 4),
-                    Text("${widget.habit.elapsedTime} / ${widget.habit.timeGoal} = ${context.watch<HabitProvider>().calculatePercent(widget.index).toStringAsFixed(0)}%", 
+                    Text(
+                      "${context.watch<HabitProvider>().formatElapsedTime(widget.habit.elapsedTime)} / ${context.watch<HabitProvider>().formatGoalTime(widget.habit.timeGoal)} = ${context.watch<HabitProvider>().calculatePercent(widget.index).toStringAsFixed(0)}%", 
                     style: TextStyle(color: AppColors.subTextColor)),
                   ],
                 ),
@@ -55,6 +56,7 @@ class _HabitTileState extends State<HabitTile> {
             ),
             IconButton(
               onPressed: (){
+                context.read<HabitProvider>().formatElapsedTime(widget.habit.elapsedTime);
                 SettingsDialog.showSettingsDialog(
                   context: context, 
                   dialogPageContent: DialogView(habit: widget.habit,)

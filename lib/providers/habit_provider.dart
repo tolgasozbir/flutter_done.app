@@ -5,8 +5,8 @@ import '../models/habit_model.dart';
 class HabitProvider extends ChangeNotifier {
   
   List<Habit> _habitList = [
-    Habit(habitTitle: "Exercise",elapsedTime: 0,timeGoal: 20,isStarted: false),
-    Habit(habitTitle: "Work",elapsedTime: 0,timeGoal: 5,isStarted: false),
+    Habit(habitTitle: "Exercise",elapsedTime: 0,timeGoal: 18900,isStarted: false),
+    Habit(habitTitle: "Work",elapsedTime: 0,timeGoal: 450,isStarted: false),
   ];
 
   List<Habit> get getHabitList => _habitList;
@@ -52,4 +52,42 @@ class HabitProvider extends ChangeNotifier {
     double percent = _habitList[index].elapsedTime*100/_habitList[index].timeGoal;
     return percent;
   }
+
+  String formatElapsedTime(int seconds){
+    String time = '${Duration(seconds: seconds)}'.split('.')[0].padLeft(8, '0');
+
+    if (time.startsWith('00:0')) {
+      time = time.substring(4);
+    }else if (time.startsWith('00:')) {
+      time = time.substring(3);
+    }else if (time.startsWith('0')) {
+      time = time.substring(1);
+    }
+    return time;
+  }
+
+  String formatGoalTime(int seconds) {
+    String time = '${Duration(seconds: seconds)}'.split('.')[0].padLeft(8, '0');
+
+    if (seconds >= 3600) {
+      if (time.startsWith('0',0)) {
+        time = time.substring(1,time.length-3);
+      }else{
+        time = time.substring(0,time.length-3);
+      }
+      if (time.endsWith(':00')) {
+        time = time.substring(0,time.length-3);
+      }
+      time += " Hours";
+    } else {
+      time = time.substring(3,time.length-3);
+      if (time.startsWith('0',0)) {
+        time = time.substring(1);
+      }
+      time += " Mins";
+    }
+
+    return time;
+  }
+
 }

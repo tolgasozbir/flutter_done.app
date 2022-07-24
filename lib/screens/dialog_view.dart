@@ -81,9 +81,9 @@ class _DialogViewState extends State<DialogView> {
                     Row(
                       children: [
                         Spacer(),
-                        Expanded(flex: 2, child: ListWheel(itemCount: 24)),
+                        Expanded(flex: 2, child: ListWheel(listWheelType: ListWheelType.hour, value: widget.habit.timeGoal)),
                         Expanded(flex: 2, child: Text("hrs",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),textAlign: TextAlign.center,)),
-                        Expanded(flex: 2, child: ListWheel(itemCount: 60,value: widget.habit.timeGoal.toDouble())),
+                        Expanded(flex: 2, child: ListWheel(listWheelType: ListWheelType.min, value: widget.habit.timeGoal)),
                         Expanded(flex: 2, child: Text("mins",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),textAlign: TextAlign.center,)),
                         Spacer()
                       ],
@@ -99,7 +99,8 @@ class _DialogViewState extends State<DialogView> {
       child: ElevatedButton(
         onPressed: (){}, 
         child: Text("Save")
-        )
-      );
+      )
+    );
   }
+
 }
