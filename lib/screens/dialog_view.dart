@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/constants/app_strings.dart';
+import 'package:habit_tracker/constants/app_styles.dart';
 import 'package:habit_tracker/models/habit_model.dart';
-
 import '../constants/app_colors.dart';
+import '../extensions/context_extension.dart';
 import '../widgets/list_wheel.dart';
 
 class DialogView extends StatefulWidget {
@@ -31,23 +33,17 @@ class _DialogViewState extends State<DialogView> {
   Widget _bodyView() {
     return StatefulBuilder(
       builder: (context, setState) => Container(
-        height: MediaQuery.of(context).size.height*0.56,
-        width: MediaQuery.of(context).size.width*0.72,
+        height: context.dynamicHeight(0.56),
+        width: context.dynamicWidth(0.72),
         color: AppColors.appBarBackground,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          child: Column(
-            children: [
-              habitTitleTextField(),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8, 32, 8, 0),
-                child: Text("Goal time for this habit",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
-              ),
-              listWheels(),
-              saveButton()
-            ],
-          ),
-        ),
+        child: Column(
+          children: [
+            habitTitleTextField(),
+            Text(AppStrings.dialogText, style: AppStyles.generalTextStyle ,textAlign: TextAlign.center).wrapPadding(AppPaddings.dialogTextPadding),
+            listWheels(),
+            saveButton()
+          ],
+        ).wrapPadding(AppPaddings.dialogContentPadding)
       ),
     );
   }
@@ -55,12 +51,8 @@ class _DialogViewState extends State<DialogView> {
   Widget habitTitleTextField() {
     return TextFormField(
       initialValue: widget.habit.habitTitle,
-      style: TextStyle(color: Colors.white),
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 16),
-        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-        border: OutlineInputBorder(borderSide: BorderSide(color: Colors.white))
-      ),
+      style: TextStyle(color: AppColors.white),
+      decoration: AppDecorations.textFieldInputDecoration,
     );
   }
 
@@ -81,9 +73,9 @@ class _DialogViewState extends State<DialogView> {
                     Row(
                       children: [
                         Spacer(),
-                        Expanded(flex: 2, child: ListWheel(listWheelType: ListWheelType.hour, value: widget.habit.timeGoal)),
+                        Expanded(flex: 2, child: ListWheel(listWheelType: ListWheelType.hour, time: widget.habit.timeGoal)),
                         Expanded(flex: 2, child: Text("hrs",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),textAlign: TextAlign.center,)),
-                        Expanded(flex: 2, child: ListWheel(listWheelType: ListWheelType.min, value: widget.habit.timeGoal)),
+                        Expanded(flex: 2, child: ListWheel(listWheelType: ListWheelType.min, time: widget.habit.timeGoal)),
                         Expanded(flex: 2, child: Text("mins",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),textAlign: TextAlign.center,)),
                         Spacer()
                       ],

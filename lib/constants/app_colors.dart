@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class AppColors {
+  static const Color white = Color(0xFFFFFFFF);
   static const Color appBarBackground = Color(0xFF212121);
   static const Color scaffoldBackground = Color(0xFFE0E0E0);
   static const Color tileBackground = Color(0xFFF5F5F5);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/constants/app_styles.dart';
 import 'package:habit_tracker/providers/habit_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -9,11 +10,11 @@ enum ListWheelType {
 class ListWheel extends StatefulWidget {
   const ListWheel({
     Key? key, 
-    this.value = 5, required this.listWheelType,
+    this.time = 5, required this.listWheelType,
   }) : super(key: key);
 
   final ListWheelType listWheelType;
-  final int value;
+  final int time;
 
   @override
   State<ListWheel> createState() => _ListWheelState();
@@ -21,6 +22,9 @@ class ListWheel extends StatefulWidget {
 
 class _ListWheelState extends State<ListWheel> {
   final double _itemExtent = 16;
+  final Duration duration = const Duration(milliseconds: 600);
+  double mins = 0;
+  double hours = 0;
 
   late final ScrollController scrollController;
 
@@ -31,31 +35,32 @@ class _ListWheelState extends State<ListWheel> {
   }
 
   void init() async {
+    formatTime();
     scrollController = ScrollController();
-    await Future.delayed(Duration(milliseconds: 600),(){
-      double mins = 0;
-      double hours = 0;
-      String time = context.read<HabitProvider>().formatGoalTime(widget.value);
-      if (time.endsWith(' Hours')) {
-        time = time.substring(0, time.length -6);
-        if (time.length>=3) {
-          hours = double.tryParse(time.split(':')[0]) ?? 0;
-        }
-        mins =  double.tryParse(time.split(':')[1]) ?? 0;
-      } else if (time.endsWith(' Mins')) {
-        time = time.substring(0,time.length-5);
-        mins = double.tryParse(time) ?? 0;
-      }
-
+    await Future.delayed(duration,(){
       if (scrollController.hasClients) {
         scrollController.animateTo(
           widget.listWheelType == ListWheelType.hour 
             ? (hours * _itemExtent) 
             : (mins * _itemExtent), 
-        duration: Duration(milliseconds: 600), 
+        duration: duration, 
         curve: Curves.linear); 
       }
     });
+  }
+
+  void formatTime(){
+    String time = context.read<HabitProvider>().formatGoalTime(widget.time);
+    if (time.endsWith(' Hours')) {
+      time = time.substring(0, time.length -6);
+      if (time.length>=3) {
+        hours = double.tryParse(time.split(':')[0]) ?? 0;
+      }
+      mins =  double.tryParse(time.split(':')[1]) ?? 0;
+    } else {
+      time = time.substring(0,time.length-5);
+      mins = double.tryParse(time) ?? 0;
+    }
   }
 
   @override
@@ -77,7 +82,7 @@ class _ListWheelState extends State<ListWheel> {
         widget.listWheelType == ListWheelType.hour 
           ? 24
           : 60 
-        ,(index) => Text("$index",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),textAlign: TextAlign.center,))
+        ,(index) => Text("$index",style: AppStyles.generalTextStyle, textAlign: TextAlign.center))
     );
   }
 }
