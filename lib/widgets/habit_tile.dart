@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habit_tracker/constants/app_colors.dart';
 import 'package:habit_tracker/constants/app_strings.dart';
 import 'package:habit_tracker/constants/app_styles.dart';
-import 'package:habit_tracker/extensions/context_extension.dart';
+import 'package:habit_tracker/extensions/widget_extension.dart';
 import 'package:habit_tracker/providers/habit_provider.dart';
 import 'package:habit_tracker/screens/dialog_view.dart';
 import 'package:habit_tracker/widgets/settings_dialog.dart';

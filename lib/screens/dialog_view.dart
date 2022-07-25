@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/constants/app_strings.dart';
 import 'package:habit_tracker/constants/app_styles.dart';
+import 'package:habit_tracker/extensions/widget_extension.dart';
 import 'package:habit_tracker/models/habit_model.dart';
 import 'package:provider/provider.dart';
 import '../constants/app_colors.dart';
@@ -39,11 +40,15 @@ class _DialogViewState extends State<DialogView> {
         child: Column(
           children: [
             habitTitleTextField(),
-            Text(AppStrings.dialogText, style: AppTextStyles.generalTextStyle ,textAlign: TextAlign.center).wrapPadding(AppPaddings.dialogTextPadding),
+            Text(
+              AppStrings.dialogText, 
+              style: AppTextStyles.generalTextStyle,
+              textAlign: TextAlign.center,
+            ).wrapPadding(AppPaddings.dialogTextPadding),
             listWheels(),
             saveButton()
           ],
-        ).wrapPadding(AppPaddings.dialogContentPadding)
+        ).wrapPadding(AppPaddings.dialogContentPadding),
       ),
     );
   }

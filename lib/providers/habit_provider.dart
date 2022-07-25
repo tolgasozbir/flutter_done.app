@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/services/local_notification_service.dart';
 import '../models/habit_model.dart';
 
 class HabitProvider extends ChangeNotifier {
@@ -45,6 +46,10 @@ class HabitProvider extends ChangeNotifier {
       if ( _habitList[index].isStarted) {
         _incrementElsapsedTime(index);
         if (_habitList[index].elapsedTime >= _habitList[index].timeGoal) {
+          LocalNotificationService.instance.showNotification(
+            title: "Congratz",
+            body: "${_habitList[index].habitTitle} completed. Keep going!"
+          );
           timer.cancel();
         }
       }else{
