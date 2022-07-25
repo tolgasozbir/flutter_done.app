@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:habit_tracker/constants/app_strings.dart';
 import 'package:habit_tracker/constants/app_styles.dart';
 import 'package:habit_tracker/models/habit_model.dart';
+import 'package:provider/provider.dart';
 import '../constants/app_colors.dart';
 import '../extensions/context_extension.dart';
+import '../providers/habit_provider.dart';
 import '../widgets/list_wheel.dart';
 
 class DialogView extends StatefulWidget {
@@ -20,10 +22,8 @@ class DialogView extends StatefulWidget {
 
 class _DialogViewState extends State<DialogView> {
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  int hourValue = 0;
+  int minsValue = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class _DialogViewState extends State<DialogView> {
         child: Column(
           children: [
             habitTitleTextField(),
-            Text(AppStrings.dialogText, style: AppStyles.generalTextStyle ,textAlign: TextAlign.center).wrapPadding(AppPaddings.dialogTextPadding),
+            Text(AppStrings.dialogText, style: AppTextStyles.generalTextStyle ,textAlign: TextAlign.center).wrapPadding(AppPaddings.dialogTextPadding),
             listWheels(),
             saveButton()
           ],
@@ -53,44 +53,93 @@ class _DialogViewState extends State<DialogView> {
       initialValue: widget.habit.habitTitle,
       style: TextStyle(color: AppColors.white),
       decoration: AppDecorations.textFieldInputDecoration,
+      onChanged: (String value){
+        widget.habit.habitTitle = value;
+      },
     );
   }
 
   Expanded listWheels() {
     return Expanded(
-            child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.grey.shade700,
-                      ),
-                      margin: EdgeInsets.symmetric(horizontal: 16),
-                        height: 32,
-                        width: double.infinity,
-                      ),
-                    Row(
-                      children: [
-                        Spacer(),
-                        Expanded(flex: 2, child: ListWheel(listWheelType: ListWheelType.hour, time: widget.habit.timeGoal)),
-                        Expanded(flex: 2, child: Text("hrs",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),textAlign: TextAlign.center,)),
-                        Expanded(flex: 2, child: ListWheel(listWheelType: ListWheelType.min, time: widget.habit.timeGoal)),
-                        Expanded(flex: 2, child: Text("mins",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),textAlign: TextAlign.center,)),
-                        Spacer()
-                      ],
-                    ),
-                  ],
-                ), 
-            );
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          grayBackground(),
+          Row(
+            children: [
+              Spacer(),
+              expandedListWheel(listWheelType: ListWheelType.hour),
+              expandedText(text: 'hrs'),
+              expandedListWheel(listWheelType: ListWheelType.min),
+              expandedText(text: 'mins'),
+              Spacer()
+            ],
+          ),
+        ],
+      ), 
+    );
+  }
+
+  Container grayBackground() {
+    return Container(
+    height: 32,
+    width: double.infinity,
+    margin: AppPaddings.marginSymmectric16,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(8),
+      color: AppColors.gray,
+    ),
+    );
+  }
+
+  Expanded expandedListWheel({required ListWheelType listWheelType}) {
+    return Expanded(
+      flex: 2, 
+      child: ListWheel(
+        listWheelType: listWheelType,
+        goalTime: widget.habit.timeGoal,
+        selectedValue: (int value){
+          listWheelType == ListWheelType.hour
+            ? hourValue = value * 3600
+            : minsValue = value * 60;
+          if ((hourValue + minsValue) == 0) {
+            minsValue = 60;
+          }
+          widget.habit.timeGoal = hourValue + minsValue;
+        },
+      )
+    );
+  }
+
+  Expanded expandedText({required String text}) {
+    return Expanded(
+      flex: 2, 
+      child: Text(
+        text,
+        style:AppTextStyles.generalTextStyle,
+        textAlign: TextAlign.center
+      )
+    );
   }
 
   Widget saveButton() {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: (){}, 
-        child: Text("Save")
+        onPressed: (){
+          var provider = context.read<HabitProvider>();
+          if (widget.habit.habitTitle == "".trim()) {
+            widget.habit.habitTitle = AppStrings.habitEmptyTitle;
+          }
+          if (provider.getHabitList.any((e) => e.habitTitle == widget.habit.habitTitle)) {
+            var index = provider.getHabitList.indexWhere((e) => e.habitTitle == widget.habit.habitTitle);
+            provider.updateHabit(widget.habit, index);
+          } else {
+            provider.addNewHabit(widget.habit);
+          }
+          Navigator.pop(context);
+        },
+        child: Text(AppStrings.dialogSave)
       )
     );
   }

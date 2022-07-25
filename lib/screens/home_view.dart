@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/models/habit_model.dart';
+import 'package:habit_tracker/screens/dialog_view.dart';
+import 'package:habit_tracker/widgets/settings_dialog.dart';
 import '../widgets/habit_tile.dart';
-import '../models/habit_model.dart';
 import '../providers/habit_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -25,8 +27,8 @@ class _HomeViewState extends State<HomeView> {
   FloatingActionButton addHabitButton() {
     return FloatingActionButton(
       onPressed: (){
-        context.read<HabitProvider>().addNewHabit(
-          Habit(habitTitle: "test", elapsedTime: 0, timeGoal: 10));
+        Habit habit = Habit(habitTitle: "", elapsedTime: 3900, timeGoal: 300);
+        SettingsDialog.showSettingsDialog(context: context, dialogPageContent: DialogView(habit: habit));
       },
       child: Icon(Icons.add),
     );

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/constants/app_colors.dart';
+import 'package:habit_tracker/constants/app_strings.dart';
 import 'package:habit_tracker/constants/app_styles.dart';
+import 'package:habit_tracker/extensions/context_extension.dart';
 import 'package:habit_tracker/providers/habit_provider.dart';
 import 'package:habit_tracker/screens/dialog_view.dart';
 import 'package:habit_tracker/widgets/settings_dialog.dart';
@@ -25,10 +27,12 @@ class HabitTile extends StatefulWidget {
 class _HabitTileState extends State<HabitTile> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+    return InkWell(
+      onLongPress: (){
+        showDeleteMessage();
+      },
       child: Container(
-        padding: EdgeInsets.all(20),
+        padding: AppPaddings.habitTileContainerPadding,
         decoration: BoxDecoration(
           color: AppColors.tileBackground,
           borderRadius: BorderRadius.circular(12)
@@ -43,11 +47,11 @@ class _HabitTileState extends State<HabitTile> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(widget.habit.habitTitle, style: AppStyles.generalTextStyle),
+                    Text(widget.habit.habitTitle, style: AppTextStyles.generalTextStyle),
                     SizedBox(height: 4),
                     Text(
                       "${context.watch<HabitProvider>().formatElapsedTime(widget.habit.elapsedTime)} / ${context.watch<HabitProvider>().formatGoalTime(widget.habit.timeGoal)} - ${context.watch<HabitProvider>().calculatePercent(widget.index).toStringAsFixed(0)}%", 
-                      style: AppStyles.subTextStyle
+                      style: AppTextStyles.subTextStyle
                     ),
                   ],
                 ),
@@ -56,7 +60,7 @@ class _HabitTileState extends State<HabitTile> {
             settingsButton(context),
           ],
         ),
-      ),
+      ).wrapPadding(AppPaddings.habitTilePadding),
     );
   }
 
@@ -70,6 +74,20 @@ class _HabitTileState extends State<HabitTile> {
         );
       }, 
       icon: Icon(Icons.settings)
+    );
+  }
+
+  void showDeleteMessage(){
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(AppStrings.snackBarMessage),
+        action: SnackBarAction(
+          label: AppStrings.snackBarDelete, 
+          onPressed: (){
+            context.read<HabitProvider>().deleteHabit(widget.habit);
+          }
+        )
+      )
     );
   }
 }

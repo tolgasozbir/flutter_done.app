@@ -10,11 +10,13 @@ enum ListWheelType {
 class ListWheel extends StatefulWidget {
   const ListWheel({
     Key? key, 
-    this.time = 5, required this.listWheelType,
+    this.goalTime = 0, required this.listWheelType, 
+    required this.selectedValue,
   }) : super(key: key);
 
   final ListWheelType listWheelType;
-  final int time;
+  final int goalTime;
+  final void Function(int value) selectedValue;
 
   @override
   State<ListWheel> createState() => _ListWheelState();
@@ -34,9 +36,18 @@ class _ListWheelState extends State<ListWheel> {
     init();
   }
 
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
   void init() async {
     formatTime();
     scrollController = ScrollController();
+    scrollController.addListener(() {  
+      widget.selectedValue((scrollController.position.pixels / _itemExtent).round());
+    });
     await Future.delayed(duration,(){
       if (scrollController.hasClients) {
         scrollController.animateTo(
@@ -50,7 +61,7 @@ class _ListWheelState extends State<ListWheel> {
   }
 
   void formatTime(){
-    String time = context.read<HabitProvider>().formatGoalTime(widget.time);
+    String time = context.read<HabitProvider>().formatGoalTime(widget.goalTime);
     if (time.endsWith(' Hours')) {
       time = time.substring(0, time.length -6);
       if (time.length>=3) {
@@ -67,14 +78,6 @@ class _ListWheelState extends State<ListWheel> {
   Widget build(BuildContext context) {
     return ListWheelScrollView(
       controller: scrollController,
-      // ScrollController(
-      //   initialScrollOffset: widget.listWheelType == ListWheelType.hour 
-      //     ? (hours * _itemExtent) 
-      //     : (mins * _itemExtent)
-      // ),
-      onSelectedItemChanged: (value) {
-
-      },
       perspective: .005,
       diameterRatio: 1,
       itemExtent: _itemExtent, 
@@ -82,7 +85,8 @@ class _ListWheelState extends State<ListWheel> {
         widget.listWheelType == ListWheelType.hour 
           ? 24
           : 60 
-        ,(index) => Text("$index",style: AppStyles.generalTextStyle, textAlign: TextAlign.center))
+        ,(index) => Text("$index",style: AppTextStyles.generalTextStyle, textAlign: TextAlign.center)
+      )
     );
   }
 }

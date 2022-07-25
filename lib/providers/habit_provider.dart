@@ -18,6 +18,16 @@ class HabitProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateHabit(Habit habit, int index){
+    _habitList[index] = habit;
+    notifyListeners();
+  }
+
+  void deleteHabit(Habit habit){
+    _habitList.remove(habit);
+    notifyListeners();
+  }
+
   void changeStatus(int index) {
     bool isFinished = _habitList[index].elapsedTime >= _habitList[index].timeGoal;
     if (!isFinished) {
