@@ -18,7 +18,6 @@ class HabitProvider extends ChangeNotifier {
     _habitList = _cacheService.getValues() ?? [];
   } 
 
-  
   List<Habit> _habitList = [];
 
   List<Habit> get getHabitList => _habitList;

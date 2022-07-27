@@ -1,14 +1,14 @@
 import 'package:hive/hive.dart';
 
 abstract class ICacheService<T> {
-  final String key;
+  final String boxName;
   Box<T>? box;
 
-  ICacheService(this.key);
+  ICacheService(this.boxName);
 
   Future<void> init() async {
     if (!(box?.isOpen ?? false)) {
-      box = await Hive.openBox(key);
+      box = await Hive.openBox(boxName);
     }
   }
 

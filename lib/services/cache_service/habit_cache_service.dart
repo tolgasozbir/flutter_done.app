@@ -5,7 +5,7 @@ import 'package:hive_flutter/adapters.dart';
 import '../../constants/hive_constants.dart';
 
 class HabitCacheService extends ICacheService<Habit> {
-  HabitCacheService(super.key);
+  HabitCacheService(super.boxName);
 
   @override
   Future<void> addItem(item) async {

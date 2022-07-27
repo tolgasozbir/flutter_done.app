@@ -35,6 +35,16 @@ class _CircleProgressIndicatorState extends State<CircleProgressIndicator> with 
   void initState() {
     super.initState();
     _animatedIconController = AnimationController(vsync: this,duration: Duration(milliseconds: 400));
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      var habitProvider = Provider.of<HabitProvider>(context, listen: false);
+      var isStarted = habitProvider.getStatus(widget.index);
+      if (isStarted) {
+        _animatedIconController.forward();
+        habitProvider.startTimer(widget.index);
+      }else{
+        _animatedIconController.reverse();
+      }
+    });
   }
 
   @override
@@ -64,7 +74,7 @@ class _CircleProgressIndicatorState extends State<CircleProgressIndicator> with 
     return TweenAnimationBuilder<double>(
       duration: const Duration(seconds: 1),
       tween: Tween(
-        begin: context.watch<HabitProvider>().getElapsedTime(widget.index).toDouble(), 
+        begin: 0,//context.watch<HabitProvider>().getElapsedTime(widget.index).toDouble(), 
         end: context.watch<HabitProvider>().calculatePercent(widget.index)/100,
       ),
       builder: (BuildContext context,double value, Widget? child) {
@@ -72,7 +82,7 @@ class _CircleProgressIndicatorState extends State<CircleProgressIndicator> with 
         backgroundColor: Colors.grey,
         color: value >= 0.5 && value < 0.8
           ? AppColors.progresOrangeColor
-          : value > 0.8 
+          : value >= 0.8 
             ? AppColors.progresGreenColor
             : AppColors.progresRedColor,
         value: value,
