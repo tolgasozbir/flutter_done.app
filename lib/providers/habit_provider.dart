@@ -1,31 +1,46 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/services/local_notification_service.dart';
+import 'package:habit_tracker/services/notification_service/local_notification_service.dart';
+import '../constants/hive_constants.dart';
 import '../models/habit_model.dart';
+import '../services/cache_service/cache_service.dart';
+import '../services/cache_service/habit_cache_service.dart';
 
 class HabitProvider extends ChangeNotifier {
+
+  late ICacheService<Habit> _cacheService;
   
-  List<Habit> _habitList = [
-    Habit(habitTitle: "Exercise",elapsedTime: 0,timeGoal: 18900,isStarted: false),
-    Habit(habitTitle: "Work",elapsedTime: 0,timeGoal: 450,isStarted: false),
-  ];
+  Future<void> initCacheService() async {
+    _cacheService = HabitCacheService(HiveConstants.habitBoxName);
+    _cacheService.registerAdapters();
+    await _cacheService.init();
+
+    _habitList = _cacheService.getValues() ?? [];
+  } 
+
+  
+  List<Habit> _habitList = [];
 
   List<Habit> get getHabitList => _habitList;
   bool getStatus(int index) => _habitList[index].isStarted;
   int getElapsedTime(int index) => _habitList[index].elapsedTime;
 
+
   void addNewHabit(Habit habit){
     _habitList.add(habit);
+    _cacheService.putItem(habit.habitTitle, habit);
     notifyListeners();
   }
 
   void updateHabit(Habit habit, int index){
     _habitList[index] = habit;
+    _cacheService.putItem(habit.habitTitle, habit);
     notifyListeners();
   }
 
   void deleteHabit(Habit habit){
     _habitList.remove(habit);
+    _cacheService.removeItem(habit.habitTitle);
     notifyListeners();
   }
 
@@ -38,6 +53,7 @@ class HabitProvider extends ChangeNotifier {
       _habitList[index].elapsedTime = _habitList[index].timeGoal;
       _habitList[index].elapsedTime = 0;
     }
+    _cacheService.putItem(_habitList[index].habitTitle, _habitList[index]);
     notifyListeners();
   }
 

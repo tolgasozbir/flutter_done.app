@@ -55,6 +55,7 @@ class _DialogViewState extends State<DialogView> {
 
   Widget habitTitleTextField() {
     return TextFormField(
+      textCapitalization: TextCapitalization.words,
       initialValue: widget.habit.habitTitle,
       style: TextStyle(color: AppColors.white),
       decoration: AppDecorations.textFieldInputDecoration,

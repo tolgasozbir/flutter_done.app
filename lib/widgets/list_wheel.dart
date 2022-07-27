@@ -66,8 +66,8 @@ class _ListWheelState extends State<ListWheel> {
       time = time.substring(0, time.length -6);
       if (time.length>=3) {
         hours = double.tryParse(time.split(':')[0]) ?? 0;
+        mins =  double.tryParse(time.split(':')[1]) ?? 0;
       }
-      mins =  double.tryParse(time.split(':')[1]) ?? 0;
     } else {
       time = time.substring(0,time.length-5);
       mins = double.tryParse(time) ?? 0;

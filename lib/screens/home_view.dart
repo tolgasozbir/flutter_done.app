@@ -59,10 +59,12 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget _bodyView() {
+    List<Habit> habitList = context.watch<HabitProvider>().getHabitList;
     return ListView.builder(
-      itemCount: context.watch<HabitProvider>().getHabitList.length,
+      itemCount: habitList.length,
       itemBuilder: (BuildContext context, int index) {
-        return HabitTile(habit: context.watch<HabitProvider>().getHabitList[index], index: index);
+        Habit habit = habitList[index];
+        return HabitTile(habit: habit, index: index);
       },
     );
   }

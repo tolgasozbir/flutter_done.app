@@ -19,7 +19,6 @@ class HabitTile extends StatefulWidget {
 
   final Habit habit;
   final int index;
-
   @override
   State<HabitTile> createState() => _HabitTileState();
 }
