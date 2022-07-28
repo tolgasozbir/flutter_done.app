@@ -13,13 +13,16 @@ class Habit {
   @HiveField(2)
   late int timeGoal;
   @HiveField(3)
-  late bool isStarted;
+  late bool isStarted;  
+  @HiveField(4)
+  late DateTime? startTime;
 
   Habit({
     required this.habitTitle,
     required this.elapsedTime,
     required this.timeGoal,
     this.isStarted = false,
+    this.startTime,
   });
 
   Habit.fromJson(Map<String, dynamic> json) {

@@ -82,7 +82,7 @@ class _HabitTileState extends State<HabitTile> {
         content: Text(AppStrings.snackBarMessage),
         action: SnackBarAction(
           label: AppStrings.snackBarDelete, 
-          onPressed: (){
+          onPressed: () {
             context.read<HabitProvider>().deleteHabit(widget.habit);
           }
         )

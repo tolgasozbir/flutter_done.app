@@ -16,7 +16,21 @@ class HabitProvider extends ChangeNotifier {
     await _cacheService.init();
 
     _habitList = _cacheService.getValues() ?? [];
+    calculateElapsedTime();
   } 
+
+  void calculateElapsedTime(){
+    var currentDate = DateTime.now();
+    for (var item in _habitList) {
+      if (item.isStarted) {
+        Duration diff = currentDate.difference(item.startTime!);
+        item.elapsedTime += diff.inSeconds;
+        if (item.elapsedTime >= item.timeGoal) {
+          item.elapsedTime = item.timeGoal-1;
+        }
+      }
+    }
+  }
 
   List<Habit> _habitList = [];
 
@@ -38,6 +52,7 @@ class HabitProvider extends ChangeNotifier {
   }
 
   void deleteHabit(Habit habit){
+    habit.isStarted = false;  //TODO: Silmede sıkıntı var
     _habitList.remove(habit);
     _cacheService.removeItem(habit.habitTitle);
     notifyListeners();
@@ -45,12 +60,16 @@ class HabitProvider extends ChangeNotifier {
 
   void changeStatus(int index) {
     bool isFinished = _habitList[index].elapsedTime >= _habitList[index].timeGoal;
-    if (!isFinished) {
-      _habitList[index].isStarted = !_habitList[index].isStarted;
-    }else{
+    if (isFinished) {
       _habitList[index].isStarted = false;
       _habitList[index].elapsedTime = _habitList[index].timeGoal;
       _habitList[index].elapsedTime = 0;
+      _habitList[index].startTime = null;
+    }else{
+      _habitList[index].isStarted = !_habitList[index].isStarted;
+      _habitList[index].isStarted
+        ? _habitList[index].startTime = DateTime.now()
+        : _habitList[index].startTime = null;
     }
     _cacheService.putItem(_habitList[index].habitTitle, _habitList[index]);
     notifyListeners();
