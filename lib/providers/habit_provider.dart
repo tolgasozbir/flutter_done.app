@@ -16,6 +16,7 @@ class HabitProvider extends ChangeNotifier {
     await _cacheService.init();
 
     _habitList = _cacheService.getValues() ?? [];
+    setTimer();
     calculateElapsedTime();
   } 
 
@@ -52,7 +53,6 @@ class HabitProvider extends ChangeNotifier {
   }
 
   void deleteHabit(Habit habit){
-    habit.isStarted = false;  //TODO: Silmede sıkıntı var
     _habitList.remove(habit);
     _cacheService.removeItem(habit.habitTitle);
     notifyListeners();
@@ -75,26 +75,24 @@ class HabitProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void startTimer(int index){
+  void setTimer(){
     Timer.periodic(Duration(milliseconds: 1000), (timer) {
-      if ( _habitList[index].isStarted) {
-        _incrementElsapsedTime(index);
-        if (_habitList[index].elapsedTime >= _habitList[index].timeGoal) {
-          LocalNotificationService.instance.showNotification(
-            title: "Congratz",
-            body: "${_habitList[index].habitTitle} completed. Keep going!"
-          );
-          timer.cancel();
+      for (var item in _habitList) {
+        bool isReached = item.elapsedTime >= item.timeGoal;
+        if (item.isStarted) {
+          item.elapsedTime++;
+          notifyListeners();
+          if (isReached) {
+            item.isStarted = false;
+            item.elapsedTime = item.timeGoal;
+            LocalNotificationService.instance.showNotification(
+              title: "Congratz",
+              body: "${item.habitTitle} completed. Keep going!"
+            );
+          }
         }
-      }else{
-        timer.cancel();
       }
     });
-  }
-
-  void _incrementElsapsedTime(int index){
-    _habitList[index].elapsedTime++;
-    notifyListeners();
   }
 
   double calculatePercent(int index){

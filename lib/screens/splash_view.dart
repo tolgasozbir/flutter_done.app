@@ -35,7 +35,7 @@ class _SplashViewState extends State<SplashView> {
     });
     
     await Future.delayed(Duration(milliseconds: 2400), (){
-      RouteHelper.goRouteAndRemoveUntilAnimated(context: context, page: HomeView());
+      RouteHelper.goRouteRemoveUntilFade(context: context, page: HomeView());
     });
   }
 

@@ -30,7 +30,7 @@ class _HomeViewState extends State<HomeView> {
   void timerTitleChanger(){
     final Random rnd = Random();
     currentTitleIndex = rnd.nextInt(AppStrings.quotations.length);
-    Timer.periodic(Duration(seconds: 20), (timer){
+    Timer.periodic(Duration(seconds: 30), (timer){
       setState(() => currentTitleIndex = rnd.nextInt(AppStrings.quotations.length));
     });
   }

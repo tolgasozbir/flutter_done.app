@@ -27,8 +27,7 @@ class _CircleProgressIndicatorState extends State<CircleProgressIndicator> with 
     habitProvider.changeStatus(index);
     habitProvider.getStatus(index) 
       ? _animatedIconController.forward() 
-      : _animatedIconController.reverse();
-    habitProvider.startTimer(index);
+      : _animatedIconController.reverse();;
   }
 
   @override
@@ -40,7 +39,6 @@ class _CircleProgressIndicatorState extends State<CircleProgressIndicator> with 
       var isStarted = habitProvider.getStatus(widget.index);
       if (isStarted) {
         _animatedIconController.forward();
-        habitProvider.startTimer(widget.index);
       }else{
         _animatedIconController.reverse();
       }

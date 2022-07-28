@@ -5,7 +5,7 @@ class RouteHelper {
     Navigator.push(context, MaterialPageRoute(builder: (context) => page));
   }  
   
-  static void goRouteAndRemoveUntilAnimated({required BuildContext context,required Widget page}){
+  static void goRouteRemoveUntilFade({required BuildContext context,required Widget page}){
     Navigator.pushAndRemoveUntil(
       context, 
       PageRouteBuilder(
