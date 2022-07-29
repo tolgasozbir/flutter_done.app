@@ -15,7 +15,7 @@ class CircleProgressIndicator extends StatefulWidget {
   State<CircleProgressIndicator> createState() => _CircleProgressIndicatorState();
 }
 
-class _CircleProgressIndicatorState extends State<CircleProgressIndicator> with TickerProviderStateMixin {
+class _CircleProgressIndicatorState extends State<CircleProgressIndicator> with SingleTickerProviderStateMixin {
 
   final double size = 50;
   late AnimationController _animatedIconController;

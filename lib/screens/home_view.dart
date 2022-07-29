@@ -1,14 +1,12 @@
 import 'dart:async';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/constants/app_strings.dart';
 import 'package:habit_tracker/models/habit_model.dart';
 import 'package:habit_tracker/screens/dialog_view.dart';
+import 'package:habit_tracker/screens/timer_view.dart';
+import 'package:habit_tracker/widgets/bottom_navbar.dart';
 import 'package:habit_tracker/widgets/settings_dialog.dart';
-import '../widgets/habit_tile.dart';
-import '../providers/habit_provider.dart';
-import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -19,7 +17,15 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
 
+  int currentNavIndex = 0;
   int currentTitleIndex = 0;
+
+  List<Widget> navPages = [
+    Text("page 1"),
+    Text("page 2"),
+    TimerView(),
+    Text("page 4"),
+  ];
 
   @override
   void initState() {
@@ -41,8 +47,12 @@ class _HomeViewState extends State<HomeView> {
       appBar: AppBar(
         title: appBarTitle(),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: addHabitButton(),
-      body: _bodyView(),
+      body: navPages[currentNavIndex],
+      bottomNavigationBar: BottomNavbar(
+        selectedTap: (tapIndex) => setState(() => currentNavIndex = tapIndex),
+      )
     );
   }
 
@@ -58,14 +68,4 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget _bodyView() {
-    List<Habit> habitList = context.watch<HabitProvider>().getHabitList;
-    return ListView.builder(
-      itemCount: habitList.length,
-      itemBuilder: (BuildContext context, int index) {
-        Habit habit = habitList[index];
-        return HabitTile(habit: habit, index: index);
-      },
-    );
-  }
 }
