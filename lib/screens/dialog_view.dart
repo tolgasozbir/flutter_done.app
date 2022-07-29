@@ -1,66 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/constants/app_strings.dart';
-import 'package:habit_tracker/constants/app_styles.dart';
-import 'package:habit_tracker/extensions/widget_extension.dart';
-import 'package:habit_tracker/models/habit_model.dart';
+import '../constants/app_strings.dart';
+import '../constants/app_styles.dart';
+import '../extensions/widget_extension.dart';
+import '../models/habit_model.dart';
 import 'package:provider/provider.dart';
 import '../constants/app_colors.dart';
 import '../extensions/context_extension.dart';
 import '../providers/habit_provider.dart';
 import '../widgets/list_wheel.dart';
 
-class DialogView extends StatefulWidget {
-  const DialogView({
-    Key? key, 
-    required this.habit
-  }) : super(key: key);
+class DialogView extends StatelessWidget {
+  const DialogView({Key? key, required this.habit}) : super(key: key);
 
   final Habit habit;
 
   @override
-  State<DialogView> createState() => _DialogViewState();
-}
-
-class _DialogViewState extends State<DialogView> {
-
-  int hourValue = 0;
-  int minsValue = 0;
-
-  @override
   Widget build(BuildContext context) {
-    return _bodyView();
-  }
-
-  Widget _bodyView() {
-    return StatefulBuilder(
-      builder: (context, setState) => Container(
-        height: context.dynamicHeight(0.56),
-        width: context.dynamicWidth(0.72),
-        color: AppColors.appBarBackground,
-        child: Column(
-          children: [
-            habitTitleTextField(),
-            Text(
-              AppStrings.dialogText, 
-              style: AppTextStyles.generalTextStyle,
-              textAlign: TextAlign.center,
-            ).wrapPadding(AppPaddings.dialogTextPadding),
-            listWheels(),
-            saveButton()
-          ],
-        ).wrapPadding(AppPaddings.dialogContentPadding),
-      ),
+    return Container(
+      height: context.dynamicHeight(0.56),
+      width: context.dynamicWidth(0.72),
+      color: AppColors.appBarBackground,
+      child: Column(
+        children: [
+          habitTitleTextField(),
+          Text(
+            AppStrings.dialogText, 
+            style: AppTextStyles.generalTextStyle,
+            textAlign: TextAlign.center,
+          ).wrapPadding(AppPaddings.dialogTextPadding),
+          listWheels(),
+          saveButton(context)
+        ],
+      ).wrapPadding(AppPaddings.dialogContentPadding),
     );
   }
+
 
   Widget habitTitleTextField() {
     return TextFormField(
       textCapitalization: TextCapitalization.words,
-      initialValue: widget.habit.habitTitle,
+      initialValue: habit.habitTitle,
       style: TextStyle(color: AppColors.white),
       decoration: AppDecorations.textFieldInputDecoration,
       onChanged: (String value){
-        widget.habit.habitTitle = value;
+        habit.habitTitle = value;
       },
     );
   }
@@ -88,7 +71,7 @@ class _DialogViewState extends State<DialogView> {
 
   Container grayBackground() {
     return Container(
-    height: 32,
+    height: 28,
     width: double.infinity,
     margin: AppPaddings.marginSymmectric16,
     decoration: BoxDecoration(
@@ -99,11 +82,13 @@ class _DialogViewState extends State<DialogView> {
   }
 
   Expanded expandedListWheel({required ListWheelType listWheelType}) {
+    int hourValue = 0;
+    int minsValue = 0;
     return Expanded(
       flex: 2, 
       child: ListWheel(
         listWheelType: listWheelType,
-        goalTime: widget.habit.timeGoal,
+        goalTime: habit.timeGoal,
         selectedValue: (int value){
           listWheelType == ListWheelType.hour
             ? hourValue = value * 3600
@@ -111,7 +96,7 @@ class _DialogViewState extends State<DialogView> {
           if ((hourValue + minsValue) == 0) {
             minsValue = 60;
           }
-          widget.habit.timeGoal = hourValue + minsValue;
+          habit.timeGoal = hourValue + minsValue;
         },
       )
     );
@@ -128,20 +113,20 @@ class _DialogViewState extends State<DialogView> {
     );
   }
 
-  Widget saveButton() {
+  Widget saveButton(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
         onPressed: (){
           var provider = context.read<HabitProvider>();
-          if (widget.habit.habitTitle == "".trim()) {
-            widget.habit.habitTitle = AppStrings.habitEmptyTitle;
+          if (habit.habitTitle == "".trim()) {
+            habit.habitTitle = AppStrings.habitEmptyTitle;
           }
-          if (provider.getHabitList.any((e) => e.habitTitle == widget.habit.habitTitle)) {
-            var index = provider.getHabitList.indexWhere((e) => e.habitTitle == widget.habit.habitTitle);
-            provider.updateHabit(widget.habit, index);
+          if (provider.getHabitList.any((e) => e.habitTitle == habit.habitTitle)) {
+            var index = provider.getHabitList.indexWhere((e) => e.habitTitle == habit.habitTitle);
+            provider.updateHabit(habit, index);
           } else {
-            provider.addNewHabit(widget.habit);
+            provider.addNewHabit(habit);
           }
           Navigator.pop(context);
         },
@@ -149,5 +134,4 @@ class _DialogViewState extends State<DialogView> {
       )
     );
   }
-
 }

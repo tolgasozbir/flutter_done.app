@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/services/notification_service/local_notification_service.dart';
+import '../services/notification_service/local_notification_service.dart';
 import '../constants/hive_constants.dart';
 import '../models/habit_model.dart';
 import '../services/cache_service/cache_service.dart';

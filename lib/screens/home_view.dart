@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/constants/app_strings.dart';
-import 'package:habit_tracker/models/habit_model.dart';
-import 'package:habit_tracker/screens/dialog_view.dart';
-import 'package:habit_tracker/screens/timer_view.dart';
-import 'package:habit_tracker/widgets/bottom_navbar.dart';
-import 'package:habit_tracker/widgets/settings_dialog.dart';
+import '../constants/app_strings.dart';
+import '../models/habit_model.dart';
+import 'dialog_view.dart';
+import 'timer_view.dart';
+import '../widgets/bottom_navbar.dart';
+import '../widgets/settings_dialog.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -50,8 +50,9 @@ class _HomeViewState extends State<HomeView> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: addHabitButton(),
       body: navPages[currentNavIndex],
-      bottomNavigationBar: BottomNavbar(
+      bottomNavigationBar: BottomNavBar(
         selectedTap: (tapIndex) => setState(() => currentNavIndex = tapIndex),
+        selectedIndex: currentNavIndex,
       )
     );
   }

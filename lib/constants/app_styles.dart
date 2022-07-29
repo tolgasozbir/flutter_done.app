@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/constants/app_colors.dart';
-import 'package:habit_tracker/constants/app_strings.dart';
+import 'app_colors.dart';
+import 'app_strings.dart';
 
 class AppTextStyles {
   static const TextStyle subTextStyle = TextStyle(color: AppColors.subTextColor);

@@ -1,7 +1,6 @@
-import 'package:habit_tracker/models/habit_model.dart';
-import 'package:habit_tracker/services/cache_service/cache_service.dart';
+import '../../models/habit_model.dart';
+import 'cache_service.dart';
 import 'package:hive_flutter/adapters.dart';
-
 import '../../constants/hive_constants.dart';
 
 class HabitCacheService extends ICacheService<Habit> {

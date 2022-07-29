@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/constants/app_styles.dart';
-import 'package:habit_tracker/providers/habit_provider.dart';
+import '../constants/app_styles.dart';
+import '../providers/habit_provider.dart';
 import 'package:provider/provider.dart';
 
 enum ListWheelType {
@@ -23,7 +23,7 @@ class ListWheel extends StatefulWidget {
 }
 
 class _ListWheelState extends State<ListWheel> {
-  final double _itemExtent = 16;
+  final double _itemExtent = 20;
   final Duration duration = const Duration(milliseconds: 600);
   double mins = 0;
   double hours = 0;

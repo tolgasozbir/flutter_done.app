@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 
-class BottomNavbar extends StatefulWidget {
-  const BottomNavbar({Key? key, required this.selectedTap}) : super(key: key);
+class BottomNavBar extends StatelessWidget {
+  const BottomNavBar({Key? key, required this.selectedTap, required this.selectedIndex}) : super(key: key);
 
-  final void Function(int tapIndex) selectedTap;
+  final void Function(int) selectedTap;
+  final int selectedIndex;
 
-  @override
-  State<BottomNavbar> createState() => _BottomNavbarState();
-}
-
-class _BottomNavbarState extends State<BottomNavbar> {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -47,13 +43,12 @@ class _BottomNavbarState extends State<BottomNavbar> {
   MaterialButton navBarItem({required int tapIndex, required IconData iconData, required String text}) {
     return MaterialButton(
       onPressed: (){
-        widget.selectedTap.call(tapIndex);
-        print(tapIndex);
+        selectedTap.call(tapIndex);
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(iconData),
+          Icon(iconData, color: selectedIndex == tapIndex ? Colors.amber : Colors.red,),
           Text("$text")
         ],
       ),

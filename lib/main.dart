@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/constants/app_colors.dart';
-import 'package:habit_tracker/constants/app_strings.dart';
-import 'package:habit_tracker/screens/splash_view.dart';
+import 'constants/app_colors.dart';
+import 'constants/app_strings.dart';
+import 'screens/splash_view.dart';
 import 'package:provider/provider.dart';
 import 'providers/habit_provider.dart';
 

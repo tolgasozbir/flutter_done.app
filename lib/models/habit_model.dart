@@ -1,4 +1,4 @@
-import 'package:habit_tracker/constants/hive_constants.dart';
+import '../constants/hive_constants.dart';
 import 'package:hive/hive.dart';
 
 part 'habit_model.g.dart';

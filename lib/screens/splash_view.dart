@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/providers/habit_provider.dart';
-import 'package:habit_tracker/screens/home_view.dart';
-import 'package:habit_tracker/utilities/route_helper.dart';
+import '../providers/habit_provider.dart';
+import 'home_view.dart';
+import '../utilities/route_helper.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-
 import '../services/notification_service/local_notification_service.dart';
 
 class SplashView extends StatefulWidget {
