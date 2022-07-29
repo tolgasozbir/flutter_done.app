@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../constants/app_strings.dart';
 import '../models/habit_model.dart';
 import 'dialog_view.dart';
+import 'goals_view.dart';
 import 'timer_view.dart';
 import '../widgets/bottom_navbar.dart';
 import '../widgets/settings_dialog.dart';
@@ -21,7 +22,7 @@ class _HomeViewState extends State<HomeView> {
   int currentTitleIndex = 0;
 
   List<Widget> navPages = [
-    Text("page 1"),
+    GoalsView(),
     Text("page 2"),
     TimerView(),
     Text("page 4"),
