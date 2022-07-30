@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/models/task_model.dart';
 import '../widgets/task_progress_card.dart';
 
 class GoalsView extends StatelessWidget  {
@@ -17,14 +18,16 @@ class GoalsView extends StatelessWidget  {
       itemCount: 12,
       itemBuilder: (BuildContext context, int index) {
         return TaskProgressCard(
-          completionPercentage: Random().nextDouble() * 100, 
-          taskTitle: "taskTitle", 
-          taskCount: Random().nextInt(100).toString(), 
-          taskIconData: Icons.task_alt_sharp, 
-          borderColor: Colors.primaries[Random().nextInt(17)]
+          task: Task(
+            taskTitle: "Youtube Videos", 
+            taskDescription: "Reach 10k subsricber ba ba",
+            taskCount: Random().nextInt(100), 
+            taskCompletionPercentage: Random().nextDouble()*100, 
+            taskIconData: Icons.task_alt, 
+            taskColor: Colors.primaries[Random().nextInt(17)]
+          ),
         );
       },
     );
   }
 }
-

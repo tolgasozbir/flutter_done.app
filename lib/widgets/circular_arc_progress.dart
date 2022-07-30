@@ -7,13 +7,16 @@ class CircularArc extends StatefulWidget {
     Key? key, 
     this.size = 200, 
     this.strokeWidth = 24, 
-    required this.progressPercent, required this.progressColor,
+    required this.progressPercent, 
+    required this.progressColor, 
+    this.textStyle = const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
   }) : super(key: key);
 
   final double progressPercent;
   final double size;
   final double strokeWidth;
   final Color progressColor;
+  final TextStyle textStyle;
 
   @override
   State<CircularArc> createState() => _CircularArcState();
@@ -27,7 +30,6 @@ class _CircularArcState extends State<CircularArc> with SingleTickerProviderStat
   @override
   void initState() {
     super.initState();
-    print(((widget.progressPercent/math.pi)*10));
     _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 1600));
     final curvedAnimation = CurvedAnimation(parent: _animationController, curve: Curves.easeInOutCubic);
     _animation = Tween<double>(begin: 0.0, end: ((widget.progressPercent/100*math.pi))).animate(curvedAnimation)..addListener(() {
@@ -41,6 +43,9 @@ class _CircularArcState extends State<CircularArc> with SingleTickerProviderStat
     _animationController.dispose();
     super.dispose();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
@@ -66,22 +71,19 @@ class _CircularArcState extends State<CircularArc> with SingleTickerProviderStat
         Positioned.fill(
           child: Align(
             alignment: Alignment.center,
-            child: Text("${(_animation.value / math.pi * 100).round()}%", style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold)))
+            child: Text("${(_animation.value / math.pi * 100).round()}%", style: widget.textStyle))
         )
       ],
     );
   }
-  
-  @override
-  // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => true;
+
 }
 
     /// DRAW ARC ///
 
 class ProgresArcPainter extends CustomPainter {
 
-  final strokeWidth;
+  final double strokeWidth;
   final double arc;
   final Color progressColor;
 
