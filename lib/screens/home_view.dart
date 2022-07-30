@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/extensions/widget_extension.dart';
 import '../constants/app_strings.dart';
 import '../models/habit_model.dart';
 import 'dialog_view.dart';
@@ -58,7 +59,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  FittedBox appBarTitle() => FittedBox(child: Text(AppStrings.quotations[currentTitleIndex]));
+  Widget appBarTitle() => Text(AppStrings.quotations[currentTitleIndex]).wrapFitted();
 
   FloatingActionButton addHabitButton() {
     return FloatingActionButton(

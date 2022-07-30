@@ -10,4 +10,5 @@ class AppColors {
   static const Color progresOrangeColor = Color(0xFFFF9800);
   static const Color progresGreenColor = Color(0xFF4CAF50);
   static const Color progresRedColor = Color(0xFFF44336);
+  static const Color arcProgressBg = Color(0x89000000);
 }

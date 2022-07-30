@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/constants/app_styles.dart';
 import 'package:habit_tracker/extensions/context_extension.dart';
 import 'package:habit_tracker/extensions/widget_extension.dart';
 import 'package:habit_tracker/models/task_model.dart';
-
 import '../widgets/circular_arc_progress.dart';
 
 class TaskDetailView extends StatefulWidget {
@@ -15,6 +15,12 @@ class TaskDetailView extends StatefulWidget {
 }
 
 class _TaskDetailViewState extends State<TaskDetailView> {
+
+  final double arcStroke = 42;
+  final double percentSize = 64;
+  final double titleSize = 40;
+  final double descriptionSize = 32;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,49 +34,50 @@ class _TaskDetailViewState extends State<TaskDetailView> {
         children: [
           Stack(
             children: [
-              Align(
-                alignment: Alignment.topCenter,
-                child: CircularArc(
-                  textStyle: TextStyle(fontSize: 64, fontWeight: FontWeight.bold),
-                  strokeWidth: 42,
-                  size: context.dynamicWidth(0.64),
-                  progressPercent: widget.task.taskCompletionPercentage,
-                  progressColor: widget.task.taskColor,
-                ).wrapPadding(EdgeInsets.symmetric(horizontal: 24,vertical: 24)),
-              ),
-              Positioned.fill(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Spacer(),
-                      FittedBox(child: Text("${widget.task.taskTitle}", style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold) ,textAlign: TextAlign.center,)),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: FittedBox(child: Text("${widget.task.taskDescription}", style: TextStyle(fontSize: 32,fontWeight: FontWeight.bold) ,textAlign: TextAlign.center,))
-                      ),
-                    ],
-                  )
-                ).wrapPadding(EdgeInsets.only(left: 16,bottom: 16, right: 16))
-              ),
+              arcProgress(),
+              taskTitleAndDescription(),
             ],
           ),
           Column(
             children: [
               Card(child: CheckboxListTile(value: true, onChanged: (value){})),
               Card(child: CheckboxListTile(value: true, onChanged: (value){})),
-              Card(child: CheckboxListTile(value: true, onChanged: (value){})),
-              Card(child: CheckboxListTile(value: true, onChanged: (value){})),
-              Card(child: CheckboxListTile(value: true, onChanged: (value){})),
-              Card(child: CheckboxListTile(value: true, onChanged: (value){})),
-              Card(child: CheckboxListTile(value: true, onChanged: (value){})),
-              Card(child: CheckboxListTile(value: true, onChanged: (value){})),
             ],
           ),
         ],
       ),
+    );
+  }
+
+  Widget arcProgress() {
+    return CircularArc(
+      textStyle: AppTextStyles.boldCustomSize(percentSize),
+      strokeWidth: arcStroke,
+      size: context.dynamicWidth(0.64),
+      progressPercent: widget.task.taskCompletionPercentage,
+      progressColor: widget.task.taskColor,
+    ).wrapAlign(Alignment.topCenter).wrapPadding(AppPaddings.arcDetailPadding);
+  }
+
+  Positioned taskTitleAndDescription() {
+    return Positioned.fill(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Spacer(),
+          textCenter(widget.task.taskTitle, titleSize).wrapFitted(),
+          textCenter(widget.task.taskDescription, descriptionSize).wrapFitted().wrapAlign(Alignment.centerLeft),
+        ],
+      ).wrapAlign(Alignment.bottomCenter).wrapPadding(AppPaddings.taskDetailTextPadding)
+    );
+  }
+
+  Text textCenter(String text, double fontSize) {
+    return Text(
+      text, 
+      style: AppTextStyles.boldCustomSize(fontSize),
+      textAlign: TextAlign.center
     );
   }
 }

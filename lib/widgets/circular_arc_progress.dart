@@ -1,5 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/constants/app_colors.dart';
+import 'package:habit_tracker/constants/app_styles.dart';
 import 'package:habit_tracker/extensions/widget_extension.dart';
 
 class CircularArc extends StatefulWidget {
@@ -57,9 +59,9 @@ class _CircularArcState extends State<CircularArc> with SingleTickerProviderStat
           size: Size(size, size),
           painter: ProgresArcPainter(
             strokeWidth: widget.strokeWidth,
-            progressColor: Colors.black54
+            progressColor: AppColors.arcProgressBg
           ),
-        ).wrapPadding(EdgeInsets.only(top: 16)),
+        ).wrapPadding(AppPaddings.top16),
         CustomPaint(
           size: Size(size, size),
           painter: ProgresArcPainter(
@@ -67,11 +69,9 @@ class _CircularArcState extends State<CircularArc> with SingleTickerProviderStat
             arc: _animation.value,
             progressColor: widget.progressColor
           ),
-        ).wrapPadding(EdgeInsets.only(top: 16)),
+        ).wrapPadding(AppPaddings.top16),
         Positioned.fill(
-          child: Align(
-            alignment: Alignment.center,
-            child: Text("${(_animation.value / math.pi * 100).round()}%", style: widget.textStyle))
+          child: Text("${(_animation.value / math.pi * 100).round()}%", style: widget.textStyle).wrapAlign(Alignment.center)
         )
       ],
     );

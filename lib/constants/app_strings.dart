@@ -7,6 +7,9 @@ class AppStrings {
   static const String snackBarMessage = 'Are you sure you want to delete this?';
   static const String hintText = 'Exercise';
   static const String labelText = 'Habit Title';
+  static const String taskText = "Tasks";
+
+
   static const List<String> quotations = [
     "If you fell down yesterday, stand up today.",
     "Life is not fair, get used it.",
