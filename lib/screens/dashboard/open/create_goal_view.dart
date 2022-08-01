@@ -1,4 +1,5 @@
 
+import 'package:done_app/constants/app_strings.dart';
 import 'package:done_app/constants/app_styles.dart';
 import 'package:done_app/extensions/context_extension.dart';
 import 'package:done_app/extensions/widget_extension.dart';
@@ -27,6 +28,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
         );
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text("Create your goal"),
           leading: BackButton(onPressed: () => rippleController.reverse().then((value) => Navigator.pop(context))),
@@ -37,130 +39,149 @@ class _CreateGoalViewState extends CreateGoalViewModel {
   }
 
   Widget _bodyView() {
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          quickTags(),
+          Spacer(flex: 2,),
+          goalTitleTextField(),
+          Spacer(flex: 3,),
+          goalDescTextField(),
+          Spacer(),
+          selectIconButton(),
+          selectTaskColor(),
+          Spacer(),
+          saveButton(),
+          saveButton()
+        ],
+      ).wrapPadding(AppPaddings.all8),
+    );
+  }
+
+  Column quickTags() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Quick tag", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Color(0xBB000000))),
+        Text(AppStrings.quickTag, style: AppTextStyles.createTaskTitleStyle),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: List.generate(10, (index) => chip(index)),
+            children: List.generate(AppStrings.quickTagsTitles.length, (index) => quickTagChip(index)),
           ),
         ),
-        SizedBox(height: 24,),
-        Text("Set your goal title", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Color(0xBB000000))),
-        SizedBox(height: 8,),
-        TextField(
-          textCapitalization: TextCapitalization.words,
-          decoration: InputDecoration(
-            focusedBorder: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(12.0)),
-              borderSide: const BorderSide(color: Colors.black, width: 1.5),
-            ),
-            hintText: "Meditate, Workout, etc",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(12.0))
-            )
-          ),
-          onChanged: (String value){
-            
-          },
-        ),        
-        SizedBox(height: 24,),
-        Text("Need a description?", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Color(0xBB000000))),
-        SizedBox(height: 8,),
-        TextField(
-          textCapitalization: TextCapitalization.words,
-          decoration: InputDecoration(
-            focusedBorder: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(12.0)),
-              borderSide: const BorderSide(color: Colors.black, width: 1.5),
-            ),
-            hintText: "Description",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(12.0))
-            )
-          ),
-          onChanged: (String value){
-            
-          },
-        ),
-      SizedBox(height: 24,),
+      ],
+    );
+  }
 
-      SizedBox(
-        width: double.infinity,
-        child: ElevatedButton(onPressed: (){
-          
+  Widget quickTagChip(int index) {
+    return Chip(
+      label: Text(
+        "#${AppStrings.quickTagsTitles[index]}",
+        style: AppTextStyles.createTaskChipStyle(index)
+      ),
+      backgroundColor: AppColors.white,
+      padding: AppPaddings.all8,
+    ).wrapPadding(AppPaddings.right8);
+  }
+
+  Column goalTitleTextField() {
+    return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+     children: [
+       Text(AppStrings.taskTextFieldTitle, style: AppTextStyles.createTaskTitleStyle),
+       TextField(
+         textCapitalization: TextCapitalization.words,
+         decoration: AppDecorations.taskCreateInputDecor(AppStrings.taskHintText),
+         onChanged: (String value){},
+       ).wrapPadding(AppPaddings.top8),
+     ],
+    );
+  }
+
+  Column goalDescTextField() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(AppStrings.taskTextFieldDesc, style: AppTextStyles.createTaskTitleStyle),
+        TextField(
+          textCapitalization: TextCapitalization.words,
+          decoration: AppDecorations.taskCreateInputDecor(AppStrings.description),
+          onChanged: (String value){},
+        ),
+      ],
+    );
+  }
+
+  SizedBox selectIconButton() {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: (){      
           AnimatedDialog.showSettingsDialog(
             context: context, 
-            dialogPageContent:  Container(
-            height: context.dynamicHeight(0.6),
-            width: context.dynamicWidth(0.8),
-            color: AppColors.appBarBackground,
-            child: SizedBox(
-              child: Scrollbar(
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                  ),
-                  itemCount: 30,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Icon(Icons.add_box_sharp, color: Colors.grey,);
-                  },
-                ),
-              ),
-              ).wrapPadding(AppPaddings.dialogContentPadding),
-            )
+            dialogPageContent: selectIconDialogView()
           );
-
-        }, child: Text("Select Icon")),
+        },
+        child: Text(AppStrings.selectIcon)
       ),
+    );
+  }
 
-      Container(
-        width: double.infinity,
-        color: Colors.grey,
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(5, (index) => SizedBox.square(
-                  dimension: context.dynamicWidth(1)/6,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: Colors.primaries[index%17]
-                    )
-                  ),
-                ).wrapPadding(AppPaddings.all4))
-            ),Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(5, (index) => SizedBox.square(
-                  dimension: context.dynamicWidth(1)/6,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: Colors.primaries[index%17]
-                    )
-                  ),
-                ).wrapPadding(AppPaddings.all4))
-            )
-          ],
+  Container selectIconDialogView() {  //TODO: ayarlancak
+    return Container(
+      height: context.dynamicHeight(0.6),
+      width: context.dynamicWidth(0.8),
+      color: AppColors.appBarBackground,
+      child: SizedBox(
+        child: Scrollbar(
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+            ),
+            itemCount: 30,
+            itemBuilder: (BuildContext context, int index) {
+              return Icon(Icons.add_box_sharp, color: Colors.grey,);
+            },
+          ),
         ),
-      ),
-
-      SizedBox(
-        width: double.infinity,
-        child: ElevatedButton(onPressed: (){}, child: Text("Save")))
-
-
-      ],
-    ).wrapPadding(AppPaddings.all8);
+      ).wrapPadding(AppPaddings.all16),
+    );
   }
 
-  Widget chip(int index) {
-    return Chip(
-      label: Text("#Workout",style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.primaries[index%Colors.primaries.length] )),
-      backgroundColor: Colors.white,
-      padding: EdgeInsets.all(8),
-    ).wrapPadding(EdgeInsets.only(right: 8));
+  Container selectTaskColor() {
+    return Container(
+      width: double.infinity,
+      color: AppColors.selectColorsGrayBg,
+      child: GridView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 5,
+        ),
+        itemCount: AppColors.taskColors.length,
+        itemBuilder: (BuildContext context, int index) {
+          return colorTile(index);
+        },
+      ).wrapPadding(AppPaddings.all4),
+    );
   }
+
+  Widget colorTile(int index){
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: AppColors.taskColors[index],
+      )
+    ).wrapPadding(AppPaddings.all4);
+  }
+
+  SizedBox saveButton() {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(onPressed: (){}, child: Text("Save"))
+    );
+  }
+  
 }
 

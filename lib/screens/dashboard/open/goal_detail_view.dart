@@ -79,7 +79,7 @@ class _GoalDetailViewState extends State<GoalDetailView> {
       size: context.dynamicWidth(0.64),
       progressPercent: widget.task.taskCompletionPercentage,
       progressColor: widget.task.taskColor,
-    ).wrapAlign(Alignment.topCenter).wrapPadding(AppPaddings.arcDetailPadding);
+    ).wrapAlign(Alignment.topCenter).wrapPadding(AppPaddings.all24);
   }
 
   Positioned taskTitleAndDescription() {

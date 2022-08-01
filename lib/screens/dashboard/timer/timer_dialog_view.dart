@@ -24,14 +24,14 @@ class DialogView extends StatelessWidget {
         children: [
           habitTitleTextField(),
           Text(
-            AppStrings.dialogText, 
+            AppStrings.habitDialogText, 
             style: AppTextStyles.generalTextStyle,
             textAlign: TextAlign.center,
           ).wrapPadding(AppPaddings.dialogTextPadding),
           listWheels(),
           saveButton(context)
         ],
-      ).wrapPadding(AppPaddings.dialogContentPadding),
+      ).wrapPadding(AppPaddings.all16),
     );
   }
 
@@ -40,7 +40,7 @@ class DialogView extends StatelessWidget {
       textCapitalization: TextCapitalization.words,
       initialValue: habit.habitTitle,
       style: TextStyle(color: AppColors.white),
-      decoration: AppDecorations.textFieldInputDecoration,
+      decoration: AppDecorations.habitTextFieldInputDecor,
       onChanged: (String value){
         habit.habitTitle = value;
       },
@@ -129,7 +129,7 @@ class DialogView extends StatelessWidget {
           }
           Navigator.pop(context);
         },
-        child: Text(AppStrings.dialogSave)
+        child: Text(AppStrings.save)
       )
     );
   }

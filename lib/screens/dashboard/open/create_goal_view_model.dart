@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'create_goal_view.dart';
 
 abstract class CreateGoalViewModel extends State<CreateGoalView> with SingleTickerProviderStateMixin {
-
   late AnimationController rippleController;
 
   @override

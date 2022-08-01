@@ -20,7 +20,7 @@ class TaskProgressCard extends StatelessWidget {
         context.router.push(GoalDetailRoute(task: task));
       },
       child: Container(
-        decoration: AppDecorations.TaskProgressCardDecoration(task.taskColor),
+        decoration: AppDecorations.taskProgressCardDecoration(task.taskColor),
         child: Stack(
           children: [
             arcProgress(),
@@ -47,7 +47,7 @@ class TaskProgressCard extends StatelessWidget {
         children: [
           Spacer(),
           Text("${task.taskTitle}", style: AppTextStyles.generalTextStyle ,textAlign: TextAlign.center),
-          Text("${task.taskCount} ${AppStrings.taskText}").wrapAlign(Alignment.centerLeft),
+          Text("${task.taskCount} ${AppStrings.task}").wrapAlign(Alignment.centerLeft),
         ],
       ).wrapAlign(Alignment.bottomCenter).wrapPadding(AppPaddings.taskCardTextPadding),
     );

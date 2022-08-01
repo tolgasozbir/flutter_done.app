@@ -79,7 +79,7 @@ class HabitTile extends StatelessWidget {
       SnackBar(
         content: Text(AppStrings.snackBarMessage),
         action: SnackBarAction(
-          label: AppStrings.snackBarDelete, 
+          label: AppStrings.delete, 
           onPressed: () {
             context.read<HabitProvider>().deleteHabit(habit);
           }
