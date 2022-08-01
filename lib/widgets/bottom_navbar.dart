@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatelessWidget {
@@ -13,37 +14,38 @@ class BottomNavBar extends StatelessWidget {
       shape: CircularNotchedRectangle(),
       child: SizedBox(
         height: 60,
-        child: navBarItems(),
+        child: navBarItems(context),
       ),
     );
   }
 
-  Row navBarItems() {
+  Row navBarItems(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         //left side
         Row(
           children: [
-            navBarItem(tapIndex: 0, iconData: Icons.widgets_outlined, text: 'Open'),
-            navBarItem(tapIndex: 1, iconData: Icons.task_alt_outlined, text: 'Closed'),
+            navBarItem(context: context, tapIndex: 0, iconData: Icons.widgets_outlined, text: 'Open'),
+            navBarItem(context: context, tapIndex: 1, iconData: Icons.task_alt_outlined, text: 'Closed'),
           ],
         ),
         //right side
         Row(
           children: [
-            navBarItem(tapIndex: 2, iconData: Icons.timelapse_outlined, text: 'Timer'),
-            navBarItem(tapIndex: 3, iconData: Icons.query_stats_outlined, text: 'Stats'),
+            navBarItem(context: context, tapIndex: 2, iconData: Icons.timelapse_outlined, text: 'Timer'),
+            navBarItem(context: context, tapIndex: 3, iconData: Icons.query_stats_outlined, text: 'Stats'),
           ],
         ),
       ],
     );
   }
 
-  MaterialButton navBarItem({required int tapIndex, required IconData iconData, required String text}) {
+  MaterialButton navBarItem({required BuildContext context, required int tapIndex, required IconData iconData, required String text}) {
     return MaterialButton(
       onPressed: (){
         selectedTap.call(tapIndex);
+        context.router.popTop();
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

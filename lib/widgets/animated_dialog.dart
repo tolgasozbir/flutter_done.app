@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SettingsDialog {
+class AnimatedDialog {
   static void showSettingsDialog({
     required BuildContext context,
     required Widget dialogPageContent,

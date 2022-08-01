@@ -1,5 +1,5 @@
+import 'package:done_app/constants/hive_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/constants/hive_constants.dart';
 import 'package:hive/hive.dart';
 
 part 'task_model.g.dart';

@@ -4,8 +4,8 @@ import '../constants/app_strings.dart';
 import '../constants/app_styles.dart';
 import '../extensions/widget_extension.dart';
 import '../providers/habit_provider.dart';
-import '../screens/dialog_view.dart';
-import 'settings_dialog.dart';
+import '../screens/dashboard/timer/timer_dialog_view.dart';
+import 'animated_dialog.dart';
 import 'package:provider/provider.dart';
 import '../models/habit_model.dart';
 import 'circle_progress_indicator.dart';
@@ -59,7 +59,7 @@ class HabitTile extends StatelessWidget {
     return IconButton(
       onPressed: (){
         context.read<HabitProvider>().formatElapsedTime(habit.elapsedTime);
-        SettingsDialog.showSettingsDialog(
+        AnimatedDialog.showSettingsDialog(
           context: context, 
           dialogPageContent: DialogView(habit: habit,)
         );

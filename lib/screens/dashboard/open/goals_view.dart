@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/models/task_model.dart';
-import '../widgets/task_progress_card.dart';
+import 'package:done_app/models/task_model.dart';
+import '../../../widgets/task_progress_card.dart';
 
 class GoalsView extends StatelessWidget  {
   const GoalsView({Key? key}) : super(key: key);

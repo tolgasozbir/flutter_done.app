@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'constants/app_colors.dart';
 import 'constants/app_strings.dart';
-import 'screens/splash_view.dart';
 import 'package:provider/provider.dart';
 import 'providers/habit_provider.dart';
+import 'routes/app_router.dart';
 
 void main() async {
   runApp(MultiProvider(
@@ -15,9 +15,12 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  final _appRouter = AppRouter(); 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(      
+      routerDelegate: _appRouter.delegate(),      
+      routeInformationParser: _appRouter.defaultRouteParser(),
       theme: Theme.of(context).copyWith(
         appBarTheme: AppBarTheme(
           centerTitle: true,
@@ -27,7 +30,6 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       title: AppStrings.appName,
-      home: SplashView()
     );
   }
 }

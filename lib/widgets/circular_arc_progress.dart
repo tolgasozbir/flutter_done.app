@@ -1,8 +1,8 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/constants/app_colors.dart';
-import 'package:habit_tracker/constants/app_styles.dart';
-import 'package:habit_tracker/extensions/widget_extension.dart';
+import 'package:done_app/constants/app_colors.dart';
+import 'package:done_app/constants/app_styles.dart';
+import 'package:done_app/extensions/widget_extension.dart';
 
 class CircularArc extends StatefulWidget {
   CircularArc({

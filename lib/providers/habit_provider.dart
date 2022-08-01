@@ -89,6 +89,7 @@ class HabitProvider extends ChangeNotifier {
               title: "Congratz",
               body: "${item.habitTitle} completed. Keep going!"
             );
+            _cacheService.putItem(item.habitTitle, item);
           }
         }
       }

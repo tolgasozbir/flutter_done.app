@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../models/habit_model.dart';
-import '../providers/habit_provider.dart';
-import '../widgets/habit_tile.dart';
+import '../../../models/habit_model.dart';
+import '../../../providers/habit_provider.dart';
+import '../../../widgets/habit_tile.dart';
 
 class TimerView extends StatelessWidget {
   const TimerView({Key? key}) : super(key: key);

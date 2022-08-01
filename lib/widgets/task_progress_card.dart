@@ -1,11 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/constants/app_strings.dart';
-import 'package:habit_tracker/constants/app_styles.dart';
-import 'package:habit_tracker/extensions/widget_extension.dart';
-import 'package:habit_tracker/models/task_model.dart';
-import 'package:habit_tracker/screens/task_detail_view.dart';
-import 'package:habit_tracker/utilities/route_helper.dart';
-
+import 'package:done_app/constants/app_strings.dart';
+import 'package:done_app/constants/app_styles.dart';
+import 'package:done_app/extensions/widget_extension.dart';
+import 'package:done_app/models/task_model.dart';
+import '../routes/app_router.dart';
 import 'circular_arc_progress.dart';
 
 class TaskProgressCard extends StatelessWidget {
@@ -18,7 +17,7 @@ class TaskProgressCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        RouteHelper.goRoute(context: context, page: TaskDetailView(task: task));
+        context.router.push(GoalDetailRoute(task: task));
       },
       child: Container(
         decoration: AppDecorations.TaskProgressCardDecoration(task.taskColor),

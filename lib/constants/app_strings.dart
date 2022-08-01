@@ -1,5 +1,5 @@
 class AppStrings {
-  static const String appName = 'Habit Tracker';
+  static const String appName = 'Done App';
   static const String dialogText = 'Goal time for this habit';
   static const String dialogSave = 'Save';
   static const String habitEmptyTitle = 'Unnamed';
