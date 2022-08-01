@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import '../constants/app_colors.dart';
-import '../constants/app_strings.dart';
-import '../constants/app_styles.dart';
-import '../extensions/widget_extension.dart';
-import '../providers/habit_provider.dart';
-import '../screens/dashboard/timer/timer_dialog_view.dart';
-import 'animated_dialog.dart';
+import '../../constants/app_colors.dart';
+import '../../constants/app_strings.dart';
+import '../../constants/app_styles.dart';
+import '../../extensions/widget_extension.dart';
+import '../../providers/habit_provider.dart';
+import '../../screens/dashboard/timer/timer_dialog_view.dart';
+import '../animated_dialog.dart';
 import 'package:provider/provider.dart';
-import '../models/habit_model.dart';
+import '../../models/habit_model.dart';
 import 'circle_progress_indicator.dart';
 
 class HabitTile extends StatelessWidget {
@@ -25,6 +25,12 @@ class HabitTile extends StatelessWidget {
       child: Container(
         padding: AppPaddings.habitTileContainerPadding,
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 0.5,
+              //TODO: Temaya göre renk gelcek
+            )
+          ],
           color: AppColors.tileBackground,
           borderRadius: BorderRadius.circular(12)
         ),

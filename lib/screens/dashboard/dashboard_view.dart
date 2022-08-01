@@ -38,9 +38,7 @@ class _DashboardViewState extends DashboardViewModel {
           ),
           bottomNavigationBar: BottomNavBar(
             selectedIndex: tabsRouter.activeIndex,
-            selectedTap: (index){
-              tabsRouter.setActiveIndex(index);
-            },
+            selectedTap: (index) => tabsRouter.setActiveIndex(index)
           ),
         );
       },
@@ -51,10 +49,7 @@ class _DashboardViewState extends DashboardViewModel {
 
   FloatingActionButton addHabitButton() {
     return FloatingActionButton(
-      onPressed: (){
-        //Habit habit = Habit(habitTitle: "", elapsedTime: 0, timeGoal: 300);
-        //SettingsDialog.showSettingsDialog(context: context, dialogPageContent: DialogView(habit: habit));
-      },
+      onPressed: fabBtnFunction,
       child: Icon(Icons.add),
     );
   }

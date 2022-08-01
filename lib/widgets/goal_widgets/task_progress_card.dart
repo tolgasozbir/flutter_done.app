@@ -4,7 +4,7 @@ import 'package:done_app/constants/app_strings.dart';
 import 'package:done_app/constants/app_styles.dart';
 import 'package:done_app/extensions/widget_extension.dart';
 import 'package:done_app/models/task_model.dart';
-import '../routes/app_router.dart';
+import '../../routes/app_router.dart';
 import 'circular_arc_progress.dart';
 
 class TaskProgressCard extends StatelessWidget {

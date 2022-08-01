@@ -3,7 +3,7 @@ import 'package:done_app/constants/app_styles.dart';
 import 'package:done_app/extensions/context_extension.dart';
 import 'package:done_app/extensions/widget_extension.dart';
 import 'package:done_app/models/task_model.dart';
-import '../../../widgets/circular_arc_progress.dart';
+import '../../../widgets/goal_widgets/circular_arc_progress.dart';
 
 class GoalDetailView extends StatefulWidget {
   const GoalDetailView({Key? key, required this.task}) : super(key: key);
@@ -48,7 +48,7 @@ class _GoalDetailViewState extends State<GoalDetailView> {
             child: ExpansionTile(
             collapsedBackgroundColor: Colors.white,
             backgroundColor: Colors.white,
-            title: Text("data"),//newMethod(),
+            title: Text("data"),//newMethod(),//TODO: düzenlencek
             children: [
               Text("data"),
               cont(),

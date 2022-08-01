@@ -11,10 +11,11 @@ class AppTextStyles {
 
 class AppPaddings {
   static const EdgeInsets all4 = EdgeInsets.all(4);
+  static const EdgeInsets all8 = EdgeInsets.all(8);
   static const EdgeInsets top16 = EdgeInsets.only(top: 16);
   static const EdgeInsets dialogTextPadding = EdgeInsets.fromLTRB(8, 32, 8, 0);
-  static const EdgeInsets dialogContentPadding = EdgeInsets.symmetric(horizontal: 16, vertical: 16);
-  static const EdgeInsets habitTilePadding = EdgeInsets.only(left: 20, right: 20, top: 20);
+  static const EdgeInsets dialogContentPadding = EdgeInsets.symmetric(horizontal: 16, vertical: 16);  //TODO: horizonal vertical aynı olanları all yap
+  static const EdgeInsets habitTilePadding = EdgeInsets.symmetric(horizontal: 20, vertical: 10);
   static const EdgeInsets habitTileContainerPadding = EdgeInsets.all(20);
   static const EdgeInsets marginSymmectric16 = EdgeInsets.symmetric(horizontal: 16);
   static const EdgeInsets arcGridPadding = EdgeInsets.symmetric(horizontal: 24,vertical: 16);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../constants/app_styles.dart';
-import '../providers/habit_provider.dart';
+import '../../constants/app_styles.dart';
+import '../../providers/habit_provider.dart';
 import 'package:provider/provider.dart';
 
 enum ListWheelType {

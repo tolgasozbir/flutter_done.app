@@ -40,25 +40,25 @@ class HabitProvider extends ChangeNotifier {
   int getElapsedTime(int index) => _habitList[index].elapsedTime;
 
 
-  void addNewHabit(Habit habit){
+  void addNewHabit(Habit habit) async {
     _habitList.add(habit);
-    _cacheService.putItem(habit.habitTitle, habit);
+    await _cacheService.putItem(habit.habitTitle, habit);
     notifyListeners();
   }
 
-  void updateHabit(Habit habit, int index){
+  void updateHabit(Habit habit, int index) async {
     _habitList[index] = habit;
-    _cacheService.putItem(habit.habitTitle, habit);
+    await _cacheService.putItem(habit.habitTitle, habit);
     notifyListeners();
   }
 
-  void deleteHabit(Habit habit){
+  void deleteHabit(Habit habit) async {
     _habitList.remove(habit);
-    _cacheService.removeItem(habit.habitTitle);
+    await _cacheService.removeItem(habit.habitTitle);
     notifyListeners();
   }
 
-  void changeStatus(int index) {
+  void changeStatus(int index) async {
     bool isFinished = _habitList[index].elapsedTime >= _habitList[index].timeGoal;
     if (isFinished) {
       _habitList[index].isStarted = false;
@@ -71,12 +71,12 @@ class HabitProvider extends ChangeNotifier {
         ? _habitList[index].startTime = DateTime.now()
         : _habitList[index].startTime = null;
     }
-    _cacheService.putItem(_habitList[index].habitTitle, _habitList[index]);
+    await _cacheService.putItem(_habitList[index].habitTitle, _habitList[index]);
     notifyListeners();
   }
 
-  void setTimer(){
-    Timer.periodic(Duration(milliseconds: 1000), (timer) {
+  void setTimer() {
+    Timer.periodic(Duration(milliseconds: 1000), (timer) async {
       for (var item in _habitList) {
         bool isReached = item.elapsedTime >= item.timeGoal;
         if (item.isStarted) {
@@ -89,7 +89,7 @@ class HabitProvider extends ChangeNotifier {
               title: "Congratz",
               body: "${item.habitTitle} completed. Keep going!"
             );
-            _cacheService.putItem(item.habitTitle, item);
+            await _cacheService.putItem(item.habitTitle, item);
           }
         }
       }

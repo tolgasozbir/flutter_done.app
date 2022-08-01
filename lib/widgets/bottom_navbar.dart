@@ -26,7 +26,7 @@ class BottomNavBar extends StatelessWidget {
         //left side
         Row(
           children: [
-            navBarItem(context: context, tapIndex: 0, iconData: Icons.widgets_outlined, text: 'Open'),
+            navBarItem(context: context, tapIndex: 0, iconData: Icons.widgets_outlined, text: 'Goals'),
             navBarItem(context: context, tapIndex: 1, iconData: Icons.task_alt_outlined, text: 'Closed'),
           ],
         ),

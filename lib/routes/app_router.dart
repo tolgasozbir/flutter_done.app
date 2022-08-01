@@ -7,11 +7,10 @@ import 'package:done_app/screens/dashboard/stats/stats_view.dart';
 import 'package:done_app/screens/splash/splash_view.dart';
 import 'package:done_app/screens/dashboard/timer/timer_view.dart';
 import 'package:flutter/material.dart';
-
 import '../../models/task_model.dart';
 
-part 'app_router.gr.dart';      
-        
+part 'app_router.gr.dart';
+
 @MaterialAutoRouter(              
   replaceInRouteName: 'View,Route',              
   routes: <AutoRoute>[  
@@ -57,4 +56,4 @@ part 'app_router.gr.dart';
   ],
 )
 
-class AppRouter extends _$AppRouter{} 
+class AppRouter extends _$AppRouter{}

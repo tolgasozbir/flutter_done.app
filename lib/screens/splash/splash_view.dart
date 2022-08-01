@@ -10,18 +10,22 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends SplashViewModel {
+
+  final String lottiePath = 'assets/lottie/lottie_loading.json';
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(child: _bodyView()),
+      body: _bodyView(),
     );
   }
 
   Widget _bodyView() {
-    return Center(
-      child: Lottie.asset('assets/lottie/lottie_loading.json')
+    return SafeArea(
+      child: Center(
+        child: Lottie.asset(lottiePath)
+      ),
     );
   }
 }

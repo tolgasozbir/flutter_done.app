@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import '../../../constants/app_colors.dart';
 import '../../../extensions/context_extension.dart';
 import '../../../providers/habit_provider.dart';
-import '../../../widgets/list_wheel.dart';
+import '../../../widgets/habit_widgets/list_wheel.dart';
 
 class DialogView extends StatelessWidget {
   const DialogView({Key? key, required this.habit}) : super(key: key);
@@ -34,7 +34,6 @@ class DialogView extends StatelessWidget {
       ).wrapPadding(AppPaddings.dialogContentPadding),
     );
   }
-
 
   Widget habitTitleTextField() {
     return TextFormField(

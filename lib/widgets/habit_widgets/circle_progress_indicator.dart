@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../constants/app_colors.dart';
+import '../../constants/app_colors.dart';
 import 'package:provider/provider.dart';
-import '../providers/habit_provider.dart';
+import '../../providers/habit_provider.dart';
 
 class CircleProgressIndicator extends StatefulWidget {
   CircleProgressIndicator({
@@ -77,7 +77,7 @@ class _CircleProgressIndicatorState extends State<CircleProgressIndicator> with 
       ),
       builder: (BuildContext context,double value, Widget? child) {
         return CircularProgressIndicator(
-        backgroundColor: Colors.grey,
+        backgroundColor: AppColors.progressBg,
         color: value >= 0.5 && value < 0.8
           ? AppColors.progresOrangeColor
           : value >= 0.8 
