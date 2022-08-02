@@ -47,7 +47,7 @@ class GoalProgressCard extends StatelessWidget {
         children: [
           Spacer(),
           Text("${goal.goalTitle}", style: AppTextStyles.generalTextStyle ,textAlign: TextAlign.center),
-          Text("${goal.taskCount} ${AppStrings.task}").wrapAlign(Alignment.centerLeft),
+          Text("${goal.tasks.length} ${AppStrings.task}").wrapAlign(Alignment.centerLeft),
         ],
       ).wrapAlign(Alignment.bottomCenter).wrapPadding(AppPaddings.goalCardTextPadding),
     );

@@ -1,6 +1,7 @@
-import 'dart:math';
+import 'package:done_app/providers/goal_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:done_app/models/goal_model.dart';
+import 'package:provider/provider.dart';
 import '../../../widgets/goal_widgets/goal_progress_card.dart';
 
 class GoalsView extends StatelessWidget  {
@@ -15,17 +16,11 @@ class GoalsView extends StatelessWidget  {
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
       ),
-      itemCount: 12,
+      itemCount: context.watch<GoalProvider>().getGoalList.length,
       itemBuilder: (BuildContext context, int index) {
+        Goal goal = context.watch<GoalProvider>().getGoalList[index];
         return GoalProgressCard(
-          goal: Goal(
-            goalTitle: "Youtube Videos", 
-            goalDescription: "Reach 10k subsricber ba ba",
-            taskCount: Random().nextInt(100), 
-            goalCompletionPercentage: Random().nextDouble()*100, 
-            goalIconData: Icons.task_alt, 
-            goalColor: Colors.primaries[Random().nextInt(17)]
-          ),
+          goal: goal
         );
       },
     );

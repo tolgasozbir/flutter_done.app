@@ -2,6 +2,7 @@ class AppStrings {
   //general
   static const String appName = 'Done App';
   static const String save = 'Save';
+  static const String cancel = 'Cancel';
   static const String delete = 'Delete';
   static const String snackBarMessage = 'Are you sure you want to delete this?';
   //habits

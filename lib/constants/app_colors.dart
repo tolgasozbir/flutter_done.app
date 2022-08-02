@@ -4,6 +4,8 @@ class AppColors {
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
   static const Color gray = Color(0xFF616161);
+  static const Color black38 = Color(0x60000000);
+  static const Color black54 = Color(0x89000000);
   static const Color black73 = Color(0xBA000000);
   static const Color selectColorsGrayBg = Color(0xFFBBBBBB);
   static const Color appBarBackground = Color(0xFF212121);
@@ -14,7 +16,7 @@ class AppColors {
   static const Color progresOrangeColor = Color(0xFFFF9800);
   static const Color progresGreenColor = Color(0xFF4CAF50);
   static const Color progresRedColor = Color(0xFFF44336);
-  static const Color arcProgressBg = Color(0x89000000);
+  static const Color cancelRed = Color(0xFF940D0D);
   
   static const List<Color> goalColors = [
     Color(0xFF801336),

@@ -54,5 +54,11 @@ class GoalIcons {
     Icons.location_pin, 
     Icons.emoji_events_outlined, 
     Icons.offline_bolt_outlined, 
+    Icons.emoji_food_beverage,
+    Icons.fastfood,
+    Icons.local_grocery_store_outlined,
+    Icons.shower_outlined,
+    Icons.shopping_bag,
+    Icons.rocket_launch_outlined
   ];
 }

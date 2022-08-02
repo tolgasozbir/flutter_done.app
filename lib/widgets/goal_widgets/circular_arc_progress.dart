@@ -59,7 +59,7 @@ class _CircularArcState extends State<CircularArc> with SingleTickerProviderStat
           size: Size(size, size),
           painter: ProgresArcPainter(
             strokeWidth: widget.strokeWidth,
-            progressColor: AppColors.arcProgressBg
+            progressColor: AppColors.black54
           ),
         ).wrapPadding(AppPaddings.top16),
         CustomPaint(

@@ -5,7 +5,7 @@ class GoalProvider extends ChangeNotifier {
 
   List<Goal> _goalList = [];
 
-  List<Goal> get goalList => _goalList;
+  List<Goal> get getGoalList => _goalList;
 
   void addNewGoal(Goal goal) async {
     _goalList.add(goal);

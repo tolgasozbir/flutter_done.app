@@ -1,3 +1,4 @@
+import 'package:done_app/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:done_app/constants/app_styles.dart';
 import 'package:done_app/extensions/context_extension.dart';
@@ -18,8 +19,10 @@ class _GoalDetailViewState extends State<GoalDetailView> {
 
   final double arcStroke = 42;
   final double percentSize = 64;
-  final double titleSize = 40;
-  final double descriptionSize = 32;
+  final double titleSize = 36;
+  final double descriptionSize = 28;
+  final double taskCountSize = 24;
+  final double iconSize = 32;
 
   @override
   Widget build(BuildContext context) {
@@ -29,52 +32,82 @@ class _GoalDetailViewState extends State<GoalDetailView> {
   }
 
   Widget _bodyView() {
-    return Column(
-      children: [
-        Stack(
-          children: [
-            arcProgress(),
-            goalTitleAndDescription(),
-          ],
-        ),  
-          Card(
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(),
-              borderRadius: AppRadius.all16,
-            ),
-            clipBehavior: Clip.antiAlias,
-            margin: EdgeInsets.zero,
-            child: ExpansionTile(
-            collapsedBackgroundColor: Colors.white,
-            backgroundColor: Colors.white,
-            title: Text("data"),//newMethod(),//TODO: düzenlencek
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Stack(
             children: [
-              Text("data"),
-              cont(),
+              arcProgress(),
+              goalTitleAndDescription(),
             ],
+          ),
+          Row(
+            children: [
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  color: widget.goal.goalColor.withOpacity(0.32),
+                  borderRadius: AppRadius.all8
+                ),
+                child: IconButton(onPressed: (){}, icon: Icon(Icons.add, size: iconSize).wrapFitted())
+              ),
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  color: widget.goal.goalColor.withOpacity(0.32),
+                  borderRadius: AppRadius.all8
+                ),
+                child: IconButton(onPressed: (){}, icon: Icon(Icons.add, size: iconSize).wrapFitted())
+              ),
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  color: widget.goal.goalColor.withOpacity(0.32),
+                  borderRadius: AppRadius.all8
+                ),
+                child: IconButton(
+                  onPressed: (){}, icon: Icon(Icons.add, size: iconSize).wrapFitted())
+              )
+            ],
+          ).wrapPadding(AppPaddings.all8),
+          Column(
+            children: List.generate(widget.goal.tasks.length+5, (index) => taskCard()),
           )
-        ) .wrapPadding(EdgeInsets.all(8)),
-      ],
+        ],
+      ),
     );
   }
 
-  Container cont() {
-    return Container(
-              color: Colors.amber,
-              height: 200,
-            );
+  Widget taskCard() {
+    return Card(
+      shape: RoundedRectangleBorder(
+        side: BorderSide(color: widget.goal.goalColor),
+        borderRadius: AppRadius.all16,
+      ),
+      elevation: 0,
+      clipBehavior: Clip.antiAlias,
+      margin: EdgeInsets.zero,
+      child: checkboxListTile(false)
+    ).wrapPadding(AppPaddings.goalTaskCardPadding);
   }
 
-  CheckboxListTile newMethod() {
+  Widget checkboxListTile(bool checked) {
     return CheckboxListTile(
-              controlAffinity: ListTileControlAffinity.leading,
-              value: false, onChanged: (value){});
+      controlAffinity: ListTileControlAffinity.leading,
+      title: Text("title"),
+      secondary: IconButton(
+        onPressed: (){
+
+        }, 
+        icon: Icon(Icons.delete)
+      ),
+      value: checked, 
+      onChanged: (value){
+
+      }
+    );
   }
 
   Widget arcProgress() {
     return CircularArc(
-      textStyle: AppTextStyles.boldCustomSize(percentSize),
+      textStyle: AppTextStyles.boldCustomSize(fontSize: percentSize),
       strokeWidth: arcStroke,
       size: context.dynamicWidth(0.64),
       progressPercent: widget.goal.goalCompletionPercentage,
@@ -85,21 +118,21 @@ class _GoalDetailViewState extends State<GoalDetailView> {
   Positioned goalTitleAndDescription() {
     return Positioned.fill(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Spacer(),
-          textCenter(widget.goal.goalTitle, titleSize).wrapFitted(),
-          textCenter(widget.goal.goalDescription, descriptionSize).wrapFitted().wrapAlign(Alignment.centerLeft),
+          textCenter(widget.goal.goalTitle, titleSize, AppColors.black).wrapFitted(),
+          textCenter(widget.goal.goalDescription, descriptionSize, AppColors.black54).wrapFitted(),
+          textCenter('${widget.goal.tasks.length} items', taskCountSize, AppColors.black38)
         ],
-      ).wrapAlign(Alignment.bottomCenter).wrapPadding(AppPaddings.goalDetailTextPadding)
+      ).wrapAlign(Alignment.bottomLeft).wrapPadding(AppPaddings.horizontal16)
     );
   }
 
-  Text textCenter(String text, double fontSize) {
+  Text textCenter(String text, double fontSize, Color color) {
     return Text(
       text, 
-      style: AppTextStyles.boldCustomSize(fontSize),
+      style: AppTextStyles.boldCustomSize(fontSize: fontSize, color: color),
       textAlign: TextAlign.center
     );
   }

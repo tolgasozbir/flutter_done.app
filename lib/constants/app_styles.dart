@@ -9,7 +9,7 @@ class AppTextStyles {
   static const TextStyle createGoalTitleStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.black73);
 
   static TextStyle createGoalChipStyle(int index) => TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.goalColors[index%AppColors.goalColors.length]);
-  static TextStyle boldCustomSize(double fontSize) => TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold,);
+  static TextStyle boldCustomSize({required double fontSize, Color? color}) => TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: color);
 }
 
 class AppPaddings {
@@ -28,7 +28,7 @@ class AppPaddings {
   static const EdgeInsets habitInputDecorPadding = EdgeInsets.symmetric(horizontal: 12,vertical: 16);
   static const EdgeInsets arcGridPadding = EdgeInsets.symmetric(horizontal: 24,vertical: 16);
   static const EdgeInsets goalCardTextPadding = EdgeInsets.only(left: 8,bottom: 8);
-  static const EdgeInsets goalDetailTextPadding = EdgeInsets.only(left: 16,bottom: 16, right: 16);
+  static const EdgeInsets goalTaskCardPadding = EdgeInsets.symmetric(vertical: 4, horizontal: 8);
 }
 
 class AppRadius {

@@ -4,12 +4,8 @@ import 'package:done_app/constants/app_styles.dart';
 import 'package:done_app/constants/goal_icons.dart';
 import 'package:done_app/extensions/context_extension.dart';
 import 'package:done_app/extensions/widget_extension.dart';
-import 'package:done_app/models/goal_model.dart';
-import 'package:done_app/providers/goal_provider.dart';
 import 'package:done_app/widgets/animated_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 import '../../../constants/app_colors.dart';
 import 'create_goal_view_model.dart';
 
@@ -21,10 +17,6 @@ class CreateGoalView extends StatefulWidget {
 }
 
 class _CreateGoalViewState extends CreateGoalViewModel {
-
-  final goalTitleController = TextEditingController();
-  final goalDescController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -63,7 +55,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
           Column(
             children: [
               saveButton(),
-              saveButton(),
+              cancelButton(),
             ],
           )
         ],
@@ -90,14 +82,17 @@ class _CreateGoalViewState extends CreateGoalViewModel {
   }
 
   Widget quickTagChip(int index) {
-    return Chip(
-      label: Text(
-        "#${AppStrings.quickTagsTitles[index]}",
-        style: AppTextStyles.createGoalChipStyle(index)
-      ),
-      backgroundColor: AppColors.white,
-      padding: AppPaddings.all8,
-    ).wrapPadding(AppPaddings.right8);
+    return GestureDetector(
+      onTap: () => setQuickTag(index),
+      child: Chip(
+        label: Text(
+          "#${AppStrings.quickTagsTitles[index]}",
+          style: AppTextStyles.createGoalChipStyle(index)
+        ),
+        backgroundColor: AppColors.white,
+        padding: AppPaddings.all8,
+      ).wrapPadding(AppPaddings.right8),
+    );
   }
 
   Widget goalTitleTextField() {
@@ -194,7 +189,6 @@ class _CreateGoalViewState extends CreateGoalViewModel {
       shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 5,
-        childAspectRatio: 1
       ),
       itemCount: AppColors.goalColors.length,
       itemBuilder: (BuildContext context, int index) {
@@ -233,16 +227,21 @@ class _CreateGoalViewState extends CreateGoalViewModel {
       width: double.infinity,
       height: context.dynamicHeight(0.060),
       child: ElevatedButton(
-        onPressed: (){
-          Goal goal = Goal(
-            goalTitle: goalTitleController.text, 
-            goalDescription: goalTitleController.text,
-            goalIconData: GoalIcons.goalIconList[selectedIconIndex], 
-            goalColor: AppColors.goalColors[selectedColorIndex],
-          );
-          context.read<GoalProvider>().addNewGoal(goal);
-        }, 
-        child: Text("Save", style: AppTextStyles.generalTextStyle)),
+        onPressed: addGoal, 
+        child: Text(AppStrings.save, style: AppTextStyles.generalTextStyle)),
+    ).wrapPadding(AppPaddings.top8);
+  }  
+  
+  Widget cancelButton() {
+    return SizedBox(
+      width: double.infinity,
+      height: context.dynamicHeight(0.060),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: AppColors.cancelRed,
+        ),
+        onPressed: animateAndPop, 
+        child: Text(AppStrings.cancel, style: AppTextStyles.generalTextStyle)),
     ).wrapPadding(AppPaddings.top8);
   }
   
