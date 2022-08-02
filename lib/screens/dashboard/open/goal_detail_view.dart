@@ -41,7 +41,7 @@ class _GoalDetailViewState extends State<GoalDetailView> {
             elevation: 0,
             shape: RoundedRectangleBorder(
               side: BorderSide(),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: AppRadius.all16,
             ),
             clipBehavior: Clip.antiAlias,
             margin: EdgeInsets.zero,

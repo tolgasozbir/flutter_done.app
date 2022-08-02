@@ -32,7 +32,7 @@ class HabitTile extends StatelessWidget {
             )
           ],
           color: AppColors.tileBackground,
-          borderRadius: BorderRadius.circular(12)
+          borderRadius: AppRadius.all12
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

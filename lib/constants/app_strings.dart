@@ -10,6 +10,7 @@ class AppStrings {
   static const String habitLabelText = 'Habit Title';
   static const String habitDialogText = 'Goal time for this habit';
   //tasks
+  static const String taskAppBarTitle = 'Create your goal';
   static const String task = 'Tasks';
   static const String quickTag = 'Quick tag';
   static const String taskHintText = 'Meditate, Workout, etc';

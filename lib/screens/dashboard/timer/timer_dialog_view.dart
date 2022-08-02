@@ -72,9 +72,9 @@ class DialogView extends StatelessWidget {
     return Container(
     height: 28,
     width: double.infinity,
-    margin: AppPaddings.marginSymmectric16,
+    margin: AppPaddings.horizontal16,
     decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: AppRadius.all8,
       color: AppColors.gray,
     ),
     );

@@ -19,6 +19,8 @@ class Task {
   late IconData taskIconData;
   @HiveField(5)
   late Color taskColor;
+  @HiveField(6)
+  late bool isComplete;
 
   Task({
     required this.taskTitle,
@@ -27,5 +29,6 @@ class Task {
     required this.taskCompletionPercentage,
     required this.taskIconData,
     required this.taskColor,
+    this.isComplete = false,
   });
 }

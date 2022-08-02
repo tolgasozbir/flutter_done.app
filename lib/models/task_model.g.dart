@@ -23,13 +23,14 @@ class TaskAdapter extends TypeAdapter<Task> {
       taskCompletionPercentage: fields[3] as double,
       taskIconData: fields[4] as IconData,
       taskColor: fields[5] as Color,
+      isComplete: fields[6] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, Task obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.taskTitle)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class TaskAdapter extends TypeAdapter<Task> {
       ..writeByte(4)
       ..write(obj.taskIconData)
       ..writeByte(5)
-      ..write(obj.taskColor);
+      ..write(obj.taskColor)
+      ..writeByte(6)
+      ..write(obj.isComplete);
   }
 
   @override

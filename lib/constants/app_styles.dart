@@ -20,7 +20,8 @@ class AppPaddings {
   static const EdgeInsets top8 = EdgeInsets.only(top: 8);
   static const EdgeInsets top16 = EdgeInsets.only(top: 16);
   static const EdgeInsets right8 = EdgeInsets.only(right: 8);
-  static const EdgeInsets marginSymmectric16 = EdgeInsets.symmetric(horizontal: 16);
+  static const EdgeInsets vertical8 = EdgeInsets.symmetric(vertical: 8);
+  static const EdgeInsets horizontal16 = EdgeInsets.symmetric(horizontal: 16);
   static const EdgeInsets dialogTextPadding = EdgeInsets.fromLTRB(8, 32, 8, 0);
   static const EdgeInsets habitTilePadding = EdgeInsets.symmetric(horizontal: 20, vertical: 10);
   static const EdgeInsets habitTileContainerPadding = EdgeInsets.all(20);
@@ -31,6 +32,7 @@ class AppPaddings {
 }
 
 class AppRadius {
+  static const BorderRadius all8 = BorderRadius.all(Radius.circular(8.0));
   static const BorderRadius all12 = BorderRadius.all(Radius.circular(12.0));
   static const BorderRadius all16 = BorderRadius.all(Radius.circular(16.0));
 }
