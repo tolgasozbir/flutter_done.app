@@ -49,7 +49,7 @@ class _$AppRouter extends RootStackRouter {
       final args = routeData.argsAs<GoalDetailRouteArgs>();
       return MaterialPageX<dynamic>(
           routeData: routeData,
-          child: GoalDetailView(key: args.key, task: args.task));
+          child: GoalDetailView(key: args.key, goal: args.goal));
     }
   };
 
@@ -146,23 +146,23 @@ class GoalsRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [GoalDetailView]
 class GoalDetailRoute extends PageRouteInfo<GoalDetailRouteArgs> {
-  GoalDetailRoute({Key? key, required Task task})
+  GoalDetailRoute({Key? key, required Goal goal})
       : super(GoalDetailRoute.name,
             path: 'goalDetail',
-            args: GoalDetailRouteArgs(key: key, task: task));
+            args: GoalDetailRouteArgs(key: key, goal: goal));
 
   static const String name = 'GoalDetailRoute';
 }
 
 class GoalDetailRouteArgs {
-  const GoalDetailRouteArgs({this.key, required this.task});
+  const GoalDetailRouteArgs({this.key, required this.goal});
 
   final Key? key;
 
-  final Task task;
+  final Goal goal;
 
   @override
   String toString() {
-    return 'GoalDetailRouteArgs{key: $key, task: $task}';
+    return 'GoalDetailRouteArgs{key: $key, goal: $goal}';
   }
 }

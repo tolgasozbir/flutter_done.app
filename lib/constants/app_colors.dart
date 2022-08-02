@@ -16,7 +16,7 @@ class AppColors {
   static const Color progresRedColor = Color(0xFFF44336);
   static const Color arcProgressBg = Color(0x89000000);
   
-  static const List<Color> taskColors = [
+  static const List<Color> goalColors = [
     Color(0xFF801336),
     Color(0xFFC01010),
     Color(0xFFFF6E00),

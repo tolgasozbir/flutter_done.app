@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:done_app/models/task_model.dart';
-import '../../../widgets/goal_widgets/task_progress_card.dart';
+import 'package:done_app/models/goal_model.dart';
+import '../../../widgets/goal_widgets/goal_progress_card.dart';
 
 class GoalsView extends StatelessWidget  {
   const GoalsView({Key? key}) : super(key: key);
@@ -17,14 +17,14 @@ class GoalsView extends StatelessWidget  {
       ),
       itemCount: 12,
       itemBuilder: (BuildContext context, int index) {
-        return TaskProgressCard(
-          task: Task(
-            taskTitle: "Youtube Videos", 
-            taskDescription: "Reach 10k subsricber ba ba",
+        return GoalProgressCard(
+          goal: Goal(
+            goalTitle: "Youtube Videos", 
+            goalDescription: "Reach 10k subsricber ba ba",
             taskCount: Random().nextInt(100), 
-            taskCompletionPercentage: Random().nextDouble()*100, 
-            taskIconData: Icons.task_alt, 
-            taskColor: Colors.primaries[Random().nextInt(17)]
+            goalCompletionPercentage: Random().nextDouble()*100, 
+            goalIconData: Icons.task_alt, 
+            goalColor: Colors.primaries[Random().nextInt(17)]
           ),
         );
       },

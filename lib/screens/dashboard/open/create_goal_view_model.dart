@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:done_app/constants/task_icons.dart';
+import 'package:done_app/constants/goal_icons.dart';
 import 'package:flutter/material.dart';
 import 'create_goal_view.dart';
 
@@ -8,6 +8,7 @@ abstract class CreateGoalViewModel extends State<CreateGoalView> with SingleTick
   late AnimationController rippleController;
   int selectedColorIndex = 0;
   int selectedIconIndex = 0;
+  double dialogIconSize = 48;
 
   @override
   void initState() {
@@ -27,7 +28,7 @@ abstract class CreateGoalViewModel extends State<CreateGoalView> with SingleTick
   }
 
   void randomIconIndex(){
-    selectedIconIndex = Random().nextInt(TaskIcons.taskIconList.length);
+    selectedIconIndex = Random().nextInt(GoalIcons.goalIconList.length);
   }
 
 }

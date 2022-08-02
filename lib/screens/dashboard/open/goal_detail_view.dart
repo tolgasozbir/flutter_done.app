@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:done_app/constants/app_styles.dart';
 import 'package:done_app/extensions/context_extension.dart';
 import 'package:done_app/extensions/widget_extension.dart';
-import 'package:done_app/models/task_model.dart';
+import 'package:done_app/models/goal_model.dart';
 import '../../../widgets/goal_widgets/circular_arc_progress.dart';
 
 class GoalDetailView extends StatefulWidget {
-  const GoalDetailView({Key? key, required this.task}) : super(key: key);
+  const GoalDetailView({Key? key, required this.goal}) : super(key: key);
 
-  final Task task;
+  final Goal goal;
 
   @override
   State<GoalDetailView> createState() => _GoalDetailViewState();
@@ -34,7 +34,7 @@ class _GoalDetailViewState extends State<GoalDetailView> {
         Stack(
           children: [
             arcProgress(),
-            taskTitleAndDescription(),
+            goalTitleAndDescription(),
           ],
         ),  
           Card(
@@ -77,22 +77,22 @@ class _GoalDetailViewState extends State<GoalDetailView> {
       textStyle: AppTextStyles.boldCustomSize(percentSize),
       strokeWidth: arcStroke,
       size: context.dynamicWidth(0.64),
-      progressPercent: widget.task.taskCompletionPercentage,
-      progressColor: widget.task.taskColor,
+      progressPercent: widget.goal.goalCompletionPercentage,
+      progressColor: widget.goal.goalColor,
     ).wrapAlign(Alignment.topCenter).wrapPadding(AppPaddings.all24);
   }
 
-  Positioned taskTitleAndDescription() {
+  Positioned goalTitleAndDescription() {
     return Positioned.fill(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Spacer(),
-          textCenter(widget.task.taskTitle, titleSize).wrapFitted(),
-          textCenter(widget.task.taskDescription, descriptionSize).wrapFitted().wrapAlign(Alignment.centerLeft),
+          textCenter(widget.goal.goalTitle, titleSize).wrapFitted(),
+          textCenter(widget.goal.goalDescription, descriptionSize).wrapFitted().wrapAlign(Alignment.centerLeft),
         ],
-      ).wrapAlign(Alignment.bottomCenter).wrapPadding(AppPaddings.taskDetailTextPadding)
+      ).wrapAlign(Alignment.bottomCenter).wrapPadding(AppPaddings.goalDetailTextPadding)
     );
   }
 

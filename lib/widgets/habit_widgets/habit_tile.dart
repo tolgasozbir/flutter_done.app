@@ -28,7 +28,6 @@ class HabitTile extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               blurRadius: 0.5,
-              //TODO: Temaya göre renk gelcek
             )
           ],
           color: AppColors.tileBackground,

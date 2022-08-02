@@ -1,11 +1,11 @@
 
 import 'package:done_app/constants/app_strings.dart';
 import 'package:done_app/constants/app_styles.dart';
-import 'package:done_app/constants/task_icons.dart';
+import 'package:done_app/constants/goal_icons.dart';
 import 'package:done_app/extensions/context_extension.dart';
 import 'package:done_app/extensions/widget_extension.dart';
-import 'package:done_app/models/task_model.dart';
-import 'package:done_app/providers/task_provider.dart';
+import 'package:done_app/models/goal_model.dart';
+import 'package:done_app/providers/goal_provider.dart';
 import 'package:done_app/widgets/animated_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +21,10 @@ class CreateGoalView extends StatefulWidget {
 }
 
 class _CreateGoalViewState extends CreateGoalViewModel {
+
+  final goalTitleController = TextEditingController();
+  final goalDescController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -34,7 +38,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: Text(AppStrings.taskAppBarTitle),
+          title: Text(AppStrings.goalAppBarTitle),
           leading: BackButton(onPressed: () => rippleController.reverse().then((value) => Navigator.pop(context))),
         ),
         body: _bodyView(),
@@ -53,7 +57,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
               goalTitleTextField(),
               goalDescTextField(),
               selectIconButton(),
-              selectTaskColor(),
+              selectGoalColor(),
             ],
           ),
           Column(
@@ -73,7 +77,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(AppStrings.quickTag, style: AppTextStyles.createTaskTitleStyle),
+          Text(AppStrings.quickTag, style: AppTextStyles.createGoalTitleStyle),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -89,7 +93,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
     return Chip(
       label: Text(
         "#${AppStrings.quickTagsTitles[index]}",
-        style: AppTextStyles.createTaskChipStyle(index)
+        style: AppTextStyles.createGoalChipStyle(index)
       ),
       backgroundColor: AppColors.white,
       padding: AppPaddings.all8,
@@ -102,12 +106,13 @@ class _CreateGoalViewState extends CreateGoalViewModel {
       child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
        children: [
-         Text(AppStrings.taskTextFieldTitle, style: AppTextStyles.createTaskTitleStyle),
-         TextField(
-           textCapitalization: TextCapitalization.words,
-           decoration: AppDecorations.taskCreateInputDecor(AppStrings.taskHintText),
-           onChanged: (String value){},
-         ).wrapPadding(AppPaddings.top8),
+        Text(AppStrings.goalTextFieldTitle, style: AppTextStyles.createGoalTitleStyle),
+        TextField(
+          controller: goalTitleController,
+          textCapitalization: TextCapitalization.words,
+          decoration: AppDecorations.goalCreateInputDecor(AppStrings.goalHintText),
+          onChanged: (String value){},
+        ).wrapPadding(AppPaddings.top8),
        ],
       ),
     );
@@ -119,10 +124,11 @@ class _CreateGoalViewState extends CreateGoalViewModel {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(AppStrings.taskTextFieldDesc, style: AppTextStyles.createTaskTitleStyle),
+          Text(AppStrings.goalTextFieldDesc, style: AppTextStyles.createGoalTitleStyle),
           TextField(
+            controller: goalDescController,
             textCapitalization: TextCapitalization.words,
-            decoration: AppDecorations.taskCreateInputDecor(AppStrings.description),
+            decoration: AppDecorations.goalCreateInputDecor(AppStrings.description),
             onChanged: (String value){},
           ).wrapPadding(AppPaddings.top8),
         ],
@@ -144,7 +150,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TaskIcons.taskIconList[selectedIconIndex].wrapFitted(), 
+            Icon(GoalIcons.goalIconList[selectedIconIndex]).wrapFitted(), 
             Text(AppStrings.selectIcon, style: AppTextStyles.generalTextStyle),
             Icon(Icons.chevron_right,size: 32,), 
           ],
@@ -153,7 +159,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
     );
   }
 
-  Widget selectIconDialogView() {  //TODO: ayarlancak
+  Widget selectIconDialogView() {
     return Container(
       height: context.dynamicHeight(0.6),
       width: context.dynamicWidth(0.8),
@@ -165,7 +171,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
           ),
-          itemCount: TaskIcons.taskIconList.length,
+          itemCount: GoalIcons.goalIconList.length,
           itemBuilder: (BuildContext context, int index) {
             return InkWell(
               onTap: (){
@@ -174,7 +180,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
                 });
                 Navigator.pop(context);
               },
-              child: TaskIcons.taskIconList[index]
+              child: Icon(GoalIcons.goalIconList[index], color: AppColors.white, size: dialogIconSize,)
             );
           },
         ).wrapPadding(AppPaddings.vertical8)
@@ -182,7 +188,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
     );
   }
 
-  Widget selectTaskColor() {  //widget'a çıkar
+  Widget selectGoalColor() {
     return GridView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
@@ -190,14 +196,14 @@ class _CreateGoalViewState extends CreateGoalViewModel {
         crossAxisCount: 5,
         childAspectRatio: 1
       ),
-      itemCount: AppColors.taskColors.length,
+      itemCount: AppColors.goalColors.length,
       itemBuilder: (BuildContext context, int index) {
         return colorTile(index);
       },
     ).wrapPadding(AppPaddings.all4).wrapPadding(AppPaddings.top8);
   }
 
-  Widget colorTile(int index){  //widget'a çıkar
+  Widget colorTile(int index){
     return InkWell(
       onTap: () {
         setState(() {
@@ -210,7 +216,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
             child: DecoratedBox(
               decoration: BoxDecoration(
                 borderRadius: AppRadius.all8,
-                color: AppColors.taskColors[index],
+                color: AppColors.goalColors[index],
               ),
             ).wrapPadding(AppPaddings.all4),
           ),
@@ -228,15 +234,13 @@ class _CreateGoalViewState extends CreateGoalViewModel {
       height: context.dynamicHeight(0.060),
       child: ElevatedButton(
         onPressed: (){
-          // Task task = Task(
-          //   taskTitle: taskTitle, 
-          //   taskDescription: taskDescription, 
-          //   taskCount: taskCount, 
-          //   taskCompletionPercentage: taskCompletionPercentage, 
-          //   taskIconData: taskIconData, 
-          //   taskColor: taskColor
-          // );
-          //context.read<TaskProvider>().addNewTask(task)
+          Goal goal = Goal(
+            goalTitle: goalTitleController.text, 
+            goalDescription: goalTitleController.text,
+            goalIconData: GoalIcons.goalIconList[selectedIconIndex], 
+            goalColor: AppColors.goalColors[selectedColorIndex],
+          );
+          context.read<GoalProvider>().addNewGoal(goal);
         }, 
         child: Text("Save", style: AppTextStyles.generalTextStyle)),
     ).wrapPadding(AppPaddings.top8);

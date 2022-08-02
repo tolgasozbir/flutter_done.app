@@ -1,4 +1,4 @@
-import 'package:done_app/providers/task_provider.dart';
+import 'package:done_app/providers/goal_provider.dart';
 import 'package:flutter/material.dart';
 import 'constants/app_colors.dart';
 import 'constants/app_strings.dart';
@@ -10,7 +10,7 @@ void main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: ((context) => HabitProvider())),
-      ChangeNotifierProvider(create: ((context) => TaskProvider())),
+      ChangeNotifierProvider(create: ((context) => GoalProvider())),
     ],
     child: MyApp(),
   ));

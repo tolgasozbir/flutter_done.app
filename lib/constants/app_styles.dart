@@ -6,9 +6,9 @@ class AppTextStyles {
   static const TextStyle subTextStyle = TextStyle(color: AppColors.subTextColor);
   static const TextStyle generalTextStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.bold,);
   static const TextStyle hintTextStyle = TextStyle(color: AppColors.white);
-  static const TextStyle createTaskTitleStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.black73);
+  static const TextStyle createGoalTitleStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.black73);
 
-  static TextStyle createTaskChipStyle(int index) => TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.taskColors[index%AppColors.taskColors.length]);
+  static TextStyle createGoalChipStyle(int index) => TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.goalColors[index%AppColors.goalColors.length]);
   static TextStyle boldCustomSize(double fontSize) => TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold,);
 }
 
@@ -27,8 +27,8 @@ class AppPaddings {
   static const EdgeInsets habitTileContainerPadding = EdgeInsets.all(20);
   static const EdgeInsets habitInputDecorPadding = EdgeInsets.symmetric(horizontal: 12,vertical: 16);
   static const EdgeInsets arcGridPadding = EdgeInsets.symmetric(horizontal: 24,vertical: 16);
-  static const EdgeInsets taskCardTextPadding = EdgeInsets.only(left: 8,bottom: 8);
-  static const EdgeInsets taskDetailTextPadding = EdgeInsets.only(left: 16,bottom: 16, right: 16);
+  static const EdgeInsets goalCardTextPadding = EdgeInsets.only(left: 8,bottom: 8);
+  static const EdgeInsets goalDetailTextPadding = EdgeInsets.only(left: 16,bottom: 16, right: 16);
 }
 
 class AppRadius {
@@ -48,12 +48,12 @@ class AppDecorations {
     border: OutlineInputBorder(borderSide: BorderSide(color: AppColors.white))
   );
 
-  static BoxDecoration taskProgressCardDecoration(Color color) => BoxDecoration(
+  static BoxDecoration goalProgressCardDecoration(Color color) => BoxDecoration(
     borderRadius: AppRadius.all16,
     border: Border.all(color: color, width: 2)
   );
 
-  static InputDecoration taskCreateInputDecor(String hintText) => InputDecoration(
+  static InputDecoration goalCreateInputDecor(String hintText) => InputDecoration(
     focusedBorder: OutlineInputBorder(
       borderRadius: AppRadius.all12,
       borderSide: BorderSide(color: AppColors.black, width: 1.5),

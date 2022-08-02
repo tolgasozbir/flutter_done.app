@@ -9,13 +9,13 @@ class AppStrings {
   static const String habitEmptyTitle = 'Unnamed';
   static const String habitLabelText = 'Habit Title';
   static const String habitDialogText = 'Goal time for this habit';
-  //tasks
-  static const String taskAppBarTitle = 'Create your goal';
+  //goal - tasks
+  static const String goalAppBarTitle = 'Create your goal';
   static const String task = 'Tasks';
   static const String quickTag = 'Quick tag';
-  static const String taskHintText = 'Meditate, Workout, etc';
-  static const String taskTextFieldTitle = 'Set your goal title';
-  static const String taskTextFieldDesc = 'Need a description?';
+  static const String goalHintText = 'Meditate, Workout, etc';
+  static const String goalTextFieldTitle = 'Set your goal title';
+  static const String goalTextFieldDesc = 'Need a description?';
   static const String description = 'Description';
   static const String selectIcon = 'Select Icon';
 

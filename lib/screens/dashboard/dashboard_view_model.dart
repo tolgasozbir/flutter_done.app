@@ -31,7 +31,7 @@ abstract class DashboardViewModel extends State<DashboardView> {
   void fabBtnFunction(){
     String currentPath = context.router.urlState.flatten.path;
     if (currentPath == 'timer') createNewHabit();
-    else if (currentPath == 'goals') goToCreateNewGoalPage();
+    else if (currentPath == 'goals') goToCreateGoalPage();
   }
 
   void createNewHabit(){
@@ -39,7 +39,7 @@ abstract class DashboardViewModel extends State<DashboardView> {
     AnimatedDialog.showSettingsDialog(context: context, dialogPageContent: DialogView(habit: habit));
   }
 
-  void goToCreateNewGoalPage(){
+  void goToCreateGoalPage(){
     context.router.pushNativeRoute(PageRouteBuilder(opaque: false, pageBuilder: (context, animation, secondaryAnimation) => CreateGoalView()));
   }
   

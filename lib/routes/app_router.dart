@@ -7,7 +7,7 @@ import 'package:done_app/screens/dashboard/stats/stats_view.dart';
 import 'package:done_app/screens/splash/splash_view.dart';
 import 'package:done_app/screens/dashboard/timer/timer_view.dart';
 import 'package:flutter/material.dart';
-import '../../models/task_model.dart';
+import '../models/goal_model.dart';
 
 part 'app_router.gr.dart';
 
