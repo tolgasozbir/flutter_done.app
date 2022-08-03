@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:done_app/widgets/scaled_text.dart';
 import 'package:flutter/material.dart';
 import 'package:done_app/constants/app_strings.dart';
 import 'package:done_app/constants/app_styles.dart';
@@ -20,7 +21,10 @@ class GoalProgressCard extends StatelessWidget {
         context.router.push(GoalDetailRoute(goal: goal));
       },
       child: Container(
-        decoration: AppDecorations.goalProgressCardDecoration(goal.goalColor),
+        decoration: BoxDecoration(
+          borderRadius: AppRadius.all16,
+          border: Border.all(color: goal.goalColor, width: 2)
+        ),
         child: Stack(
           children: [
             arcProgress(),
@@ -46,8 +50,14 @@ class GoalProgressCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Spacer(),
-          Text("${goal.goalTitle}", style: AppTextStyles.generalTextStyle ,textAlign: TextAlign.center),
-          Text("${goal.tasks.length} ${AppStrings.task}").wrapAlign(Alignment.centerLeft),
+          ScaledText(
+            text: '${goal.goalTitle}',
+            style: AppTextStyles.generalTextStyle, //TODO. Bİ TIK BÜYÜCEK
+            textAlign: TextAlign.center,
+          ),
+          ScaledText(
+            text: '${goal.tasks.length} ${AppStrings.task}',
+          ).wrapAlign(Alignment.centerLeft),
         ],
       ).wrapAlign(Alignment.bottomCenter).wrapPadding(AppPaddings.goalCardTextPadding),
     );

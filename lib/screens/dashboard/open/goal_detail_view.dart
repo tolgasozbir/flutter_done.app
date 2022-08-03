@@ -1,4 +1,5 @@
 import 'package:done_app/constants/app_colors.dart';
+import 'package:done_app/widgets/scaled_text.dart';
 import 'package:flutter/material.dart';
 import 'package:done_app/constants/app_styles.dart';
 import 'package:done_app/extensions/context_extension.dart';
@@ -121,17 +122,17 @@ class _GoalDetailViewState extends State<GoalDetailView> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Spacer(),
-          textCenter(widget.goal.goalTitle, titleSize, AppColors.black).wrapFitted(),
-          textCenter(widget.goal.goalDescription, descriptionSize, AppColors.black54).wrapFitted(),
-          textCenter('${widget.goal.tasks.length} items', taskCountSize, AppColors.black38)
+          scaledText(widget.goal.goalTitle, titleSize, AppColors.black).wrapFitted(),
+          scaledText(widget.goal.goalDescription, descriptionSize, AppColors.black54).wrapFitted(),
+          scaledText('${widget.goal.tasks.length} items', taskCountSize, AppColors.black38)
         ],
       ).wrapAlign(Alignment.bottomLeft).wrapPadding(AppPaddings.horizontal16)
     );
   }
 
-  Text textCenter(String text, double fontSize, Color color) {
-    return Text(
-      text, 
+  ScaledText scaledText(String text, double fontSize, Color color) {
+    return ScaledText(
+      text: text, 
       style: AppTextStyles.boldCustomSize(fontSize: fontSize, color: color),
       textAlign: TextAlign.center
     );

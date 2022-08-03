@@ -1,3 +1,4 @@
+import 'package:done_app/widgets/scaled_text.dart';
 import 'package:flutter/material.dart';
 import '../../../constants/app_strings.dart';
 import '../../../constants/app_styles.dart';
@@ -14,20 +15,26 @@ class DialogView extends StatelessWidget {
 
   final Habit habit;
 
+  final InputDecoration inputDecoration = const InputDecoration(
+    labelText: AppStrings.habitLabelText,
+    labelStyle: AppTextStyles.hintTextStyle,
+    hintStyle: AppTextStyles.hintTextStyle,
+    hintText: AppStrings.habitHintText,
+    contentPadding: AppPaddings.habitInputDecorPadding,
+    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.white)),
+    border: OutlineInputBorder(borderSide: BorderSide(color: AppColors.white))
+  );
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: context.dynamicHeight(0.56),
-      width: context.dynamicWidth(0.72),
+      width: context.dynamicWidth(0.74),
       color: AppColors.appBarBackground,
       child: Column(
         children: [
           habitTitleTextField(),
-          Text(
-            AppStrings.habitDialogText, 
-            style: AppTextStyles.generalTextStyle,
-            textAlign: TextAlign.center,
-          ).wrapPadding(AppPaddings.dialogTextPadding),
+          dialogDesciptionText(),
           listWheels(),
           saveButton(context)
         ],
@@ -40,11 +47,19 @@ class DialogView extends StatelessWidget {
       textCapitalization: TextCapitalization.words,
       initialValue: habit.habitTitle,
       style: TextStyle(color: AppColors.white),
-      decoration: AppDecorations.habitTextFieldInputDecor,
+      decoration: inputDecoration,
       onChanged: (String value){
         habit.habitTitle = value;
       },
     );
+  }
+
+  Widget dialogDesciptionText() {
+    return ScaledText(
+      text: AppStrings.habitDialogText, 
+      style: AppTextStyles.generalTextStyle,
+      textAlign: TextAlign.center,
+    ).wrapPadding(AppPaddings.dialogTextPadding).wrapFitted();
   }
 
   Expanded listWheels() {

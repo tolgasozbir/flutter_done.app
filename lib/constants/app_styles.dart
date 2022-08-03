@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
-import 'app_strings.dart';
 
 class AppTextStyles {
-  static const TextStyle subTextStyle = TextStyle(color: AppColors.subTextColor);
   static const TextStyle generalTextStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.bold,);
   static const TextStyle hintTextStyle = TextStyle(color: AppColors.white);
   static const TextStyle createGoalTitleStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.black73);
 
-  static TextStyle createGoalChipStyle(int index) => TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.goalColors[index%AppColors.goalColors.length]);
   static TextStyle boldCustomSize({required double fontSize, Color? color}) => TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: color);
 }
 
@@ -35,30 +32,4 @@ class AppRadius {
   static const BorderRadius all8 = BorderRadius.all(Radius.circular(8.0));
   static const BorderRadius all12 = BorderRadius.all(Radius.circular(12.0));
   static const BorderRadius all16 = BorderRadius.all(Radius.circular(16.0));
-}
-
-class AppDecorations {
-  static const InputDecoration habitTextFieldInputDecor = InputDecoration(
-    labelText: AppStrings.habitLabelText,
-    labelStyle: AppTextStyles.hintTextStyle,
-    hintStyle: AppTextStyles.hintTextStyle,
-    hintText: AppStrings.habitHintText,
-    contentPadding: AppPaddings.habitInputDecorPadding,
-    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.white)),
-    border: OutlineInputBorder(borderSide: BorderSide(color: AppColors.white))
-  );
-
-  static BoxDecoration goalProgressCardDecoration(Color color) => BoxDecoration(
-    borderRadius: AppRadius.all16,
-    border: Border.all(color: color, width: 2)
-  );
-
-  static InputDecoration goalCreateInputDecor(String hintText) => InputDecoration(
-    focusedBorder: OutlineInputBorder(
-      borderRadius: AppRadius.all12,
-      borderSide: BorderSide(color: AppColors.black, width: 1.5),
-    ),
-    hintText: hintText,
-    border: OutlineInputBorder(borderRadius: AppRadius.all12)
-  );
 }

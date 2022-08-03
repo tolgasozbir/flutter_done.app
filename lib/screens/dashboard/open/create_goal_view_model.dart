@@ -16,6 +16,7 @@ abstract class CreateGoalViewModel extends State<CreateGoalView> with SingleTick
   final goalDescController = TextEditingController();
   int selectedColorIndex = 0;
   int selectedIconIndex = 0;
+  final double selectIconSize = 32;
   final double dialogIconSize = 48;
 
   @override

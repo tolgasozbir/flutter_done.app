@@ -1,12 +1,14 @@
-
 import 'package:done_app/constants/app_strings.dart';
 import 'package:done_app/constants/app_styles.dart';
 import 'package:done_app/constants/goal_icons.dart';
 import 'package:done_app/extensions/context_extension.dart';
 import 'package:done_app/extensions/widget_extension.dart';
 import 'package:done_app/widgets/animated_dialog.dart';
+import 'package:done_app/widgets/goal_widgets/quick_tags.dart';
+import 'package:done_app/widgets/scaled_text.dart';
 import 'package:flutter/material.dart';
 import '../../../constants/app_colors.dart';
+import '../../../widgets/goal_widgets/title_with_textfield.dart';
 import 'create_goal_view_model.dart';
 
 class CreateGoalView extends StatefulWidget {
@@ -45,9 +47,9 @@ class _CreateGoalViewState extends CreateGoalViewModel {
         children: [
           Column(
             children: [
-              quickTags(),
-              goalTitleTextField(),
-              goalDescTextField(),
+              QuickTags(tagIndex: (index) => setQuickTag(index)),
+              titleTextField(),
+              descriptionTextField(),
               selectIconButton(),
               selectGoalColor(),
             ],
@@ -63,71 +65,19 @@ class _CreateGoalViewState extends CreateGoalViewModel {
     );
   }
 
-  Widget quickTags() {
-    return SizedBox(
-      height: context.dynamicHeight(0.12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(AppStrings.quickTag, style: AppTextStyles.createGoalTitleStyle),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: List.generate(AppStrings.quickTagsTitles.length, (index) => quickTagChip(index)),
-            ),
-          ),
-        ],
-      ),
+  TitleWithTextField titleTextField() {
+    return TitleWithTextField(
+      titleText: AppStrings.goalTextFieldTitle, 
+      hintText: AppStrings.goalHintText, 
+      controller: goalTitleController
     );
   }
 
-  Widget quickTagChip(int index) {
-    return GestureDetector(
-      onTap: () => setQuickTag(index),
-      child: Chip(
-        label: Text(
-          "#${AppStrings.quickTagsTitles[index]}",
-          style: AppTextStyles.createGoalChipStyle(index)
-        ),
-        backgroundColor: AppColors.white,
-        padding: AppPaddings.all8,
-      ).wrapPadding(AppPaddings.right8),
-    );
-  }
-
-  Widget goalTitleTextField() {
-    return SizedBox(
-      height: context.dynamicHeight(0.14),
-      child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-       children: [
-        Text(AppStrings.goalTextFieldTitle, style: AppTextStyles.createGoalTitleStyle),
-        TextField(
-          controller: goalTitleController,
-          textCapitalization: TextCapitalization.words,
-          decoration: AppDecorations.goalCreateInputDecor(AppStrings.goalHintText),
-          onChanged: (String value){},
-        ).wrapPadding(AppPaddings.top8),
-       ],
-      ),
-    );
-  }
-
-  Widget goalDescTextField() {
-    return SizedBox(
-      height: context.dynamicHeight(0.14),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(AppStrings.goalTextFieldDesc, style: AppTextStyles.createGoalTitleStyle),
-          TextField(
-            controller: goalDescController,
-            textCapitalization: TextCapitalization.words,
-            decoration: AppDecorations.goalCreateInputDecor(AppStrings.description),
-            onChanged: (String value){},
-          ).wrapPadding(AppPaddings.top8),
-        ],
-      ),
+  TitleWithTextField descriptionTextField() {
+    return TitleWithTextField(
+      titleText: AppStrings.goalTextFieldDesc, 
+      hintText: AppStrings.description, 
+      controller: goalDescController
     );
   }
 
@@ -145,9 +95,9 @@ class _CreateGoalViewState extends CreateGoalViewModel {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(GoalIcons.goalIconList[selectedIconIndex]).wrapFitted(), 
-            Text(AppStrings.selectIcon, style: AppTextStyles.generalTextStyle),
-            Icon(Icons.chevron_right,size: 32,), 
+            Icon(GoalIcons.goalIconList[selectedIconIndex], size: selectIconSize).wrapFitted(), 
+            ScaledText(text: AppStrings.selectIcon, style: AppTextStyles.generalTextStyle),
+            Icon(Icons.chevron_right,size: selectIconSize), 
           ],
         ),
       ),
@@ -164,7 +114,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
           padding: EdgeInsets.zero,
           shrinkWrap: true,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
+            crossAxisCount: 4,
           ),
           itemCount: GoalIcons.goalIconList.length,
           itemBuilder: (BuildContext context, int index) {
@@ -175,7 +125,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
                 });
                 Navigator.pop(context);
               },
-              child: Icon(GoalIcons.goalIconList[index], color: AppColors.white, size: dialogIconSize,)
+              child: Icon(GoalIcons.goalIconList[index], color: AppColors.white, size: dialogIconSize)
             );
           },
         ).wrapPadding(AppPaddings.vertical8)
@@ -188,7 +138,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 5,
+        crossAxisCount: 6,
       ),
       itemCount: AppColors.goalColors.length,
       itemBuilder: (BuildContext context, int index) {
@@ -223,13 +173,20 @@ class _CreateGoalViewState extends CreateGoalViewModel {
   }
 
   Widget saveButton() {
+    print(context.dynamicWidth(1));
+    print(context.dynamicHeight(1)); 
+    print(18 * (context.dynamicWidth(1)/3)/100); //TODO .SP 
+    //TODO: FAZLA TEXTLER OVERFLOW VERİYOR YA KISITLA YA DA OVERFLOWU ÇÖZ
+    //TODO: HABİT TİLE ZAMAN SEÇMEDE SORUN VAR YANLIŞ SEÇİYOR
+    //TODO GOAL VİEW DE TEXTLER KÜÇÜK ONUN İÇİN AYRIBİRŞEY YAP
+
     return SizedBox(
       width: double.infinity,
       height: context.dynamicHeight(0.060),
       child: ElevatedButton(
         onPressed: addGoal, 
-        child: Text(AppStrings.save, style: AppTextStyles.generalTextStyle)),
-    ).wrapPadding(AppPaddings.top8);
+        child: ScaledText(text: AppStrings.save, style: AppTextStyles.generalTextStyle)),
+    );
   }  
   
   Widget cancelButton() {
@@ -241,9 +198,10 @@ class _CreateGoalViewState extends CreateGoalViewModel {
           primary: AppColors.cancelRed,
         ),
         onPressed: animateAndPop, 
-        child: Text(AppStrings.cancel, style: AppTextStyles.generalTextStyle)),
+        child: ScaledText(text: AppStrings.cancel, style: AppTextStyles.generalTextStyle)),
     ).wrapPadding(AppPaddings.top8);
   }
   
 }
+
 

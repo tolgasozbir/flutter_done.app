@@ -1,3 +1,4 @@
+import 'package:done_app/widgets/scaled_text.dart';
 import 'package:flutter/material.dart';
 import '../../constants/app_colors.dart';
 import '../../constants/app_strings.dart';
@@ -43,11 +44,14 @@ class HabitTile extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(habit.habitTitle, style: AppTextStyles.generalTextStyle),
+                    ScaledText(
+                      text: habit.habitTitle,
+                      style: AppTextStyles.generalTextStyle
+                    ),
                     SizedBox(height: 4),
-                    Text(
-                      "${context.watch<HabitProvider>().formatElapsedTime(habit.elapsedTime)} / ${context.watch<HabitProvider>().formatGoalTime(habit.timeGoal)} - ${context.watch<HabitProvider>().calculatePercent(index).toStringAsFixed(0)}%", 
-                      style: AppTextStyles.subTextStyle
+                    ScaledText(
+                      text: '${context.watch<HabitProvider>().formatElapsedTime(habit.elapsedTime)} / ${context.watch<HabitProvider>().formatGoalTime(habit.timeGoal)} - ${context.watch<HabitProvider>().calculatePercent(index).toStringAsFixed(0)}%',
+                      style: TextStyle(color: AppColors.subTextColor)
                     ),
                   ],
                 ),

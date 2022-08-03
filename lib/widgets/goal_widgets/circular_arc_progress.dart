@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'package:done_app/widgets/scaled_text.dart';
 import 'package:flutter/material.dart';
 import 'package:done_app/constants/app_colors.dart';
 import 'package:done_app/constants/app_styles.dart';
@@ -71,7 +72,10 @@ class _CircularArcState extends State<CircularArc> with SingleTickerProviderStat
           ),
         ).wrapPadding(AppPaddings.top16),
         Positioned.fill(
-          child: Text("${(_animation.value / math.pi * 100).round()}%", style: widget.textStyle).wrapAlign(Alignment.center)
+          child: ScaledText(
+            text: '${(_animation.value / math.pi * 100).round()}%',
+            style: widget.textStyle
+          ).wrapAlign(Alignment.center)
         )
       ],
     );
