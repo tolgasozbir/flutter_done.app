@@ -41,12 +41,14 @@ class HabitProvider extends ChangeNotifier {
 
 
   void addNewHabit(Habit habit) async {
+    habit.timeGoal = habit.mins + habit.hours;
     _habitList.add(habit);
     await _cacheService.putItem(habit.habitTitle, habit);
     notifyListeners();
   }
 
   void updateHabit(Habit habit, int index) async {
+    habit.timeGoal = habit.mins + habit.hours;
     _habitList[index] = habit;
     await _cacheService.putItem(habit.habitTitle, habit);
     notifyListeners();

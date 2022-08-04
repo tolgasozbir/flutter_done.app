@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:done_app/constants/app_strings.dart';
 import 'package:done_app/constants/goal_icons.dart';
@@ -17,7 +16,6 @@ abstract class CreateGoalViewModel extends State<CreateGoalView> with SingleTick
   int selectedColorIndex = 0;
   int selectedIconIndex = 0;
   final double selectIconSize = 32;
-  final double dialogIconSize = 48;
 
   @override
   void initState() {
@@ -39,6 +37,7 @@ abstract class CreateGoalViewModel extends State<CreateGoalView> with SingleTick
   void setQuickTag(int index){
     setState(() {
       goalTitleController.text = AppStrings.quickTagsTitles[index];
+      selectedColorIndex = index%AppColors.goalColors.length;
     });
   }
 

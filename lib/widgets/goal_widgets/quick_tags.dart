@@ -17,7 +17,7 @@ class QuickTags extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.dynamicHeight(0.12),
+      height: context.dynamicHeight(0.1), //12-13
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

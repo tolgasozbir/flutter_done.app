@@ -90,11 +90,3 @@ class _ListWheelState extends State<ListWheel> {
     );
   }
 }
-
-/*
-ScaledText(
-          text: '$index', 
-          style: AppTextStyles.generalTextStyle, 
-          textAlign: TextAlign.center
-        )
-*/

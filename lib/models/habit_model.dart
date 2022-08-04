@@ -13,8 +13,12 @@ class Habit {
   @HiveField(2)
   late int timeGoal;
   @HiveField(3)
-  late bool isStarted;  
+  late int mins;
   @HiveField(4)
+  late int hours;
+  @HiveField(5)
+  late bool isStarted;  
+  @HiveField(6)
   late DateTime? startTime;
 
   Habit({
@@ -23,5 +27,7 @@ class Habit {
     required this.timeGoal,
     this.isStarted = false,
     this.startTime,
+    this.hours = 0,
+    this.mins = 0,
   });
 }

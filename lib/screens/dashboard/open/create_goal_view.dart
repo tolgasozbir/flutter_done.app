@@ -3,6 +3,7 @@ import 'package:done_app/constants/app_styles.dart';
 import 'package:done_app/constants/goal_icons.dart';
 import 'package:done_app/extensions/context_extension.dart';
 import 'package:done_app/extensions/widget_extension.dart';
+import 'package:done_app/screens/dashboard/open/icon_select_dialog_view.dart';
 import 'package:done_app/widgets/animated_dialog.dart';
 import 'package:done_app/widgets/goal_widgets/quick_tags.dart';
 import 'package:done_app/widgets/scaled_text.dart';
@@ -89,7 +90,9 @@ class _CreateGoalViewState extends CreateGoalViewModel {
         onPressed: (){      
           AnimatedDialog.showSettingsDialog(
             context: context, 
-            dialogPageContent: selectIconDialogView()
+            dialogPageContent: IconSelectDialogView(
+              iconIndexCallback: (index) => setState(() => selectedIconIndex = index),
+            )
           );
         },
         child: Row(
@@ -100,35 +103,6 @@ class _CreateGoalViewState extends CreateGoalViewModel {
             Icon(Icons.chevron_right,size: selectIconSize), 
           ],
         ),
-      ),
-    );
-  }
-
-  Widget selectIconDialogView() {
-    return Container(
-      height: context.dynamicHeight(0.6),
-      width: context.dynamicWidth(0.8),
-      color: AppColors.appBarBackground,
-      child: Scrollbar(
-        child: GridView.builder(
-          padding: EdgeInsets.zero,
-          shrinkWrap: true,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-          ),
-          itemCount: GoalIcons.goalIconList.length,
-          itemBuilder: (BuildContext context, int index) {
-            return InkWell(
-              onTap: (){
-                setState(() {
-                  selectedIconIndex = index;
-                });
-                Navigator.pop(context);
-              },
-              child: Icon(GoalIcons.goalIconList[index], color: AppColors.white, size: dialogIconSize)
-            );
-          },
-        ).wrapPadding(AppPaddings.vertical8)
       ),
     );
   }
@@ -144,7 +118,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
       itemBuilder: (BuildContext context, int index) {
         return colorTile(index);
       },
-    ).wrapPadding(AppPaddings.all4).wrapPadding(AppPaddings.top8);
+    ).wrapPadding(AppPaddings.top8);
   }
 
   Widget colorTile(int index){
@@ -173,13 +147,6 @@ class _CreateGoalViewState extends CreateGoalViewModel {
   }
 
   Widget saveButton() {
-    print(context.dynamicWidth(1));
-    print(context.dynamicHeight(1)); 
-    print(18 * (context.dynamicWidth(1)/3)/100); //TODO .SP 
-    //TODO: FAZLA TEXTLER OVERFLOW VERİYOR YA KISITLA YA DA OVERFLOWU ÇÖZ
-    //TODO: HABİT TİLE ZAMAN SEÇMEDE SORUN VAR YANLIŞ SEÇİYOR
-    //TODO GOAL VİEW DE TEXTLER KÜÇÜK ONUN İÇİN AYRIBİRŞEY YAP
-
     return SizedBox(
       width: double.infinity,
       height: context.dynamicHeight(0.060),

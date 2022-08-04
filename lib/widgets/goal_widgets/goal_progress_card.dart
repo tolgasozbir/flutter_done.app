@@ -13,6 +13,8 @@ class GoalProgressCard extends StatelessWidget {
 
   final Goal goal;
   final double iconSize = 32;
+  final double titleTextSize = 20;
+  final double taskCountTextSize = 16;
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +54,12 @@ class GoalProgressCard extends StatelessWidget {
           Spacer(),
           ScaledText(
             text: '${goal.goalTitle}',
-            style: AppTextStyles.generalTextStyle, //TODO. Bİ TIK BÜYÜCEK
+            style: AppTextStyles.boldCustomSize(fontSize: titleTextSize),
             textAlign: TextAlign.center,
           ),
           ScaledText(
             text: '${goal.tasks.length} ${AppStrings.task}',
+            style: AppTextStyles.boldCustomSize(fontSize: taskCountTextSize),
           ).wrapAlign(Alignment.centerLeft),
         ],
       ).wrapAlign(Alignment.bottomCenter).wrapPadding(AppPaddings.goalCardTextPadding),

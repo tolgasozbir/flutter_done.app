@@ -110,7 +110,11 @@ class DialogView extends StatelessWidget {
           if ((hourValue + minsValue) == 0) {
             minsValue = 60;
           }
-          habit.timeGoal = hourValue + minsValue;
+          if (listWheelType == ListWheelType.hour) {
+            habit.hours = hourValue;
+          }else{
+            habit.mins = minsValue;
+          }
         },
       )
     );

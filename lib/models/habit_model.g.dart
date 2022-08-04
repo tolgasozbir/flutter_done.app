@@ -20,15 +20,17 @@ class HabitAdapter extends TypeAdapter<Habit> {
       habitTitle: fields[0] as String,
       elapsedTime: fields[1] as int,
       timeGoal: fields[2] as int,
-      isStarted: fields[3] as bool,
-      startTime: fields[4] as DateTime?,
-    );
+      isStarted: fields[5] as bool,
+      startTime: fields[6] as DateTime?,
+    )
+      ..mins = fields[3] as int
+      ..hours = fields[4] as int;
   }
 
   @override
   void write(BinaryWriter writer, Habit obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.habitTitle)
       ..writeByte(1)
@@ -36,8 +38,12 @@ class HabitAdapter extends TypeAdapter<Habit> {
       ..writeByte(2)
       ..write(obj.timeGoal)
       ..writeByte(3)
-      ..write(obj.isStarted)
+      ..write(obj.mins)
       ..writeByte(4)
+      ..write(obj.hours)
+      ..writeByte(5)
+      ..write(obj.isStarted)
+      ..writeByte(6)
       ..write(obj.startTime);
   }
 
