@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 import 'package:done_app/constants/hive_constants.dart';
@@ -10,29 +9,26 @@ part 'goal_model.g.dart';
 class Goal {
 
   @HiveField(0)
-  late int id;
-  @HiveField(1)
   late String goalTitle;
-  @HiveField(2)
+  @HiveField(1)
   late String goalDescription;
-  @HiveField(3)
+  @HiveField(2)
   late double goalCompletionPercentage;
+  @HiveField(3)
+  late int goalIconDataIndex;
   @HiveField(4)
-  late IconData goalIconData;
+  late int goalColorIndex;
   @HiveField(5)
-  late Color goalColor;
-  @HiveField(6)
   late bool isComplete;  
-  @HiveField(7)
+  @HiveField(6)
   List<Task> tasks = [];
 
   Goal({
-    required this.id,
     required this.goalTitle,
     required this.goalDescription,
     this.goalCompletionPercentage = 0,
-    required this.goalIconData,
-    required this.goalColor,
+    required this.goalIconDataIndex,
+    required this.goalColorIndex,
     this.isComplete = false,
   });
 }

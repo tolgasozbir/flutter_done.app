@@ -46,13 +46,13 @@ abstract class CreateGoalViewModel extends State<CreateGoalView> with SingleTick
   }
 
   void addGoal(){
+    print(Icons.abc);
     var provider = context.read<GoalProvider>();
     Goal goal = Goal(
-      id: provider.getGoalList.length+1,
       goalTitle: goalTitleController.text, 
       goalDescription: goalDescController.text,
-      goalIconData: GoalIcons.goalIconList[selectedIconIndex], 
-      goalColor: AppColors.goalColors[selectedColorIndex],
+      goalIconDataIndex: selectedIconIndex, 
+      goalColorIndex: selectedColorIndex,
     );
     if (goalTitleController.text.isEmpty) {
       goal.goalTitle = "Unnamed";

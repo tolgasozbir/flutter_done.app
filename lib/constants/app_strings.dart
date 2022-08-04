@@ -4,6 +4,7 @@ class AppStrings {
   static const String save = 'Save';
   static const String cancel = 'Cancel';
   static const String delete = 'Delete';
+  static const String emptyError = 'This field cannot be empty';
   static const String snackBarMessage = 'Are you sure you want to delete this?';
   //habits
   static const String habitHintText = 'Exercise, Work, etc';
@@ -19,6 +20,8 @@ class AppStrings {
   static const String goalTextFieldDesc = 'Need a description?';
   static const String description = 'Description';
   static const String selectIcon = 'Select Icon';
+  static const String addNewTask = 'Add New Task';
+  static const String taskTitle = 'Task Title';
 
 
   static const List<String> quickTagsTitles = [

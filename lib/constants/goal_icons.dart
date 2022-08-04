@@ -46,6 +46,7 @@ class GoalIcons {
     Icons.mediation, 
     Icons.music_note, 
     Icons.dry_cleaning, 
+    Icons.cleaning_services_outlined,
     Icons.celebration, 
     Icons.directions_walk, 
     Icons.wifi_protected_setup, 
@@ -55,10 +56,12 @@ class GoalIcons {
     Icons.emoji_events_outlined, 
     Icons.offline_bolt_outlined, 
     Icons.emoji_food_beverage,
+    Icons.local_pizza,
     Icons.fastfood,
     Icons.local_grocery_store_outlined,
     Icons.shower_outlined,
     Icons.shopping_bag,
-    Icons.rocket_launch_outlined
+    Icons.rocket_launch_outlined,
+    Icons.podcasts,
   ];
 }

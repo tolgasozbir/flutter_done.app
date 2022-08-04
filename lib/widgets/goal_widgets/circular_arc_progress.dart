@@ -25,7 +25,7 @@ class CircularArc extends StatefulWidget {
   State<CircularArc> createState() => _CircularArcState();
 }
 
-class _CircularArcState extends State<CircularArc> with SingleTickerProviderStateMixin,AutomaticKeepAliveClientMixin {
+class _CircularArcState extends State<CircularArc> with TickerProviderStateMixin,AutomaticKeepAliveClientMixin {
 
   late AnimationController _animationController;
   late Animation<double> _animation;
@@ -33,9 +33,34 @@ class _CircularArcState extends State<CircularArc> with SingleTickerProviderStat
   @override
   void initState() {
     super.initState();
+    initAnimation();
+  }
+
+  @override
+  void didUpdateWidget(covariant CircularArc oldWidget) {
+    if (oldWidget.progressPercent != widget.progressPercent) {
+      updateAnimation(oldWidget);
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  void initAnimation(){
     _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 1600));
     final curvedAnimation = CurvedAnimation(parent: _animationController, curve: Curves.easeInOutCubic);
-    _animation = Tween<double>(begin: 0.0, end: ((widget.progressPercent/100*math.pi))).animate(curvedAnimation)..addListener(() {
+    double begin = 0.0;
+    double end = widget.progressPercent/100*math.pi;
+    _animation = Tween<double>(begin: begin, end: end).animate(curvedAnimation)..addListener(() {
+      setState(() {});
+    });
+    _animationController.forward();
+  }
+
+  void updateAnimation(covariant CircularArc oldWidget){
+    _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 1600));
+    final curvedAnimation = CurvedAnimation(parent: _animationController, curve: Curves.easeInOutCubic);
+    double begin = oldWidget.progressPercent/100*math.pi;
+    double end = widget.progressPercent/100*math.pi;
+    _animation = Tween<double>(begin: begin, end: end).animate(curvedAnimation)..addListener(() {
       setState(() {});
     });
     _animationController.forward();

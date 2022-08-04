@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AnimatedDialog {
-  static void showSettingsDialog({
+  static void showDialog({
     required BuildContext context,
     required Widget dialogPageContent,
     Duration duration = const Duration(milliseconds: 600),

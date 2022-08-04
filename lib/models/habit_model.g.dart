@@ -22,9 +22,9 @@ class HabitAdapter extends TypeAdapter<Habit> {
       timeGoal: fields[2] as int,
       isStarted: fields[5] as bool,
       startTime: fields[6] as DateTime?,
-    )
-      ..mins = fields[3] as int
-      ..hours = fields[4] as int;
+      hours: fields[4] as int,
+      mins: fields[3] as int,
+    );
   }
 
   @override

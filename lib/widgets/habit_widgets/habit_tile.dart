@@ -68,7 +68,7 @@ class HabitTile extends StatelessWidget {
     return IconButton(
       onPressed: (){
         context.read<HabitProvider>().formatElapsedTime(habit.elapsedTime);
-        AnimatedDialog.showSettingsDialog(
+        AnimatedDialog.showDialog(
           context: context, 
           dialogPageContent: DialogView(habit: habit,)
         );

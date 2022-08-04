@@ -1,4 +1,3 @@
-import 'package:done_app/extensions/context_extension.dart';
 import 'package:done_app/extensions/widget_extension.dart';
 import 'package:done_app/widgets/scaled_text.dart';
 import 'package:flutter/material.dart';
@@ -16,23 +15,20 @@ class QuickTags extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: context.dynamicHeight(0.1), //12-13
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ScaledText(
-            text: AppStrings.quickTag,
-            style: AppTextStyles.createGoalTitleStyle,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ScaledText(
+          text: AppStrings.quickTag,
+          style: AppTextStyles.createGoalTitleStyle,
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: List.generate(AppStrings.quickTagsTitles.length, (index) => quickTagChip(index,context)),
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: List.generate(AppStrings.quickTagsTitles.length, (index) => quickTagChip(index,context)),
-            ),
-          ),
-        ],
-      )
+        ),
+      ],
     );
   }
 

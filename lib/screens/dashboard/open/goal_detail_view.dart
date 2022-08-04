@@ -1,10 +1,15 @@
 import 'package:done_app/constants/app_colors.dart';
+import 'package:done_app/providers/goal_provider.dart';
+import 'package:done_app/screens/dashboard/open/add_task_dialog_view.dart';
+import 'package:done_app/widgets/animated_dialog.dart';
+import 'package:done_app/widgets/goal_widgets/task_listview.dart';
 import 'package:done_app/widgets/scaled_text.dart';
 import 'package:flutter/material.dart';
 import 'package:done_app/constants/app_styles.dart';
 import 'package:done_app/extensions/context_extension.dart';
 import 'package:done_app/extensions/widget_extension.dart';
 import 'package:done_app/models/goal_model.dart';
+import 'package:provider/provider.dart';
 import '../../../widgets/goal_widgets/circular_arc_progress.dart';
 
 class GoalDetailView extends StatefulWidget {
@@ -36,73 +41,20 @@ class _GoalDetailViewState extends State<GoalDetailView> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Stack(
-            children: [
-              arcProgress(),
-              goalTitleAndDescription(),
-            ],
-          ),
-          Row(
-            children: [
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  color: widget.goal.goalColor.withOpacity(0.32),
-                  borderRadius: AppRadius.all8
-                ),
-                child: IconButton(onPressed: (){}, icon: Icon(Icons.add, size: iconSize).wrapFitted())
-              ),
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  color: widget.goal.goalColor.withOpacity(0.32),
-                  borderRadius: AppRadius.all8
-                ),
-                child: IconButton(onPressed: (){}, icon: Icon(Icons.add, size: iconSize).wrapFitted())
-              ),
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  color: widget.goal.goalColor.withOpacity(0.32),
-                  borderRadius: AppRadius.all8
-                ),
-                child: IconButton(
-                  onPressed: (){}, icon: Icon(Icons.add, size: iconSize).wrapFitted())
-              )
-            ],
-          ).wrapPadding(AppPaddings.all8),
-          Column(
-            children: List.generate(widget.goal.tasks.length+5, (index) => taskCard()),
-          )
+          progressInfo(),
+          buttons(),
+          TaskListView(goal: context.watch<GoalProvider>().getGoalList.firstWhere((e) => e.goalTitle == widget.goal.goalTitle)),
         ],
       ),
     );
   }
 
-  Widget taskCard() {
-    return Card(
-      shape: RoundedRectangleBorder(
-        side: BorderSide(color: widget.goal.goalColor),
-        borderRadius: AppRadius.all16,
-      ),
-      elevation: 0,
-      clipBehavior: Clip.antiAlias,
-      margin: EdgeInsets.zero,
-      child: checkboxListTile(false)
-    ).wrapPadding(AppPaddings.goalTaskCardPadding);
-  }
-
-  Widget checkboxListTile(bool checked) {
-    return CheckboxListTile(
-      controlAffinity: ListTileControlAffinity.leading,
-      title: Text("title"),
-      secondary: IconButton(
-        onPressed: (){
-
-        }, 
-        icon: Icon(Icons.delete)
-      ),
-      value: checked, 
-      onChanged: (value){
-
-      }
+  Stack progressInfo() {
+    return Stack(
+      children: [
+        arcProgress(),
+        goalTitleAndDescription(),
+      ],
     );
   }
 
@@ -112,7 +64,7 @@ class _GoalDetailViewState extends State<GoalDetailView> {
       strokeWidth: arcStroke,
       size: context.dynamicWidth(0.64),
       progressPercent: widget.goal.goalCompletionPercentage,
-      progressColor: widget.goal.goalColor,
+      progressColor: AppColors.goalColors[widget.goal.goalColorIndex],
     ).wrapAlign(Alignment.topCenter).wrapPadding(AppPaddings.all24);
   }
 
@@ -126,7 +78,7 @@ class _GoalDetailViewState extends State<GoalDetailView> {
           scaledText(widget.goal.goalDescription, descriptionSize, AppColors.black54).wrapFitted(),
           scaledText('${widget.goal.tasks.length} items', taskCountSize, AppColors.black38)
         ],
-      ).wrapAlign(Alignment.bottomLeft).wrapPadding(AppPaddings.horizontal16)
+      ).wrapAlign(Alignment.bottomLeft).wrapPadding(AppPaddings.horizontal8)
     );
   }
 
@@ -137,4 +89,54 @@ class _GoalDetailViewState extends State<GoalDetailView> {
       textAlign: TextAlign.center
     );
   }
+
+  Widget buttons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        iconButton(
+          iconData: Icons.add, 
+          onTap: (){
+            AnimatedDialog.showDialog(
+              context: context, 
+              dialogPageContent: AddTaskDialogView(goal: widget.goal)
+            );
+          }
+        ),
+        Row(
+          children: [
+            iconButton(
+              iconData: Icons.done_all, 
+              onTap: (){
+                
+              }
+            ),
+            SizedBox(width: 8),
+            iconButton(
+              iconData: Icons.delete_forever, 
+              onTap: (){
+
+              }
+            ),
+          ],
+        ),
+      ],
+    ).wrapPadding(AppPaddings.all8);
+  }
+
+  DecoratedBox iconButton({required IconData iconData, required VoidCallback onTap}) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: AppColors.goalColors[widget.goal.goalColorIndex].withOpacity(0.32),
+        borderRadius: AppRadius.tlbr12
+      ),
+      child: IconButton(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        onPressed: onTap, 
+        icon: Icon(iconData, size: iconSize).wrapFitted()
+      )
+    );
+  }
+
 }

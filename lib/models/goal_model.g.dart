@@ -17,35 +17,32 @@ class GoalAdapter extends TypeAdapter<Goal> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Goal(
-      id: fields[0] as int,
-      goalTitle: fields[1] as String,
-      goalDescription: fields[2] as String,
-      goalCompletionPercentage: fields[3] as double,
-      goalIconData: fields[4] as IconData,
-      goalColor: fields[5] as Color,
-      isComplete: fields[6] as bool,
-    )..tasks = (fields[7] as List).cast<Task>();
+      goalTitle: fields[0] as String,
+      goalDescription: fields[1] as String,
+      goalCompletionPercentage: fields[2] as double,
+      goalIconDataIndex: fields[3] as int,
+      goalColorIndex: fields[4] as int,
+      isComplete: fields[5] as bool,
+    )..tasks = (fields[6] as List).cast<Task>();
   }
 
   @override
   void write(BinaryWriter writer, Goal obj) {
     writer
-      ..writeByte(8)
-      ..writeByte(0)
-      ..write(obj.id)
-      ..writeByte(1)
-      ..write(obj.goalTitle)
-      ..writeByte(2)
-      ..write(obj.goalDescription)
-      ..writeByte(3)
-      ..write(obj.goalCompletionPercentage)
-      ..writeByte(4)
-      ..write(obj.goalIconData)
-      ..writeByte(5)
-      ..write(obj.goalColor)
-      ..writeByte(6)
-      ..write(obj.isComplete)
       ..writeByte(7)
+      ..writeByte(0)
+      ..write(obj.goalTitle)
+      ..writeByte(1)
+      ..write(obj.goalDescription)
+      ..writeByte(2)
+      ..write(obj.goalCompletionPercentage)
+      ..writeByte(3)
+      ..write(obj.goalIconDataIndex)
+      ..writeByte(4)
+      ..write(obj.goalColorIndex)
+      ..writeByte(5)
+      ..write(obj.isComplete)
+      ..writeByte(6)
       ..write(obj.tasks);
   }
 

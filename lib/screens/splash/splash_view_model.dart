@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:done_app/providers/goal_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:done_app/screens/splash/splash_view.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -25,6 +26,9 @@ abstract class SplashViewModel extends State<SplashView> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       var habitProvider = Provider.of<HabitProvider>(context, listen: false);
       await habitProvider.initCacheService();
+
+      var goalProvider = Provider.of<GoalProvider>(context, listen: false);
+      await goalProvider.initCacheService();
     });
     
     _navigateToDashboard();

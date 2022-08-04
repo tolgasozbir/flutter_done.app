@@ -1,10 +1,14 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:done_app/constants/app_colors.dart';
+import 'package:done_app/constants/goal_icons.dart';
+import 'package:done_app/providers/goal_provider.dart';
 import 'package:done_app/widgets/scaled_text.dart';
 import 'package:flutter/material.dart';
 import 'package:done_app/constants/app_strings.dart';
 import 'package:done_app/constants/app_styles.dart';
 import 'package:done_app/extensions/widget_extension.dart';
 import 'package:done_app/models/goal_model.dart';
+import 'package:provider/provider.dart';
 import '../../routes/app_router.dart';
 import 'circular_arc_progress.dart';
 
@@ -21,16 +25,17 @@ class GoalProgressCard extends StatelessWidget {
     return GestureDetector(
       onTap: (){
         context.router.push(GoalDetailRoute(goal: goal));
+        context.read<GoalProvider>().changeClickedGoal(goal);
       },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: AppRadius.all16,
-          border: Border.all(color: goal.goalColor, width: 2)
+          border: Border.all(color: AppColors.goalColors[goal.goalColorIndex], width: 2)
         ),
         child: Stack(
           children: [
             arcProgress(),
-            Icon(goal.goalIconData, size: iconSize).wrapPadding(AppPaddings.all4),
+            Icon(GoalIcons.goalIconList[goal.goalIconDataIndex], size: iconSize).wrapPadding(AppPaddings.all4),
             goalTitleAndTaskCount(),
           ],
         )
@@ -41,7 +46,7 @@ class GoalProgressCard extends StatelessWidget {
   Widget arcProgress() {
     return CircularArc(
       progressPercent: goal.goalCompletionPercentage,
-      progressColor: goal.goalColor,
+      progressColor: AppColors.goalColors[goal.goalColorIndex],
     ).wrapPadding(AppPaddings.arcGridPadding);
   }
 

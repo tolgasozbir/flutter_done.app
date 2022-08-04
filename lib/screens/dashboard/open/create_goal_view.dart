@@ -88,7 +88,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
       height: context.dynamicHeight(0.065),
       child: ElevatedButton(
         onPressed: (){      
-          AnimatedDialog.showSettingsDialog(
+          AnimatedDialog.showDialog(
             context: context, 
             dialogPageContent: IconSelectDialogView(
               iconIndexCallback: (index) => setState(() => selectedIconIndex = index),
