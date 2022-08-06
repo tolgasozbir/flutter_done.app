@@ -25,8 +25,6 @@ abstract class ICacheService<T> {
   }
   
   void registerAdapters();
-  Future<void> addItems(List<T> items);
-  Future<void> addItem(T item);
   Future<void> putItems(List<T> items);
   Future<void> putItem(String key, T item);
   T? getItem(String key);

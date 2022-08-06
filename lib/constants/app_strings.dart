@@ -5,10 +5,11 @@ class AppStrings {
   static const String cancel = 'Cancel';
   static const String delete = 'Delete';
   static const String emptyError = 'This field cannot be empty';
+  static const String emptyTitle = 'Unnamed';
   static const String snackBarMessage = 'Are you sure you want to delete this?';
+  static const String snackBarMessage2 = 'This title has been used before';
   //habits
   static const String habitHintText = 'Exercise, Work, etc';
-  static const String habitEmptyTitle = 'Unnamed';
   static const String habitLabelText = 'Habit Title';
   static const String habitDialogText = 'Goal time for this habit';
   //goal - tasks

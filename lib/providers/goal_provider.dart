@@ -31,7 +31,13 @@ class GoalProvider extends ChangeNotifier {
     _goalList.add(goal);
     _cacheService.putItem(goal.goalTitle, goal);
     notifyListeners();
-  }  
+  }
+
+  void deleteGoal(Goal goal) async {
+    _goalList.remove(goal);
+    await _cacheService.removeItem(goal.goalTitle);
+    notifyListeners();
+  }
   
   void addTask(String task, Goal goal) async {
     var item = _goalList.firstWhere((e) => e.goalTitle == goal.goalTitle);
@@ -61,27 +67,7 @@ class GoalProvider extends ChangeNotifier {
     int totalTaksCount = goal.tasks.length;
     int totalCompletedTasks = goal.tasks.where((e) => e.isComplete == true).length;
     double percent = totalCompletedTasks*100/totalTaksCount;
-    if (percent.isNaN) {
-      percent = 0.0;
-    }
-    goal.goalCompletionPercentage = percent;
+    goal.goalCompletionPercentage = percent.isNaN ? 0 : percent;
   }
-
-  // void deleteGoal(Goal goal) async {
-  //   _goalList.remove(goal);
-  //   await _cacheService.removeItem(goal.goalTitle);
-  //   notifyListeners();
-  // }
-
-
-
-
-
-
-  void updateGoal() async {
-    notifyListeners();
-  }
-
-
 
 }

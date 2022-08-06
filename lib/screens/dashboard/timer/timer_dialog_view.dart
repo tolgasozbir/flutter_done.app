@@ -138,7 +138,7 @@ class DialogView extends StatelessWidget {
         onPressed: (){
           var provider = context.read<HabitProvider>();
           if (habit.habitTitle == "".trim()) {
-            habit.habitTitle = AppStrings.habitEmptyTitle;
+            habit.habitTitle = AppStrings.emptyTitle;
           }
           if (provider.getHabitList.any((e) => e.habitTitle == habit.habitTitle)) {
             var index = provider.getHabitList.indexWhere((e) => e.habitTitle == habit.habitTitle);

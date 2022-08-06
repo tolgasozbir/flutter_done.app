@@ -7,16 +7,6 @@ class HabitCacheService extends ICacheService<Habit> {
   HabitCacheService(super.boxName);
 
   @override
-  Future<void> addItem(item) async {
-    await box?.add(item);
-  }
-
-  @override
-  Future<void> addItems(List<Habit> items) async {
-    await box?.addAll(items);
-  }
-
-  @override
   Habit? getItem(String key) {
     return box?.get(key);
   }

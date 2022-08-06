@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:done_app/constants/app_colors.dart';
 import 'package:done_app/providers/goal_provider.dart';
 import 'package:done_app/screens/dashboard/open/add_task_dialog_view.dart';
 import 'package:done_app/widgets/animated_dialog.dart';
+import 'package:done_app/widgets/custom_snackbar.dart';
 import 'package:done_app/widgets/goal_widgets/task_listview.dart';
 import 'package:done_app/widgets/scaled_text.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,7 @@ import 'package:done_app/extensions/context_extension.dart';
 import 'package:done_app/extensions/widget_extension.dart';
 import 'package:done_app/models/goal_model.dart';
 import 'package:provider/provider.dart';
+import '../../../constants/app_strings.dart';
 import '../../../widgets/goal_widgets/circular_arc_progress.dart';
 
 class GoalDetailView extends StatefulWidget {
@@ -43,7 +46,7 @@ class _GoalDetailViewState extends State<GoalDetailView> {
         children: [
           progressInfo(),
           buttons(),
-          TaskListView(goal: context.watch<GoalProvider>().getGoalList.firstWhere((e) => e.goalTitle == widget.goal.goalTitle)),
+          TaskListView(goal: context.watch<GoalProvider>().getGoalList.firstWhere((e) => e == widget.goal,)),
         ],
       ),
     );
@@ -114,9 +117,10 @@ class _GoalDetailViewState extends State<GoalDetailView> {
             SizedBox(width: 8),
             iconButton(
               iconData: Icons.delete_forever, 
-              onTap: (){
-
-              }
+              onTap: () => CustomSnackBar.showSnackBarMessage(
+                context: context, text: AppStrings.snackBarMessage,
+                actionFunction: () async => context.router.popTop("delete")
+              )
             ),
           ],
         ),

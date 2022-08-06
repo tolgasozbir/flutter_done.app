@@ -3,18 +3,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../../constants/hive_constants.dart';
 import '../../models/goal_model.dart';
 
-class GoalCacheService extends ICacheService<Goal> { //TODO: CACHE SERVİS DÜZENLENCEK kullanılmayanlar vs çoğu aynı override etmeye gerek yok //habit veya goal eklenirken aynı isimle varsa eklenmicek
+class GoalCacheService extends ICacheService<Goal> {
   GoalCacheService(super.boxName);
-
-  @override
-  Future<void> addItem(item) async {
-    await box?.add(item);
-  }
-
-  @override
-  Future<void> addItems(List<Goal> items) async {
-    await box?.addAll(items);
-  }
 
   @override
   Goal? getItem(String key) {

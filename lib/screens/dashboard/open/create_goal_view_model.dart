@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:auto_route/auto_route.dart';
 import 'package:done_app/constants/app_strings.dart';
 import 'package:done_app/constants/goal_icons.dart';
+import 'package:done_app/widgets/custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../constants/app_colors.dart';
@@ -46,7 +47,6 @@ abstract class CreateGoalViewModel extends State<CreateGoalView> with SingleTick
   }
 
   void addGoal(){
-    print(Icons.abc);
     var provider = context.read<GoalProvider>();
     Goal goal = Goal(
       goalTitle: goalTitleController.text, 
@@ -55,10 +55,14 @@ abstract class CreateGoalViewModel extends State<CreateGoalView> with SingleTick
       goalColorIndex: selectedColorIndex,
     );
     if (goalTitleController.text.isEmpty) {
-      goal.goalTitle = "Unnamed";
+      goal.goalTitle = AppStrings.emptyTitle;
     }
     if (goalDescController.text.isEmpty) {
       goal.goalDescription = " ";
+    }
+    if (provider.getGoalList.contains(goal)) {
+      CustomSnackBar.showSnackBarMessage(context: context, text: AppStrings.snackBarMessage2);
+      return;
     }
     provider.addNewGoal(goal);
     animateAndPop();

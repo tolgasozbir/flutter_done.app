@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:hive/hive.dart';
 
 import 'package:done_app/constants/hive_constants.dart';
@@ -31,6 +30,12 @@ class Goal {
     required this.goalColorIndex,
     this.isComplete = false,
   });
+
+  @override
+  bool operator ==(covariant Goal other) {
+    if (identical(this, other)) return true;
+    return other.goalTitle == goalTitle;
+  }
 }
 
 @HiveType(typeId: HiveConstants.taskTypeId)

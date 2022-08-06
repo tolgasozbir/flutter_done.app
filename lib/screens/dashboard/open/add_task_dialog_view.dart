@@ -4,6 +4,7 @@ import 'package:done_app/extensions/context_extension.dart';
 import 'package:done_app/extensions/widget_extension.dart';
 import 'package:done_app/models/goal_model.dart';
 import 'package:done_app/providers/goal_provider.dart';
+import 'package:done_app/widgets/custom_snackbar.dart';
 import 'package:done_app/widgets/scaled_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -57,7 +58,7 @@ class AddTaskDialogView extends StatelessWidget {
         onPressed: (){
           if (controller.text.isEmpty) {
             Navigator.pop(context);
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppStrings.emptyError)));
+            CustomSnackBar.showSnackBarMessage(context: context, text: AppStrings.emptyError);
             return;
           }
           context.read<GoalProvider>().addTask(controller.text, goal);

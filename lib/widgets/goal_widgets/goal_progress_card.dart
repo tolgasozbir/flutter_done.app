@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:done_app/constants/app_colors.dart';
 import 'package:done_app/constants/goal_icons.dart';
 import 'package:done_app/providers/goal_provider.dart';
+import 'package:done_app/widgets/custom_snackbar.dart';
 import 'package:done_app/widgets/scaled_text.dart';
 import 'package:flutter/material.dart';
 import 'package:done_app/constants/app_strings.dart';
@@ -22,11 +23,22 @@ class GoalProgressCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: (){
-        context.router.push(GoalDetailRoute(goal: goal));
+    return InkWell(
+      onTap: () async {
+        var wantDelete = await context.router.push(GoalDetailRoute(goal: goal));
+        await Future.delayed(Duration(milliseconds: 500));
+        print(wantDelete);
+        if (wantDelete == "delete") {
+          context.read<GoalProvider>().deleteGoal(goal);  //TODO: DÜZENLENCEK
+          return;
+        }
         context.read<GoalProvider>().changeClickedGoal(goal);
       },
+      onLongPress: () => CustomSnackBar.showSnackBarMessage(
+        context: context, 
+        text: AppStrings.snackBarMessage,
+        actionFunction: () async => context.read<GoalProvider>().deleteGoal(goal),
+      ),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: AppRadius.all16,
@@ -70,4 +82,5 @@ class GoalProgressCard extends StatelessWidget {
       ).wrapAlign(Alignment.bottomCenter).wrapPadding(AppPaddings.goalCardTextPadding),
     );
   }
+
 }

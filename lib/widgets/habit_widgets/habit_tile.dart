@@ -1,3 +1,4 @@
+import 'package:done_app/widgets/custom_snackbar.dart';
 import 'package:done_app/widgets/scaled_text.dart';
 import 'package:flutter/material.dart';
 import '../../constants/app_colors.dart';
@@ -20,9 +21,11 @@ class HabitTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onLongPress: (){
-        showDeleteMessage(context);
-      },
+      onLongPress: () => CustomSnackBar.showSnackBarMessage(
+        context: context, 
+        text: AppStrings.snackBarMessage,
+        actionFunction: () async => context.read<HabitProvider>().deleteHabit(habit),
+      ),
       child: Container(
         padding: AppPaddings.habitTileContainerPadding,
         decoration: BoxDecoration(
@@ -77,17 +80,4 @@ class HabitTile extends StatelessWidget {
     );
   }
 
-  void showDeleteMessage(BuildContext context){
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(AppStrings.snackBarMessage),
-        action: SnackBarAction(
-          label: AppStrings.delete, 
-          onPressed: () {
-            context.read<HabitProvider>().deleteHabit(habit);
-          }
-        )
-      )
-    );
-  }
 }
