@@ -8,6 +8,4 @@ extension ContextExtension on BuildContext {
 
   double dynamicWidth(double val) => _width * val;
   double dynamicHeight(double val) => _height * val;
-
-  bool get isKeyBoardOpen => mediaQuery.viewInsets.bottom > 0;
 }

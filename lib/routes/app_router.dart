@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:done_app/screens/dashboard/closed/closed_goal_detail_view.dart';
 import 'package:done_app/screens/dashboard/closed/closed_goals_view.dart';
 import 'package:done_app/screens/dashboard/dashboard_view.dart';
 import 'package:done_app/screens/dashboard/open/goal_detail_view.dart';
@@ -40,8 +41,20 @@ part 'app_router.gr.dart';
           ]
         ),
         AutoRoute(
-          page: ClosedGoalsView,//TODO Detay route eklencek detay view de sadece okunur ekleme çıkarma yok silme aktif birde back butonu hedefler arasına geri almak için
-          path: 'closedGoals',
+          page: EmptyRouterPage,
+          name: 'closedFullRoute',
+          path: 'closedFullRoute',
+          children: [
+            AutoRoute(
+              initial: true,
+              page: ClosedGoalsView,
+              path: 'closedGoals',
+            ),
+            AutoRoute(
+              page: ClosedGoalDetailView,
+              path: 'closedGoalDetail',
+            )
+          ]
         ),
         AutoRoute(
           page: TimerView,

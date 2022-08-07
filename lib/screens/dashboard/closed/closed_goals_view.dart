@@ -21,7 +21,6 @@ class ClosedGoalsView extends StatelessWidget {
       itemCount: goalList.where((e) => e.goalIsComplete).toList().length,
       itemBuilder: (BuildContext context, int index) {
         Goal goal = goalList.where((e) => e.goalIsComplete).toList()[index];
-        print(goal.goalIsComplete);
         return GoalProgressCard(
           goal: goal
         );

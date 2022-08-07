@@ -68,6 +68,13 @@ class GoalProvider extends ChangeNotifier {
     item.goalIsComplete = true;
     await _cacheService.putItem(item.goalTitle, item);
     notifyListeners();
+  }  
+  
+  void undoGoal(Goal goal) async {
+    var item = _goalList.firstWhere((e) => e == goal);
+    item.goalIsComplete = false;
+    await _cacheService.putItem(item.goalTitle, item);
+    notifyListeners();
   }
 
   void calculatePercentComplete(Goal goal){

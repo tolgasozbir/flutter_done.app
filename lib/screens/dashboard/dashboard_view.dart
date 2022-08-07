@@ -19,7 +19,7 @@ class _DashboardViewState extends DashboardViewModel {
     return AutoTabsRouter(
       routes: [
         GoalFullRoute(),
-        ClosedGoalsRoute(),
+        ClosedFullRoute(),
         TimerRoute(),
         StatsRoute(),
       ],

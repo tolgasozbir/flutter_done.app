@@ -5,11 +5,14 @@ class AppStrings {
   static const String cancel = 'Cancel';
   static const String delete = 'Delete';
   static const String finish = 'Finish';
+  static const String doIt = 'Do it';
+  static const String wellDONE = 'Well DONE!';
   static const String emptyError = 'This field cannot be empty';
   static const String emptyTitle = 'Unnamed';
   static const String snackBarMessageDelete = 'Are you sure you want to delete this?';
   static const String snackBarMessageDublicate = 'This title has been used before';
   static const String snackBarCompleteGoal = 'Do you want to complete this goal?';
+  static const String snackBarUndoGoal = 'Do you want to undo this goal?';
   //habits
   static const String habitHintText = 'Exercise, Work, etc';
   static const String habitLabelText = 'Habit Title';

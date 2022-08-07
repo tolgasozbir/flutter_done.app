@@ -29,9 +29,9 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const EmptyRouterPage());
     },
-    ClosedGoalsRoute.name: (routeData) {
+    ClosedFullRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const ClosedGoalsView());
+          routeData: routeData, child: const EmptyRouterPage());
     },
     TimerRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -50,6 +50,16 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData,
           child: GoalDetailView(key: args.key, goal: args.goal));
+    },
+    ClosedGoalsRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const ClosedGoalsView());
+    },
+    ClosedGoalDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<ClosedGoalDetailRouteArgs>();
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: ClosedGoalDetailView(key: args.key, goal: args.goal));
     }
   };
 
@@ -73,8 +83,20 @@ class _$AppRouter extends RootStackRouter {
                 RouteConfig(GoalDetailRoute.name,
                     path: 'goalDetail', parent: GoalFullRoute.name)
               ]),
-          RouteConfig(ClosedGoalsRoute.name,
-              path: 'closedGoals', parent: DashboardRoute.name),
+          RouteConfig(ClosedFullRoute.name,
+              path: 'closedFullRoute',
+              parent: DashboardRoute.name,
+              children: [
+                RouteConfig('#redirect',
+                    path: '',
+                    parent: ClosedFullRoute.name,
+                    redirectTo: 'closedGoals',
+                    fullMatch: true),
+                RouteConfig(ClosedGoalsRoute.name,
+                    path: 'closedGoals', parent: ClosedFullRoute.name),
+                RouteConfig(ClosedGoalDetailRoute.name,
+                    path: 'closedGoalDetail', parent: ClosedFullRoute.name)
+              ]),
           RouteConfig(TimerRoute.name,
               path: 'timer', parent: DashboardRoute.name),
           RouteConfig(StatsRoute.name,
@@ -112,11 +134,13 @@ class GoalFullRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ClosedGoalsView]
-class ClosedGoalsRoute extends PageRouteInfo<void> {
-  const ClosedGoalsRoute() : super(ClosedGoalsRoute.name, path: 'closedGoals');
+/// [EmptyRouterPage]
+class ClosedFullRoute extends PageRouteInfo<void> {
+  const ClosedFullRoute({List<PageRouteInfo>? children})
+      : super(ClosedFullRoute.name,
+            path: 'closedFullRoute', initialChildren: children);
 
-  static const String name = 'ClosedGoalsRoute';
+  static const String name = 'ClosedFullRoute';
 }
 
 /// generated route for
@@ -164,5 +188,37 @@ class GoalDetailRouteArgs {
   @override
   String toString() {
     return 'GoalDetailRouteArgs{key: $key, goal: $goal}';
+  }
+}
+
+/// generated route for
+/// [ClosedGoalsView]
+class ClosedGoalsRoute extends PageRouteInfo<void> {
+  const ClosedGoalsRoute() : super(ClosedGoalsRoute.name, path: 'closedGoals');
+
+  static const String name = 'ClosedGoalsRoute';
+}
+
+/// generated route for
+/// [ClosedGoalDetailView]
+class ClosedGoalDetailRoute extends PageRouteInfo<ClosedGoalDetailRouteArgs> {
+  ClosedGoalDetailRoute({Key? key, required Goal goal})
+      : super(ClosedGoalDetailRoute.name,
+            path: 'closedGoalDetail',
+            args: ClosedGoalDetailRouteArgs(key: key, goal: goal));
+
+  static const String name = 'ClosedGoalDetailRoute';
+}
+
+class ClosedGoalDetailRouteArgs {
+  const ClosedGoalDetailRouteArgs({this.key, required this.goal});
+
+  final Key? key;
+
+  final Goal goal;
+
+  @override
+  String toString() {
+    return 'ClosedGoalDetailRouteArgs{key: $key, goal: $goal}';
   }
 }
