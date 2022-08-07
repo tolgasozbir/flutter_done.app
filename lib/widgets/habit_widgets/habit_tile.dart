@@ -23,7 +23,7 @@ class HabitTile extends StatelessWidget {
     return InkWell(
       onLongPress: () => CustomSnackBar.showSnackBarMessage(
         context: context, 
-        text: AppStrings.snackBarMessage,
+        text: AppStrings.snackBarMessageDelete,
         actionFunction: () async => context.read<HabitProvider>().deleteHabit(habit),
       ),
       child: Container(

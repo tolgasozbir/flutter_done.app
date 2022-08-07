@@ -28,7 +28,7 @@ class _DashboardViewState extends DashboardViewModel {
         return Scaffold(
           appBar: AppBar(
             title: appBarTitle(),
-            leading: AutoLeadingButton()
+            leading: context.watchRouter.canPopSelfOrChildren ? AutoLeadingButton() : null,
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           floatingActionButton: addHabitButton(),

@@ -110,16 +110,18 @@ class _GoalDetailViewState extends State<GoalDetailView> {
           children: [
             iconButton(
               iconData: Icons.done_all, 
-              onTap: (){
-                
-              }
+              onTap: () => CustomSnackBar.showSnackBarMessage(
+                context: context, text: AppStrings.snackBarCompleteGoal,
+                actiontext: AppStrings.finish,
+                actionFunction: () async => context.router.popTop(AppStrings.finish)
+              )
             ),
             SizedBox(width: 8),
             iconButton(
               iconData: Icons.delete_forever, 
               onTap: () => CustomSnackBar.showSnackBarMessage(
-                context: context, text: AppStrings.snackBarMessage,
-                actionFunction: () async => context.router.popTop("delete")
+                context: context, text: AppStrings.snackBarMessageDelete,
+                actionFunction: () async => context.router.popTop(AppStrings.delete)
               )
             ),
           ],

@@ -61,7 +61,7 @@ abstract class CreateGoalViewModel extends State<CreateGoalView> with SingleTick
       goal.goalDescription = " ";
     }
     if (provider.getGoalList.contains(goal)) {
-      CustomSnackBar.showSnackBarMessage(context: context, text: AppStrings.snackBarMessage2);
+      CustomSnackBar.showSnackBarMessage(context: context, text: AppStrings.snackBarMessageDublicate);
       return;
     }
     provider.addNewGoal(goal);

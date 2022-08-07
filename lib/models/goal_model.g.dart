@@ -22,7 +22,7 @@ class GoalAdapter extends TypeAdapter<Goal> {
       goalCompletionPercentage: fields[2] as double,
       goalIconDataIndex: fields[3] as int,
       goalColorIndex: fields[4] as int,
-      isComplete: fields[5] as bool,
+      goalIsComplete: fields[5] as bool,
     )..tasks = (fields[6] as List).cast<Task>();
   }
 
@@ -41,7 +41,7 @@ class GoalAdapter extends TypeAdapter<Goal> {
       ..writeByte(4)
       ..write(obj.goalColorIndex)
       ..writeByte(5)
-      ..write(obj.isComplete)
+      ..write(obj.goalIsComplete)
       ..writeByte(6)
       ..write(obj.tasks);
   }

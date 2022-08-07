@@ -40,7 +40,7 @@ part 'app_router.gr.dart';
           ]
         ),
         AutoRoute(
-          page: ClosedGoalsView,
+          page: ClosedGoalsView,//TODO Detay route eklencek detay view de sadece okunur ekleme çıkarma yok silme aktif birde back butonu hedefler arasına geri almak için
           path: 'closedGoals',
         ),
         AutoRoute(

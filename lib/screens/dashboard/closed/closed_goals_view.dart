@@ -1,12 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../models/goal_model.dart';
+import '../../../providers/goal_provider.dart';
+import '../../../widgets/goal_widgets/goal_progress_card.dart';
 
 class ClosedGoalsView extends StatelessWidget {
   const ClosedGoalsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Closed Screen"),
+    List<Goal> goalList = context.watch<GoalProvider>().getGoalList;
+    return GridView.builder(
+      padding: EdgeInsets.all(8),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
+      ),
+      itemCount: goalList.where((e) => e.goalIsComplete).toList().length,
+      itemBuilder: (BuildContext context, int index) {
+        Goal goal = goalList.where((e) => e.goalIsComplete).toList()[index];
+        print(goal.goalIsComplete);
+        return GoalProgressCard(
+          goal: goal
+        );
+      },
     );
   }
 }

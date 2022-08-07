@@ -34,7 +34,7 @@ abstract class DashboardViewModel extends State<DashboardView> {
 
   void fabBtnFunction(){
     String currentPath = context.router.urlState.flatten.path;
-    print(currentPath);
+    //print(currentPath);
     if (currentPath == 'timer') createNewHabit();
     else if (currentPath == 'goals') goToCreateGoalPage();
     else if (currentPath == 'goalDetail') addNewTask();

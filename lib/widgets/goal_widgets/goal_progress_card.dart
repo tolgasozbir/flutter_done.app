@@ -25,18 +25,21 @@ class GoalProgressCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        var wantDelete = await context.router.push(GoalDetailRoute(goal: goal));
-        await Future.delayed(Duration(milliseconds: 500));
-        print(wantDelete);
-        if (wantDelete == "delete") {
-          context.read<GoalProvider>().deleteGoal(goal);  //TODO: DÜZENLENCEK
-          return;
+        var popData = await context.router.push(GoalDetailRoute(goal: goal));
+        await Future.delayed(Duration(milliseconds: 400));
+        switch (popData) {
+          case AppStrings.delete:
+            context.read<GoalProvider>().deleteGoal(goal);
+            return;
+          case AppStrings.finish:
+            context.read<GoalProvider>().completeGoal(goal);
+            return;
+          default: context.read<GoalProvider>().changeClickedGoal(goal);
         }
-        context.read<GoalProvider>().changeClickedGoal(goal);
       },
       onLongPress: () => CustomSnackBar.showSnackBarMessage(
         context: context, 
-        text: AppStrings.snackBarMessage,
+        text: AppStrings.snackBarMessageDelete,
         actionFunction: () async => context.read<GoalProvider>().deleteGoal(goal),
       ),
       child: Container(

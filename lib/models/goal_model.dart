@@ -18,7 +18,7 @@ class Goal {
   @HiveField(4)
   late int goalColorIndex;
   @HiveField(5)
-  late bool isComplete;  
+  late bool goalIsComplete;  
   @HiveField(6)
   List<Task> tasks = [];
 
@@ -28,7 +28,7 @@ class Goal {
     this.goalCompletionPercentage = 0,
     required this.goalIconDataIndex,
     required this.goalColorIndex,
-    this.isComplete = false,
+    this.goalIsComplete = false,
   });
 
   @override

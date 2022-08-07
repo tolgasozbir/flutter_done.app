@@ -4,10 +4,12 @@ class AppStrings {
   static const String save = 'Save';
   static const String cancel = 'Cancel';
   static const String delete = 'Delete';
+  static const String finish = 'Finish';
   static const String emptyError = 'This field cannot be empty';
   static const String emptyTitle = 'Unnamed';
-  static const String snackBarMessage = 'Are you sure you want to delete this?';
-  static const String snackBarMessage2 = 'This title has been used before';
+  static const String snackBarMessageDelete = 'Are you sure you want to delete this?';
+  static const String snackBarMessageDublicate = 'This title has been used before';
+  static const String snackBarCompleteGoal = 'Do you want to complete this goal?';
   //habits
   static const String habitHintText = 'Exercise, Work, etc';
   static const String habitLabelText = 'Habit Title';
@@ -24,7 +26,7 @@ class AppStrings {
   static const String addNewTask = 'Add New Task';
   static const String taskTitle = 'Task Title';
 
-
+  //quick tags
   static const List<String> quickTagsTitles = [
     'Workout', 'Meditate', '100 days of', 'Cleaning', 'Study', 'Reading', 'Listen Podcast', 'Walk', 'Sleep', 'Drawing', 'Baking',
     'Skin Care', 'Exercise', 'Yoga', 'Homework', 'Grocery Shop', 'Wash Clocthes', 'Learning',
@@ -48,5 +50,17 @@ class AppStrings {
     'Do something today that your future self will thank you for.',
     'It hurts now but one day it will be your warm up.',
     'Deserve your dream.',
+    'Patience is a key element of success.',
+    'Better days are coming.',
+    'The best view comes after the hardest climb.',
+    'Sometimes change is what we need.',
+    'A little progress each day adds up to big results.',
+    'There are no shortcuts to any place worth going.',
+    'Time never comes again.',
+    'It’s always too early to quit.',
+    'Everything you can imagine is real.',
+    'Be not afraid of going slowly, be afraid only of standing still.',
+    'The best way to predict your future is to create it.',
+    'Every accomplishment starts with the decision to try.',
   ];
 }

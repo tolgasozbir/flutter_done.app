@@ -9,6 +9,7 @@ class GoalsView extends StatelessWidget  {
 
   @override
   Widget build(BuildContext context) {
+    List<Goal> goalList = context.watch<GoalProvider>().getGoalList;
     return GridView.builder(
       padding: EdgeInsets.all(8),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -16,9 +17,9 @@ class GoalsView extends StatelessWidget  {
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
       ),
-      itemCount: context.watch<GoalProvider>().getGoalList.length,
+      itemCount: goalList.where((e) => !e.goalIsComplete).toList().length,
       itemBuilder: (BuildContext context, int index) {
-        Goal goal = context.watch<GoalProvider>().getGoalList[index];
+        Goal goal = goalList.where((e) => !e.goalIsComplete).toList()[index];
         return GoalProgressCard(
           goal: goal
         );

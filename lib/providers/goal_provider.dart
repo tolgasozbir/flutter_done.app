@@ -29,7 +29,7 @@ class GoalProvider extends ChangeNotifier {
 
   void addNewGoal(Goal goal) async {
     _goalList.add(goal);
-    _cacheService.putItem(goal.goalTitle, goal);
+    await _cacheService.putItem(goal.goalTitle, goal);
     notifyListeners();
   }
 
@@ -43,23 +43,30 @@ class GoalProvider extends ChangeNotifier {
     var item = _goalList.firstWhere((e) => e.goalTitle == goal.goalTitle);
     item.tasks.add(Task(taskTitle: task, isComplete: false));
     calculatePercentComplete(item);
-    _cacheService.putItem(item.goalTitle, item);
+    await _cacheService.putItem(item.goalTitle, item);
     notifyListeners();
   }
 
-  void deleteTask(int taskIndex, Goal goal){
+  void deleteTask(int taskIndex, Goal goal) async {
     var item = _goalList.firstWhere((e) => e.goalTitle == goal.goalTitle);
     item.tasks.removeAt(taskIndex);
     calculatePercentComplete(item);
-    _cacheService.putItem(item.goalTitle, item);
+    await _cacheService.putItem(item.goalTitle, item);
     notifyListeners();
   }  
   
-  void changeTaskCheck(int taskIndex, bool isChecked, Goal goal){
+  void changeTaskCheck(int taskIndex, bool isChecked, Goal goal) async {
     var item = _goalList.firstWhere((e) => e.goalTitle == goal.goalTitle);
     item.tasks[taskIndex].isComplete = isChecked;
     calculatePercentComplete(item);
-    _cacheService.putItem(item.goalTitle, item);
+    await _cacheService.putItem(item.goalTitle, item);
+    notifyListeners();
+  }
+
+  void completeGoal(Goal goal) async {
+    var item = _goalList.firstWhere((e) => e == goal);
+    item.goalIsComplete = true;
+    await _cacheService.putItem(item.goalTitle, item);
     notifyListeners();
   }
 

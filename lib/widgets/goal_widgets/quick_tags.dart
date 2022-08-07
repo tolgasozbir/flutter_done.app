@@ -36,6 +36,7 @@ class QuickTags extends StatelessWidget {
     return GestureDetector(
       onTap: () => tagIndex.call(index),
       child: Chip(
+        side: BorderSide(color: AppColors.goalColors[index%AppColors.goalColors.length]),
         label: ScaledText(
           text: '#${AppStrings.quickTagsTitles[index]}',
           style: textStyle(index),
