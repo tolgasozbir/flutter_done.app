@@ -10,9 +10,10 @@ class CircularArc extends StatefulWidget {
     Key? key, 
     this.size = 200, 
     this.strokeWidth = 24, 
+    this.isGraident = false,
     required this.progressPercent, 
     required this.progressColor, 
-    this.textStyle = const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+    this.textStyle = const TextStyle(fontSize: 36, fontWeight: FontWeight.bold), 
   }) : super(key: key);
 
   final double progressPercent;
@@ -20,6 +21,7 @@ class CircularArc extends StatefulWidget {
   final double strokeWidth;
   final Color progressColor;
   final TextStyle textStyle;
+  final bool isGraident;
 
   @override
   State<CircularArc> createState() => _CircularArcState();
@@ -84,6 +86,7 @@ class _CircularArcState extends State<CircularArc> with TickerProviderStateMixin
         CustomPaint(
           size: Size(size, size),
           painter: ProgresArcPainter(
+            isGraident: false,
             strokeWidth: widget.strokeWidth,
             progressColor: AppColors.black54
           ),
@@ -91,6 +94,7 @@ class _CircularArcState extends State<CircularArc> with TickerProviderStateMixin
         CustomPaint(
           size: Size(size, size),
           painter: ProgresArcPainter(
+            isGraident: widget.isGraident,
             strokeWidth: widget.strokeWidth,
             arc: _animation.value,
             progressColor: widget.progressColor
@@ -115,12 +119,22 @@ class ProgresArcPainter extends CustomPainter {
   final double strokeWidth;
   final double arc;
   final Color progressColor;
+  final bool isGraident;
 
   ProgresArcPainter({
     this.arc = math.pi,
     required this.progressColor,
     required this.strokeWidth,
+    required this.isGraident
   });
+
+  final Gradient gradient = LinearGradient(
+    colors: [
+      Colors.red,
+      Colors.amber,
+      Colors.green,
+    ]
+  );
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -133,6 +147,10 @@ class ProgresArcPainter extends CustomPainter {
     ..color = progressColor
     ..style = PaintingStyle.stroke
     ..strokeWidth = strokeWidth;
+
+    if (isGraident) {
+      paint.shader = gradient.createShader(rect);
+    }
 
     canvas.drawArc(rect, startAngle, sweepAngle, useCenter, paint);
   }

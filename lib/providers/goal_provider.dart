@@ -84,4 +84,17 @@ class GoalProvider extends ChangeNotifier {
     goal.goalCompletionPercentage = percent.isNaN ? 0 : percent;
   }
 
+  double calculateStatsCompletePercent(){
+    int totalGoals = _goalList.length;
+    int totalTasks = _goalList.fold<int>(0, (previousValue, element) => element.tasks.length + previousValue);
+    int completedGoals = _goalList.where((e) => e.goalIsComplete).length;
+    int completedTasks = _goalList.fold<int>(0, (previousValue, element) => element.tasks.where((element) => element.isComplete).length + previousValue);
+  
+    int totalCount = totalGoals + totalTasks;
+    int totalCompleteCount = completedGoals + completedTasks;
+    
+    double percent = totalCompleteCount*100/totalCount;
+    return percent;
+  }
+
 }

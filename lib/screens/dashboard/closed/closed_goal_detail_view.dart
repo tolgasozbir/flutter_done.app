@@ -118,9 +118,9 @@ class _ClosedGoalDetailViewState extends State<ClosedGoalDetailView> {
         ),
         Row(
           children: [
-            Icon(Icons.done_all, size: iconSize*1.5,),
+            Icon(Icons.done_all, size: context.dynamicWidth(0.1),),
             SizedBox(width: spaceWidth),
-            scaledText(AppStrings.wellDONE, iconSize, AppColors.black),
+            scaledText(AppStrings.wellDONE, context.dynamicWidth(0.072), AppColors.black),
           ],
         )
       ],

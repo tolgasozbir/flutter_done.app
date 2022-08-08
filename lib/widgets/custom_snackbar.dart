@@ -24,7 +24,7 @@ class CustomSnackBar {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ScaledText(text: text).wrapAlign(Alignment.centerLeft),
+                Expanded(child: ScaledText(text: text).wrapAlign(Alignment.centerLeft)),
                 actionFunction != null
                   ? TextButton(
                       onPressed: (){

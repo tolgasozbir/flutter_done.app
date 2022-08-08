@@ -28,6 +28,9 @@ class AppStrings {
   static const String selectIcon = 'Select Icon';
   static const String addNewTask = 'Add New Task';
   static const String taskTitle = 'Task Title';
+  //statics
+  static const String statistics = 'Statistics';
+  static const String statsInfo = 'Open projects completion amount';
 
   //quick tags
   static const List<String> quickTagsTitles = [
