@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:done_app/constants/app_colors.dart';
 import 'package:done_app/providers/goal_provider.dart';
-import 'package:done_app/screens/dashboard/open/add_task_dialog_view.dart';
+import 'package:done_app/screens/dashboard/goals/add_task_dialog_view.dart';
 import 'package:done_app/widgets/animated_dialog.dart';
 import 'package:done_app/widgets/custom_snackbar.dart';
 import 'package:done_app/widgets/goal_widgets/task_listview.dart';

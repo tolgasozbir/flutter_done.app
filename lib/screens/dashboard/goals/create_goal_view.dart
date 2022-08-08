@@ -3,7 +3,7 @@ import 'package:done_app/constants/app_styles.dart';
 import 'package:done_app/constants/goal_icons.dart';
 import 'package:done_app/extensions/context_extension.dart';
 import 'package:done_app/extensions/widget_extension.dart';
-import 'package:done_app/screens/dashboard/open/icon_select_dialog_view.dart';
+import 'package:done_app/screens/dashboard/goals/icon_select_dialog_view.dart';
 import 'package:done_app/widgets/animated_dialog.dart';
 import 'package:done_app/widgets/goal_widgets/quick_tags.dart';
 import 'package:done_app/widgets/scaled_text.dart';

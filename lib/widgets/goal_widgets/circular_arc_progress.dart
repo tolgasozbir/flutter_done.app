@@ -130,9 +130,9 @@ class ProgresArcPainter extends CustomPainter {
 
   final Gradient gradient = LinearGradient(
     colors: [
-      Colors.red,
-      Colors.amber,
-      Colors.green,
+      AppColors.progresRedColor,
+      AppColors.progresOrangeColor,
+      AppColors.progresGreenColor,
     ]
   );
 

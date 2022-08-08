@@ -1,5 +1,6 @@
 import 'package:done_app/providers/goal_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'constants/app_colors.dart';
 import 'constants/app_strings.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +15,14 @@ void main() async {
     ],
     child: MyApp(),
   ));
+  _portraitModeOnly();
+}
+
+void _portraitModeOnly() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 }
 
 class MyApp extends StatelessWidget {

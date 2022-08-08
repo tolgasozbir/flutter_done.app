@@ -9,8 +9,8 @@ import '../../constants/app_strings.dart';
 import '../../models/goal_model.dart';
 import '../../models/habit_model.dart';
 import 'dashboard_view.dart';
-import 'open/add_task_dialog_view.dart';
-import 'open/create_goal_view.dart';
+import 'goals/add_task_dialog_view.dart';
+import 'goals/create_goal_view.dart';
 import 'timer/timer_dialog_view.dart';
 
 abstract class DashboardViewModel extends State<DashboardView> {
