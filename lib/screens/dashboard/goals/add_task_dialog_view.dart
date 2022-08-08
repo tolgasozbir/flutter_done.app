@@ -20,7 +20,7 @@ class AddTaskDialogView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: AppPaddings.all8,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: AppRadius.tlbr32,
         color: AppColors.appBarBackground,
       ),
@@ -29,7 +29,7 @@ class AddTaskDialogView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ScaledText(text: AppStrings.addNewTask).wrapPadding(AppPaddings.all8),
+          const ScaledText(text: AppStrings.addNewTask).wrapPadding(AppPaddings.all8),
           textField(),
           saveButton(context)
         ],
@@ -40,8 +40,8 @@ class AddTaskDialogView extends StatelessWidget {
   Widget textField() {
     return TextFormField(
       controller: controller,
-      style: TextStyle(color: AppColors.white),
-      decoration: InputDecoration(
+      style: const TextStyle(color: AppColors.white),
+      decoration: const InputDecoration(
         hintText: AppStrings.taskTitle,
         hintStyle: TextStyle(color: AppColors.white),
         contentPadding: AppPaddings.all8,
@@ -64,7 +64,7 @@ class AddTaskDialogView extends StatelessWidget {
           context.read<GoalProvider>().addTask(controller.text, goal);
           Navigator.pop(context);
         }, 
-        child: Text(AppStrings.save)
+        child: const Text(AppStrings.save)
       )
     ).wrapPadding(AppPaddings.all8);
   }

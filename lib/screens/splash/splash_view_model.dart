@@ -35,8 +35,8 @@ abstract class SplashViewModel extends State<SplashView> {
   }
 
   void _navigateToDashboard() async {
-    await Future.delayed(Duration(milliseconds: 2400), (){
-      context.router.replace(DashboardRoute());
+    await Future.delayed(const Duration(milliseconds: 2400), (){
+      context.router.replace(const DashboardRoute());
     });
   } 
 

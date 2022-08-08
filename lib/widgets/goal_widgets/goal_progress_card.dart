@@ -25,13 +25,13 @@ class GoalProgressCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        dynamic popData = null;
+        dynamic popData;
         if (goal.goalIsComplete) {
           popData = await context.router.push(ClosedGoalDetailRoute(goal: goal));
         }else{
           popData = await context.router.push(GoalDetailRoute(goal: goal));
         }
-        await Future.delayed(Duration(milliseconds: 400));
+        await Future.delayed(const Duration(milliseconds: 400));
         switch (popData) {
           case AppStrings.delete:
             context.read<GoalProvider>().deleteGoal(goal);
@@ -79,7 +79,7 @@ class GoalProgressCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Spacer(),
+          const Spacer(),
           ScaledText(
             text: '${goal.goalTitle}',
             style: AppTextStyles.boldCustomSize(fontSize: titleTextSize),

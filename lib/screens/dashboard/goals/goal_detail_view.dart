@@ -76,7 +76,7 @@ class _GoalDetailViewState extends State<GoalDetailView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Spacer(),
+          const Spacer(),
           scaledText(widget.goal.goalTitle, titleSize, AppColors.black).wrapFitted(),
           scaledText(widget.goal.goalDescription, descriptionSize, AppColors.black54).wrapFitted(),
           scaledText('${widget.goal.tasks.length} items', taskCountSize, AppColors.black38)
@@ -116,7 +116,7 @@ class _GoalDetailViewState extends State<GoalDetailView> {
                 actionFunction: () async => context.router.popTop(AppStrings.finish)
               )
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             iconButton(
               iconData: Icons.delete_forever, 
               onTap: () => CustomSnackBar.showSnackBarMessage(

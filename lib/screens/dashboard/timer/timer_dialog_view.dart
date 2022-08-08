@@ -46,7 +46,7 @@ class DialogView extends StatelessWidget {
     return TextFormField(
       textCapitalization: TextCapitalization.words,
       initialValue: habit.habitTitle,
-      style: TextStyle(color: AppColors.white),
+      style: const TextStyle(color: AppColors.white),
       decoration: inputDecoration,
       onChanged: (String value){
         habit.habitTitle = value;
@@ -55,7 +55,7 @@ class DialogView extends StatelessWidget {
   }
 
   Widget dialogDesciptionText() {
-    return ScaledText(
+    return const ScaledText(
       text: AppStrings.habitDialogText, 
       style: AppTextStyles.generalTextStyle,
       textAlign: TextAlign.center,
@@ -70,12 +70,12 @@ class DialogView extends StatelessWidget {
           grayBackground(),
           Row(
             children: [
-              Spacer(),
+              const Spacer(),
               expandedListWheel(listWheelType: ListWheelType.hour),
               expandedText(text: 'hrs'),
               expandedListWheel(listWheelType: ListWheelType.min),
               expandedText(text: 'mins'),
-              Spacer()
+              const Spacer()
             ],
           ),
         ],
@@ -88,7 +88,7 @@ class DialogView extends StatelessWidget {
     height: 28,
     width: double.infinity,
     margin: AppPaddings.horizontal16,
-    decoration: BoxDecoration(
+    decoration: const BoxDecoration(
       borderRadius: AppRadius.all8,
       color: AppColors.gray,
     ),
@@ -148,7 +148,7 @@ class DialogView extends StatelessWidget {
           }
           Navigator.pop(context);
         },
-        child: Text(AppStrings.save)
+        child: const Text(AppStrings.save)
       )
     );
   }

@@ -46,7 +46,7 @@ abstract class DashboardViewModel extends State<DashboardView> {
   }
 
   void goToCreateGoalPage(){
-    context.router.pushNativeRoute(PageRouteBuilder(opaque: false, pageBuilder: (context, animation, secondaryAnimation) => CreateGoalView()));
+    context.router.pushNativeRoute(PageRouteBuilder(opaque: false, pageBuilder: (context, animation, secondaryAnimation) => const CreateGoalView()));
   }
   
   void addNewTask(){

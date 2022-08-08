@@ -78,7 +78,7 @@ class HabitProvider extends ChangeNotifier {
   }
 
   void setTimer() {
-    Timer.periodic(Duration(milliseconds: 1000), (timer) async {
+    Timer.periodic(const Duration(milliseconds: 1000), (timer) async {
       for (var item in _habitList) {
         bool isReached = item.elapsedTime >= item.timeGoal;
         if (item.isStarted) {

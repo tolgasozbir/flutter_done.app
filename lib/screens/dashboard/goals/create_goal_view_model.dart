@@ -24,7 +24,7 @@ abstract class CreateGoalViewModel extends State<CreateGoalView> with SingleTick
     randomIconIndex();
     rippleController = AnimationController(
       vsync: this, 
-      duration: Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1000),
     );
     rippleController.forward();
   }

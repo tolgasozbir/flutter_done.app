@@ -20,7 +20,7 @@ class _TaskListViewState extends State<TaskListView> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: widget.goal.tasks.length,
       itemBuilder: (BuildContext context, int index) {
@@ -54,7 +54,7 @@ class _TaskListViewState extends State<TaskListView> {
         onPressed: (){
           context.read<GoalProvider>().deleteTask(index, widget.goal);
         }, 
-        icon: Icon(Icons.delete)
+        icon: const Icon(Icons.delete)
       ),
       value: isChecked, 
       onChanged: (value){

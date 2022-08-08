@@ -17,9 +17,9 @@ class CustomSnackBar {
           child: Container(
             height: 64,
             padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.black73,
-              borderRadius: const BorderRadius.all(Radius.circular(20))
+              borderRadius: BorderRadius.all(Radius.circular(20))
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,7 +33,7 @@ class CustomSnackBar {
                       }, 
                       child: ScaledText(text: actiontext)
                     )
-                  : SizedBox.shrink()
+                  : const SizedBox.shrink()
               ],
             ),
           ),

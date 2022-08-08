@@ -75,7 +75,7 @@ class _ClosedGoalDetailViewState extends State<ClosedGoalDetailView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Spacer(),
+          const Spacer(),
           scaledText(widget.goal.goalTitle, titleSize, AppColors.black).wrapFitted(),
           scaledText(widget.goal.goalDescription, descriptionSize, AppColors.black54).wrapFitted(),
           scaledText('${widget.goal.tasks.length} items', taskCountSize, AppColors.black38)

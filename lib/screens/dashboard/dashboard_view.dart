@@ -17,7 +17,7 @@ class _DashboardViewState extends DashboardViewModel {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
-      routes: [
+      routes: const [
         GoalFullRoute(),
         ClosedFullRoute(),
         TimerRoute(),
@@ -28,7 +28,7 @@ class _DashboardViewState extends DashboardViewModel {
         return Scaffold(
           appBar: AppBar(
             title: appBarTitle(),
-            leading: context.watchRouter.canPopSelfOrChildren ? AutoLeadingButton() : null,
+            leading: context.watchRouter.canPopSelfOrChildren ? const AutoLeadingButton() : null,
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           floatingActionButton: addHabitButton(),
@@ -50,7 +50,7 @@ class _DashboardViewState extends DashboardViewModel {
   FloatingActionButton addHabitButton() {
     return FloatingActionButton(
       onPressed: fabBtnFunction,
-      child: Icon(Icons.add),
+      child: const Icon(Icons.add),
     );
   }
 

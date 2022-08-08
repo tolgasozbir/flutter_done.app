@@ -1,3 +1,4 @@
+import 'package:done_app/constants/app_styles.dart';
 import 'package:done_app/providers/goal_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:done_app/models/goal_model.dart';
@@ -11,7 +12,7 @@ class GoalsView extends StatelessWidget  {
   Widget build(BuildContext context) {
     List<Goal> goalList = context.watch<GoalProvider>().getGoalList;
     return GridView.builder(
-      padding: EdgeInsets.all(8),
+      padding: AppPaddings.all8,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 8,

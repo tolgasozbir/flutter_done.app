@@ -22,13 +22,13 @@ class TitleWithTextField extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final InputDecoration inputDecoration = InputDecoration(
-      focusedBorder: OutlineInputBorder(
+      focusedBorder: const OutlineInputBorder(
         borderRadius: AppRadius.all12,
         borderSide: BorderSide(color: AppColors.black, width: 1.5),
       ),
       hintStyle: TextStyle(fontSize: context.dynamicWidth(0.04)),
       hintText: hintText,
-      border: OutlineInputBorder(borderRadius: AppRadius.all12)
+      border: const OutlineInputBorder(borderRadius: AppRadius.all12)
     );
 
     return SizedBox(

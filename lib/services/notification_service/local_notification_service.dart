@@ -15,7 +15,7 @@ class LocalNotificationService {
   final _notifications = FlutterLocalNotificationsPlugin();
 
   Future _notificationDetails() async {
-    return NotificationDetails(
+    return const NotificationDetails(
       android: AndroidNotificationDetails(
         "channelId", 
         "channelName",
@@ -29,8 +29,8 @@ class LocalNotificationService {
   }
 
   Future init({bool initScheduled = false}) async {
-    final android = AndroidInitializationSettings("@mipmap/ic_launcher");
-    final ios = IOSInitializationSettings();
+    AndroidInitializationSettings android = const AndroidInitializationSettings("@mipmap/ic_launcher");
+    IOSInitializationSettings ios = const IOSInitializationSettings();
     final settings = InitializationSettings(android: android, iOS: ios);
     await _notifications.initialize(  
       settings,

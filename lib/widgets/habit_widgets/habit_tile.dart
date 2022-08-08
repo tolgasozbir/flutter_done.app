@@ -28,7 +28,7 @@ class HabitTile extends StatelessWidget {
       ),
       child: Container(
         padding: AppPaddings.habitTileContainerPadding,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           boxShadow: [
             BoxShadow(
               blurRadius: 0.5,
@@ -43,7 +43,7 @@ class HabitTile extends StatelessWidget {
             Row(
               children: [
                 CircleProgressIndicator(index: index),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -51,10 +51,10 @@ class HabitTile extends StatelessWidget {
                       text: habit.habitTitle,
                       style: AppTextStyles.generalTextStyle
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     ScaledText(
                       text: '${context.watch<HabitProvider>().formatElapsedTime(habit.elapsedTime)} / ${context.watch<HabitProvider>().formatGoalTime(habit.timeGoal)} - ${context.watch<HabitProvider>().calculatePercent(index).toStringAsFixed(0)}%',
-                      style: TextStyle(color: AppColors.subTextColor)
+                      style: const TextStyle(color: AppColors.subTextColor)
                     ),
                   ],
                 ),
@@ -76,7 +76,7 @@ class HabitTile extends StatelessWidget {
           dialogPageContent: DialogView(habit: habit,)
         );
       }, 
-      icon: Icon(Icons.settings)
+      icon: const Icon(Icons.settings)
     );
   }
 

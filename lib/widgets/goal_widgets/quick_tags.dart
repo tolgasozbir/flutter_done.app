@@ -18,7 +18,7 @@ class QuickTags extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ScaledText(
+        const ScaledText(
           text: AppStrings.quickTag,
           style: AppTextStyles.createGoalTitleStyle,
         ),
@@ -41,7 +41,7 @@ class QuickTags extends StatelessWidget {
           text: '#${AppStrings.quickTagsTitles[index]}',
           style: textStyle(index),
         ),
-        padding: EdgeInsets.all(8),
+        padding: AppPaddings.all8,
         backgroundColor: AppColors.white,
       ).wrapPadding(AppPaddings.right8),
     );

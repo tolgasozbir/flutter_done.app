@@ -6,7 +6,7 @@ import 'package:done_app/constants/app_styles.dart';
 import 'package:done_app/extensions/widget_extension.dart';
 
 class CircularArc extends StatefulWidget {
-  CircularArc({
+  const CircularArc({
     Key? key, 
     this.size = 200, 
     this.strokeWidth = 24, 
@@ -47,7 +47,7 @@ class _CircularArcState extends State<CircularArc> with TickerProviderStateMixin
   }
 
   void initAnimation(){
-    _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 1600));
+    _animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1600));
     final curvedAnimation = CurvedAnimation(parent: _animationController, curve: Curves.easeInOutCubic);
     double begin = 0.0;
     double end = widget.progressPercent/100*math.pi;
@@ -58,7 +58,7 @@ class _CircularArcState extends State<CircularArc> with TickerProviderStateMixin
   }
 
   void updateAnimation(covariant CircularArc oldWidget){
-    _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 1600));
+    _animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1600));
     final curvedAnimation = CurvedAnimation(parent: _animationController, curve: Curves.easeInOutCubic);
     double begin = oldWidget.progressPercent/100*math.pi;
     double end = widget.progressPercent/100*math.pi;
@@ -128,7 +128,7 @@ class ProgresArcPainter extends CustomPainter {
     required this.isGraident
   });
 
-  final Gradient gradient = LinearGradient(
+  final Gradient gradient = const LinearGradient(
     colors: [
       AppColors.progresRedColor,
       AppColors.progresOrangeColor,
@@ -139,9 +139,9 @@ class ProgresArcPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final rect = Rect.fromLTRB(0, 0, size.width, size.height);
-    final startAngle = math.pi-0.1;
+    const startAngle = math.pi-0.1;
     final sweepAngle = arc+0.2;
-    final useCenter = false;
+    const useCenter = false;
     final paint = Paint()
     ..strokeCap = StrokeCap.round
     ..color = progressColor

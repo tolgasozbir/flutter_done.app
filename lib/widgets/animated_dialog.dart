@@ -16,7 +16,7 @@ class AnimatedDialog {
       barrierLabel: '',
       pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) { 
         return Material(
-          textStyle: TextStyle(color: Colors.white),
+          textStyle: const TextStyle(color: Colors.white),
           type: MaterialType.transparency, 
           child: Align(
             alignment: Alignment.center, 

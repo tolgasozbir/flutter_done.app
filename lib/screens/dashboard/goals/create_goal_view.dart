@@ -33,7 +33,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: Text(AppStrings.goalAppBarTitle),
+          title: const Text(AppStrings.goalAppBarTitle),
           leading: BackButton(onPressed: () => rippleController.reverse().then((value) => Navigator.pop(context))),
         ),
         body: _bodyView(),
@@ -99,7 +99,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Icon(GoalIcons.goalIconList[selectedIconIndex], size: selectIconSize).wrapFitted(), 
-            ScaledText(text: AppStrings.selectIcon, style: AppTextStyles.generalTextStyle),
+            const ScaledText(text: AppStrings.selectIcon, style: AppTextStyles.generalTextStyle),
             Icon(Icons.chevron_right,size: selectIconSize), 
           ],
         ),
@@ -109,7 +109,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
 
   Widget selectGoalColor() {
     return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 6,
@@ -139,8 +139,8 @@ class _CreateGoalViewState extends CreateGoalViewModel {
             ).wrapPadding(AppPaddings.all4),
           ),
           selectedColorIndex == index 
-            ? Positioned.fill(child: Icon(Icons.task_alt, color: AppColors.white, size: 48).wrapAlign(Alignment.center)) 
-            : SizedBox.shrink()
+            ? Positioned.fill(child: const Icon(Icons.task_alt, color: AppColors.white, size: 48).wrapAlign(Alignment.center)) 
+            : const SizedBox.shrink()
         ],
       ),
     );
@@ -152,7 +152,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
       height: context.dynamicHeight(0.060),
       child: ElevatedButton(
         onPressed: addGoal, 
-        child: ScaledText(text: AppStrings.save, style: AppTextStyles.generalTextStyle)),
+        child: const ScaledText(text: AppStrings.save, style: AppTextStyles.generalTextStyle)),
     );
   }  
   
@@ -165,7 +165,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
           primary: AppColors.cancelRed,
         ),
         onPressed: animateAndPop, 
-        child: ScaledText(text: AppStrings.cancel, style: AppTextStyles.generalTextStyle)),
+        child: const ScaledText(text: AppStrings.cancel, style: AppTextStyles.generalTextStyle)),
     ).wrapPadding(AppPaddings.top8);
   }
   

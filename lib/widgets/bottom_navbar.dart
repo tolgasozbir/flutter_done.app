@@ -13,7 +13,7 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
       notchMargin: 8,
-      shape: CircularNotchedRectangle(),
+      shape: const CircularNotchedRectangle(),
       child: SizedBox(
         height: 60,
         width: double.infinity,
@@ -38,7 +38,7 @@ class BottomNavBar extends StatelessWidget {
               ],
             ),
           ),
-          Spacer(),
+          const Spacer(),
           //right side
           Expanded(
             flex: 2,

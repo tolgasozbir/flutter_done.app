@@ -47,7 +47,7 @@ class _StatsViewState extends State<StatsView> {
           child: SizedBox(
             width: context.dynamicWidth(1),
             height: context.dynamicHeight(0.3),
-            child: Charts()
+            child: const Charts()
           )
         )
       ],

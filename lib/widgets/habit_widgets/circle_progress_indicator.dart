@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../providers/habit_provider.dart';
 
 class CircleProgressIndicator extends StatefulWidget {
-  CircleProgressIndicator({
+  const CircleProgressIndicator({
     Key? key, 
     required this.index, 
   }) : super(key: key);
@@ -27,13 +27,13 @@ class _CircleProgressIndicatorState extends State<CircleProgressIndicator> with 
     habitProvider.changeStatus(index);
     habitProvider.getStatus(index) 
       ? _animatedIconController.forward() 
-      : _animatedIconController.reverse();;
+      : _animatedIconController.reverse();
   }
 
   @override
   void initState() {
     super.initState();
-    _animatedIconController = AnimationController(vsync: this,duration: Duration(milliseconds: 400));
+    _animatedIconController = AnimationController(vsync: this,duration: const Duration(milliseconds: 400));
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       var habitProvider = Provider.of<HabitProvider>(context, listen: false);
       var isStarted = habitProvider.getStatus(widget.index);
@@ -51,7 +51,7 @@ class _CircleProgressIndicatorState extends State<CircleProgressIndicator> with 
       onTap: (){
         changeStatus(context);
       },
-      child: Container(
+      child: SizedBox(
         height: size,
         width: size,
         child: Stack(
