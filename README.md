@@ -1,17 +1,18 @@
 # doneApp
 
-A new Flutter project.
+A habits app based on the functionality and design.
+inspired by [Done%](https://apps.apple.com/us/app/done/id1597997515?itscg=30200&itsct=apps_box_link) and [MitchKoko](https://mitchkoko.app)
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+In the command terminal, run the following commands:
 
-A few resources to get you started if this is your first Flutter project:
+```shell
+$ git clone https://github.com/tolgasozbir/flutter_done.app.git doneApp
+$ cd doneApp/
+$ flutter packages get
+$ flutter run
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Preview
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-"# flutter_doneApp" 
