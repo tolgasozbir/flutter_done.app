@@ -81,6 +81,7 @@ class _CircularArcState extends State<CircularArc> with TickerProviderStateMixin
   Widget build(BuildContext context) {
     super.build(context);
     double size = widget.size;
+    int percent = (_animation.value.isNaN ? 0 : _animation.value / math.pi * 100).round();
     return Stack(
       children: [
         CustomPaint(
@@ -96,13 +97,13 @@ class _CircularArcState extends State<CircularArc> with TickerProviderStateMixin
           painter: ProgresArcPainter(
             isGraident: widget.isGraident,
             strokeWidth: widget.strokeWidth,
-            arc: _animation.value,
+            arc: _animation.value.isNaN ? 0 : _animation.value,
             progressColor: widget.progressColor
           ),
         ).wrapPadding(AppPaddings.top16),
         Positioned.fill(
           child: ScaledText(
-            text: '${(_animation.value / math.pi * 100).round()}%',
+            text: '$percent%',
             style: widget.textStyle
           ).wrapAlign(Alignment.center)
         )

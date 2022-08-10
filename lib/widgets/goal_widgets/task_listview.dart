@@ -24,10 +24,11 @@ class _TaskListViewState extends State<TaskListView> {
       shrinkWrap: true,
       itemCount: widget.goal.tasks.length,
       itemBuilder: (BuildContext context, int index) {
+        Task task = widget.goal.tasks[index];
         return taskCard(
           index: index,
-          taskTitle: widget.goal.tasks[index].taskTitle,
-          isChecked: widget.goal.tasks[index].isComplete,
+          taskTitle: task.taskTitle,
+          isChecked: task.isComplete,
         );
       },
     );
@@ -49,7 +50,7 @@ class _TaskListViewState extends State<TaskListView> {
   Widget checkboxListTile({required String taskTitle,required bool isChecked,required int index}) {
     return CheckboxListTile(
       controlAffinity: ListTileControlAffinity.leading,
-      title: Text(taskTitle),
+      title: Text(taskTitle, style: isChecked ? const TextStyle(decoration: TextDecoration.lineThrough) : null,),
       secondary: IconButton(
         onPressed: (){
           context.read<GoalProvider>().deleteTask(index, widget.goal);

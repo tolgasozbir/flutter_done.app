@@ -81,7 +81,7 @@ class GoalProgressCard extends StatelessWidget {
         children: [
           const Spacer(),
           ScaledText(
-            text: '${goal.goalTitle}',
+            text: goal.goalTitle,
             style: AppTextStyles.boldCustomSize(fontSize: titleTextSize),
             textAlign: TextAlign.center,
           ),

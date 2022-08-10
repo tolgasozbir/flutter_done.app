@@ -9,6 +9,7 @@ class AppStrings {
   static const String wellDONE = 'Well DONE!';
   static const String emptyError = 'This field cannot be empty';
   static const String emptyTitle = 'Unnamed';
+  static const String noData = 'No Data Yet!';
   static const String snackBarMessageDelete = 'Are you sure you want to delete this?';
   static const String snackBarMessageDublicate = 'This title has been used before';
   static const String snackBarCompleteGoal = 'Do you want to complete this goal?';
