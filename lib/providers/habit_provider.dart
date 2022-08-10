@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../services/notification_service/local_notification_service.dart';
 import '../constants/hive_constants.dart';
 import '../models/habit_model.dart';
 import '../services/cache_service/cache_service.dart';
 import '../services/cache_service/habit_cache_service.dart';
+import '../services/notification_service/local_notification_service.dart';
 
 class HabitProvider extends ChangeNotifier {
 

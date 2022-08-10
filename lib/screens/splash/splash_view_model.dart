@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:done_app/providers/goal_provider.dart';
+import '../../providers/goal_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:done_app/screens/splash/splash_view.dart';
+import 'splash_view.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import '../../providers/habit_provider.dart';

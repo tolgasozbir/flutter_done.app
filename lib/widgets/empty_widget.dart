@@ -1,6 +1,6 @@
-import 'package:done_app/constants/app_strings.dart';
-import 'package:done_app/constants/app_styles.dart';
-import 'package:done_app/widgets/scaled_text.dart';
+import '../constants/app_strings.dart';
+import '../constants/app_styles.dart';
+import 'scaled_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

@@ -1,4 +1,4 @@
-import 'package:done_app/services/cache_service/cache_service.dart';
+import 'cache_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../constants/hive_constants.dart';
 import '../../models/goal_model.dart';

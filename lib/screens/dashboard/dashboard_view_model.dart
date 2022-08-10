@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:auto_route/auto_route.dart';
-import 'package:done_app/providers/goal_provider.dart';
-import 'package:done_app/widgets/animated_dialog.dart';
+import '../../providers/goal_provider.dart';
+import '../../widgets/animated_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../constants/app_strings.dart';

@@ -1,10 +1,9 @@
-import 'package:done_app/extensions/context_extension.dart';
-import 'package:done_app/extensions/widget_extension.dart';
-import 'package:done_app/widgets/scaled_text.dart';
+import '../../extensions/context_extension.dart';
+import '../../extensions/widget_extension.dart';
+import '../scaled_text.dart';
 import 'package:flutter/material.dart';
 import '../../constants/app_colors.dart';
 import '../../constants/app_styles.dart';
-
 
 class TitleWithTextField extends StatelessWidget {
   const TitleWithTextField({

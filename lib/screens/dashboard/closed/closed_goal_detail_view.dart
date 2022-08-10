@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:done_app/extensions/context_extension.dart';
-import 'package:done_app/extensions/widget_extension.dart';
-import 'package:done_app/models/goal_model.dart';
+import '../../../extensions/context_extension.dart';
+import '../../../extensions/widget_extension.dart';
+import '../../../models/goal_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../constants/app_colors.dart';

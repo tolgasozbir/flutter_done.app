@@ -1,6 +1,5 @@
-import 'package:done_app/models/goal_model.dart';
+import '../../models/goal_model.dart';
 import 'package:flutter/material.dart';
-
 import '../../constants/app_styles.dart';
 import 'goal_progress_card.dart';
 

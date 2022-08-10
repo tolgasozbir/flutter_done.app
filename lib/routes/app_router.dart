@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:done_app/screens/dashboard/closed/closed_goal_detail_view.dart';
-import 'package:done_app/screens/dashboard/closed/closed_goals_view.dart';
-import 'package:done_app/screens/dashboard/dashboard_view.dart';
-import 'package:done_app/screens/dashboard/goals/goal_detail_view.dart';
-import 'package:done_app/screens/dashboard/goals/goals_view.dart';
-import 'package:done_app/screens/dashboard/stats/stats_view.dart';
-import 'package:done_app/screens/splash/splash_view.dart';
-import 'package:done_app/screens/dashboard/timer/timer_view.dart';
+import '../screens/dashboard/closed/closed_goal_detail_view.dart';
+import '../screens/dashboard/closed/closed_goals_view.dart';
+import '../screens/dashboard/dashboard_view.dart';
+import '../screens/dashboard/goals/goal_detail_view.dart';
+import '../screens/dashboard/goals/goals_view.dart';
+import '../screens/dashboard/stats/stats_view.dart';
+import '../screens/splash/splash_view.dart';
+import '../screens/dashboard/timer/timer_view.dart';
 import 'package:flutter/material.dart';
 import '../models/goal_model.dart';
 

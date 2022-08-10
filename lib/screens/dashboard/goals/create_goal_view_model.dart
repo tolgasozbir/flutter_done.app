@@ -1,8 +1,8 @@
 import 'dart:math';
 import 'package:auto_route/auto_route.dart';
-import 'package:done_app/constants/app_strings.dart';
-import 'package:done_app/constants/goal_icons.dart';
-import 'package:done_app/widgets/custom_snackbar.dart';
+import '../../../constants/app_strings.dart';
+import '../../../constants/goal_icons.dart';
+import '../../../widgets/custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../constants/app_colors.dart';

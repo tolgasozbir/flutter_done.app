@@ -1,5 +1,5 @@
 import 'package:charts_flutter/flutter.dart';
-import 'package:done_app/extensions/widget_extension.dart';
+import '../../../extensions/widget_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../constants/app_styles.dart';

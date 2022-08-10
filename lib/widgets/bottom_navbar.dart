@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:done_app/extensions/widget_extension.dart';
-import 'package:done_app/widgets/scaled_text.dart';
+import '../extensions/widget_extension.dart';
+import 'scaled_text.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatelessWidget {

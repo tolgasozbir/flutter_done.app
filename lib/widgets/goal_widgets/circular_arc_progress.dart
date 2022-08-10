@@ -1,9 +1,9 @@
 import 'dart:math' as math;
-import 'package:done_app/widgets/scaled_text.dart';
+import '../scaled_text.dart';
 import 'package:flutter/material.dart';
-import 'package:done_app/constants/app_colors.dart';
-import 'package:done_app/constants/app_styles.dart';
-import 'package:done_app/extensions/widget_extension.dart';
+import '../../constants/app_colors.dart';
+import '../../constants/app_styles.dart';
+import '../../extensions/widget_extension.dart';
 
 class CircularArc extends StatefulWidget {
   const CircularArc({

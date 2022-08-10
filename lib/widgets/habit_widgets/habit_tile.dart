@@ -1,5 +1,5 @@
-import 'package:done_app/widgets/custom_snackbar.dart';
-import 'package:done_app/widgets/scaled_text.dart';
+import '../custom_snackbar.dart';
+import '../scaled_text.dart';
 import 'package:flutter/material.dart';
 import '../../constants/app_colors.dart';
 import '../../constants/app_strings.dart';

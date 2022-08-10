@@ -1,8 +1,8 @@
-import 'package:done_app/models/goal_model.dart';
-import 'package:done_app/services/cache_service/cache_service.dart';
-import 'package:done_app/services/cache_service/goal_cache_service.dart';
 import 'package:flutter/material.dart';
 import '../constants/hive_constants.dart';
+import '../models/goal_model.dart';
+import '../services/cache_service/cache_service.dart';
+import '../services/cache_service/goal_cache_service.dart';
 
 
 class GoalProvider extends ChangeNotifier {

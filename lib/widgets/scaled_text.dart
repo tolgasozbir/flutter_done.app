@@ -1,6 +1,5 @@
 import 'dart:math';
-
-import 'package:done_app/extensions/context_extension.dart';
+import '../extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
 class ScaledText extends StatelessWidget {
@@ -16,12 +15,12 @@ class ScaledText extends StatelessWidget {
       text,
       style: style,
       textAlign: textAlign,
-      textScaleFactor: textScaleFactor(context),
+      textScaleFactor: _textScaleFactor(context),
       overflow: TextOverflow.fade,
     );
   }
 
-  static double textScaleFactor(BuildContext context, {double maxTextScaleFactor = 2}) {
+  double _textScaleFactor(BuildContext context, {double maxTextScaleFactor = 2}) {
     final width = context.dynamicWidth(1);
     double val = (width / 1400) * maxTextScaleFactor;
     return max(1, min(val, maxTextScaleFactor));

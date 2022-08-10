@@ -1,8 +1,8 @@
-import 'package:done_app/constants/app_strings.dart';
-import 'package:done_app/extensions/widget_extension.dart';
-import 'package:done_app/extensions/context_extension.dart';
-import 'package:done_app/screens/dashboard/stats/charts.dart';
-import 'package:done_app/widgets/scaled_text.dart';
+import '../../../constants/app_strings.dart';
+import '../../../extensions/widget_extension.dart';
+import '../../../extensions/context_extension.dart';
+import 'charts.dart';
+import '../../../widgets/scaled_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../constants/app_styles.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../constants/app_styles.dart';
 import '../../providers/habit_provider.dart';
-import 'package:provider/provider.dart';
 
 enum ListWheelType {
   min,hour

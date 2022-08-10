@@ -1,6 +1,6 @@
-import 'package:done_app/providers/goal_provider.dart';
+import '../../../providers/goal_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:done_app/models/goal_model.dart';
+import '../../../models/goal_model.dart';
 import 'package:provider/provider.dart';
 import '../../../widgets/empty_widget.dart';
 import '../../../widgets/goal_widgets/goal_grid_view.dart';

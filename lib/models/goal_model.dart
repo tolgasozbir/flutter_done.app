@@ -1,6 +1,5 @@
 import 'package:hive/hive.dart';
-
-import 'package:done_app/constants/hive_constants.dart';
+import '../constants/hive_constants.dart';
 
 part 'goal_model.g.dart';
 

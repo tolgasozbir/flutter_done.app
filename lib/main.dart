@@ -1,4 +1,4 @@
-import 'package:done_app/providers/goal_provider.dart';
+import 'providers/goal_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'constants/app_colors.dart';
