@@ -28,11 +28,11 @@ $ flutter run
 
 ## Preview
 
-### goal
+#### Goal view
 https://user-images.githubusercontent.com/79727679/184714089-49fb94bb-dabd-4241-8727-aaafb5269886.mp4
-### closed
+#### Closed view
 https://user-images.githubusercontent.com/79727679/184714103-3518609d-80d0-4257-906f-c4b1f8ac931f.mp4
-### timer
+#### Timer view
 https://user-images.githubusercontent.com/79727679/184714108-4bd93abc-417c-41a8-99d4-3eca431835c3.mp4
-### stats
+#### Stats view
 <img src="https://user-images.githubusercontent.com/79727679/184716012-c9b49680-4d28-4bf7-a9fb-543b89b0314f.jpg" data-canonical-src="https://user-images.githubusercontent.com/79727679/184716012-c9b49680-4d28-4bf7-a9fb-543b89b0314f.jpg" width="256"/>
