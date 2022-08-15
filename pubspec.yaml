@@ -1,8 +1,6 @@
 name: done_app
 description: Done App.
-
 publish_to: 'none'
-
 version: 1.2.2
 
 environment:
@@ -12,19 +10,25 @@ dependencies:
   flutter:
     sdk: flutter
 
-  #for iOS style icons.
+  #iOS styles
   cupertino_icons: ^1.0.2
+
   #State Management
   provider: ^6.0.3
+
   #Notifications
   flutter_local_notifications: ^9.7.0
+
   #Local Storage
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  #Animastions
+
+  #Animations
   lottie: ^1.4.0
-  #For Routing
+
+  #Routing
   auto_route: ^4.0.1
+
   #Chart
   charts_flutter: ^0.12.0
 
@@ -38,7 +42,6 @@ dev_dependencies:
   auto_route_generator: ^4.0.0
 
 flutter:
-
   uses-material-design: true
 
   assets:
