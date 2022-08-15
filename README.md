@@ -20,6 +20,12 @@ $ flutter packages get
 $ flutter run
 ```
 
+## Tech and Libraries
+  - MVVM Architecture
+  - State Management [Provider](https://github.com/rrousselGit/provider)
+  - Navigation with [GoRouter](https://github.com/flutter/packages/tree/main/packages/go_router)
+  - Cache Management [Hive](https://github.com/hivedb/hive/tree/master/hive)
+
 ## Preview
 
 ### goal
