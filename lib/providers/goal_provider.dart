@@ -97,4 +97,22 @@ class GoalProvider extends ChangeNotifier {
     return percent;
   }
 
+  List<Task> ascendingTask(Goal goal){
+    List<Task> tasks = goal.tasks;
+    tasks.sort((a, b) => a.taskTitle.compareTo(b.taskTitle));
+    return tasks;
+  }
+
+  List<Task> descendingTask(Goal goal){
+    List<Task> tasks = goal.tasks;
+    tasks.sort((b, a) => a.taskTitle.compareTo(b.taskTitle));
+    return tasks;
+  }
+  
+  // List<Task> sortUncheckedTask(Goal goal){
+  //   List<Task> tasks = goal.tasks;
+  //   tasks.sort((a, b) => a.isComplete.toString().compareTo(b.isComplete.toString()));
+  //   return tasks;
+  // }
+
 }

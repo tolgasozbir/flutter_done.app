@@ -32,6 +32,8 @@ class _GoalDetailViewState extends State<GoalDetailView> {
   final double descriptionSize = 28;
   final double taskCountSize = 24;
   final double iconSize = 32;
+  final taskListKey = GlobalKey<TaskListViewState>();
+  bool sortAZ = false;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,10 @@ class _GoalDetailViewState extends State<GoalDetailView> {
         children: [
           progressInfo(),
           buttons(),
-          TaskListView(goal: context.watch<GoalProvider>().getGoalList.firstWhere((e) => e == widget.goal,)),
+          TaskListView(
+            key: taskListKey,
+            goal: context.watch<GoalProvider>().getGoalList.firstWhere((e) => e == widget.goal,)
+          ),
         ],
       ),
     );
@@ -108,10 +113,35 @@ class _GoalDetailViewState extends State<GoalDetailView> {
         ),
         Row(
           children: [
+            // iconButton(
+            //   iconData: Icons.filter_alt, 
+            //   onTap: () {
+            //     //TODO:
+            //   }
+            // ),
+            const SizedBox(width: 8),
+            iconButton(
+              iconData: Icons.sort_by_alpha,
+              onTap: () {
+                sortAZ = !sortAZ;
+                CustomSnackBar.showSnackBarMessage(
+                  context: context, 
+                  text: sortAZ 
+                    ? AppStrings.snackBarSortAscending
+                    : AppStrings.snackBarSortDescending,
+                );
+                taskListKey.currentState?.tasks = sortAZ 
+                  ? context.read<GoalProvider>().ascendingTask(widget.goal)
+                  : context.read<GoalProvider>().descendingTask(widget.goal);
+                taskListKey.currentState?.setState(() {});
+              }
+            ),
+            const SizedBox(width: 8),
             iconButton(
               iconData: Icons.done_all, 
               onTap: () => CustomSnackBar.showSnackBarMessage(
-                context: context, text: AppStrings.snackBarCompleteGoal,
+                context: context, 
+                text: AppStrings.snackBarCompleteGoal,
                 actiontext: AppStrings.finish,
                 actionFunction: () async => context.router.popTop(AppStrings.finish)
               )
@@ -120,7 +150,8 @@ class _GoalDetailViewState extends State<GoalDetailView> {
             iconButton(
               iconData: Icons.delete_forever, 
               onTap: () => CustomSnackBar.showSnackBarMessage(
-                context: context, text: AppStrings.snackBarMessageDelete,
+                context: context, 
+                text: AppStrings.snackBarMessageDelete,
                 actionFunction: () async => context.router.popTop(AppStrings.delete)
               )
             ),

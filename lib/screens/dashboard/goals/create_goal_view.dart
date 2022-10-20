@@ -162,7 +162,7 @@ class _CreateGoalViewState extends CreateGoalViewModel {
       height: context.dynamicHeight(0.060),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: AppColors.cancelRed,
+          backgroundColor: AppColors.cancelRed,
         ),
         onPressed: animateAndPop, 
         child: const ScaledText(text: AppStrings.cancel, style: AppTextStyles.generalTextStyle)),

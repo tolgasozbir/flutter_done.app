@@ -14,6 +14,8 @@ class AppStrings {
   static const String snackBarMessageDublicate = 'This title has been used before';
   static const String snackBarCompleteGoal = 'Do you want to complete this goal?';
   static const String snackBarUndoGoal = 'Do you want to undo this goal?';
+  static const String snackBarSortAscending = 'Items sorted from A to Z';
+  static const String snackBarSortDescending = 'Items sorted from Z to A';
   //habits
   static const String habitHintText = 'Exercise, Work, etc';
   static const String habitLabelText = 'Habit Title';

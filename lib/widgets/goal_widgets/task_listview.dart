@@ -12,18 +12,31 @@ class TaskListView extends StatefulWidget {
   final Goal goal;
 
   @override
-  State<TaskListView> createState() => _TaskListViewState();
+  State<TaskListView> createState() => TaskListViewState();
 }
 
-class _TaskListViewState extends State<TaskListView> {
+class TaskListViewState extends State<TaskListView> {
+
+  List<Task> tasks = [];
+
+  @override
+  void initState() {
+    init();
+    super.initState();
+  }
+
+  void init() async {
+    tasks = widget.goal.tasks;
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: widget.goal.tasks.length,
+      itemCount: tasks.length,
       itemBuilder: (BuildContext context, int index) {
-        Task task = widget.goal.tasks[index];
+        Task task = tasks[index];
         return taskCard(
           index: index,
           taskTitle: task.taskTitle,
