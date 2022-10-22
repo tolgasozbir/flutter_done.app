@@ -4,7 +4,7 @@ import '../../../providers/goal_provider.dart';
 import 'add_task_dialog_view.dart';
 import '../../../widgets/animated_dialog.dart';
 import '../../../widgets/custom_snackbar.dart';
-import '../../../widgets/goal_widgets/task_listview.dart';
+import '../../../widgets/goal_widgets/task_reorderable_listview.dart';
 import '../../../widgets/scaled_text.dart';
 import 'package:flutter/material.dart';
 import '../../../constants/app_styles.dart';

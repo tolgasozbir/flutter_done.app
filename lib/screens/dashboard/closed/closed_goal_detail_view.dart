@@ -10,7 +10,7 @@ import '../../../constants/app_styles.dart';
 import '../../../providers/goal_provider.dart';
 import '../../../widgets/custom_snackbar.dart';
 import '../../../widgets/goal_widgets/circular_arc_progress.dart';
-import '../../../widgets/goal_widgets/task_listview.dart';
+import '../../../widgets/goal_widgets/task_reorderable_listview.dart';
 import '../../../widgets/scaled_text.dart';
 
 class ClosedGoalDetailView extends StatefulWidget {
