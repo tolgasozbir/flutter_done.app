@@ -1,12 +1,13 @@
 import 'package:auto_route/auto_route.dart';
-import '../../../extensions/context_extension.dart';
-import '../../../extensions/widget_extension.dart';
-import '../../../models/goal_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../../constants/app_colors.dart';
 import '../../../constants/app_strings.dart';
 import '../../../constants/app_styles.dart';
+import '../../../extensions/context_extension.dart';
+import '../../../extensions/widget_extension.dart';
+import '../../../models/goal_model.dart';
 import '../../../providers/goal_provider.dart';
 import '../../../widgets/custom_snackbar.dart';
 import '../../../widgets/goal_widgets/circular_arc_progress.dart';

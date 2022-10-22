@@ -1,4 +1,4 @@
-import 'package:done_app/widgets/goal_widgets/task_card.dart';
+import 'task_card.dart';
 import '../../models/goal_model.dart';
 import 'package:flutter/material.dart';
 

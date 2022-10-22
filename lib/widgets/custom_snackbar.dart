@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
+
 import '../constants/app_colors.dart';
+import '../constants/app_strings.dart';
 import '../extensions/widget_extension.dart';
 import 'scaled_text.dart';
-import 'package:flutter/material.dart';
-import '../constants/app_strings.dart';
 
 class CustomSnackBar {
   static showSnackBarMessage({required BuildContext context,required String text, VoidCallback? actionFunction , String actiontext = AppStrings.delete}){

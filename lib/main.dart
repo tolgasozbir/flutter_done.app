@@ -1,9 +1,10 @@
-import 'providers/goal_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+
 import 'constants/app_colors.dart';
 import 'constants/app_strings.dart';
-import 'package:provider/provider.dart';
+import 'providers/goal_provider.dart';
 import 'providers/habit_provider.dart';
 import 'routes/app_router.dart';
 

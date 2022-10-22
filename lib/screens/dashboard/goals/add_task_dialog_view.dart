@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../constants/app_colors.dart';
 import '../../../constants/app_strings.dart';
 import '../../../constants/app_styles.dart';
 import '../../../extensions/context_extension.dart';
@@ -6,9 +10,6 @@ import '../../../models/goal_model.dart';
 import '../../../providers/goal_provider.dart';
 import '../../../widgets/custom_snackbar.dart';
 import '../../../widgets/scaled_text.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../../constants/app_colors.dart';
 
 class AddTaskDialogView extends StatelessWidget {
   AddTaskDialogView({Key? key, required this.goal}) : super(key: key);

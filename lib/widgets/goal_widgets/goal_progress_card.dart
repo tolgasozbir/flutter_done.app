@@ -1,16 +1,17 @@
 import 'package:auto_route/auto_route.dart';
-import '../../constants/app_colors.dart';
-import '../../constants/goal_icons.dart';
-import '../../providers/goal_provider.dart';
-import '../custom_snackbar.dart';
-import '../scaled_text.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../constants/app_colors.dart';
 import '../../constants/app_strings.dart';
 import '../../constants/app_styles.dart';
+import '../../constants/goal_icons.dart';
 import '../../extensions/widget_extension.dart';
 import '../../models/goal_model.dart';
-import 'package:provider/provider.dart';
+import '../../providers/goal_provider.dart';
 import '../../routes/app_router.dart';
+import '../custom_snackbar.dart';
+import '../scaled_text.dart';
 import 'circular_arc_progress.dart';
 
 class GoalProgressCard extends StatelessWidget {
