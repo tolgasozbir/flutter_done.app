@@ -33,7 +33,8 @@ class _GoalDetailViewState extends State<GoalDetailView> {
   final double taskCountSize = 24;
   final double iconSize = 32;
   final taskListKey = GlobalKey<TaskListViewState>();
-  bool sortAZ = false;
+  bool sortAscending = false;
+  bool sortByChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -113,27 +114,31 @@ class _GoalDetailViewState extends State<GoalDetailView> {
         ),
         Row(
           children: [
-            // iconButton(
-            //   iconData: Icons.filter_alt, 
-            //   onTap: () {
-            //     //TODO:
-            //   }
-            // ),
+            iconButton(
+              iconData: Icons.filter_alt, 
+              onTap: () {
+                sortByChecked = !sortByChecked;
+                CustomSnackBar.showSnackBarMessage(
+                  context: context, 
+                  text: sortByChecked 
+                    ? AppStrings.snackBarSortByChecked
+                    : AppStrings.snackBarSortByUnchecked,
+                );
+                taskListKey.currentState?.tasks = context.read<GoalProvider>().sortByCheckedTask(widget.goal, sortByChecked);
+              }
+            ),
             const SizedBox(width: 8),
             iconButton(
               iconData: Icons.sort_by_alpha,
               onTap: () {
-                sortAZ = !sortAZ;
+                sortAscending = !sortAscending;
                 CustomSnackBar.showSnackBarMessage(
                   context: context, 
-                  text: sortAZ 
+                  text: sortAscending 
                     ? AppStrings.snackBarSortAscending
                     : AppStrings.snackBarSortDescending,
                 );
-                taskListKey.currentState?.tasks = sortAZ 
-                  ? context.read<GoalProvider>().ascendingTask(widget.goal)
-                  : context.read<GoalProvider>().descendingTask(widget.goal);
-                taskListKey.currentState?.setState(() {});
+                taskListKey.currentState?.tasks = context.read<GoalProvider>().sortTasks(widget.goal, sortAscending);
               }
             ),
             const SizedBox(width: 8),

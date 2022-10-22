@@ -16,6 +16,8 @@ class AppStrings {
   static const String snackBarUndoGoal = 'Do you want to undo this goal?';
   static const String snackBarSortAscending = 'Items sorted from A to Z';
   static const String snackBarSortDescending = 'Items sorted from Z to A';
+  static const String snackBarSortByChecked = 'Sorted by checked';
+  static const String snackBarSortByUnchecked = 'Sorted by unchecked';
   //habits
   static const String habitHintText = 'Exercise, Work, etc';
   static const String habitLabelText = 'Habit Title';
