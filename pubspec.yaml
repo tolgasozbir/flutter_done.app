@@ -25,6 +25,7 @@ dependencies:
 
   #Animations
   lottie: ^1.4.0
+  flutter_staggered_animations: ^1.1.1
 
   #Routing
   auto_route: ^4.0.1
